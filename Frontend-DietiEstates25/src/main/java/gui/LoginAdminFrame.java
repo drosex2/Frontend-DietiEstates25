@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -30,6 +31,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import customElements.*;
 import controller.LoginAdminController;
 import dto.Amministratore;
 import starter.Starter;
@@ -155,7 +157,7 @@ public class LoginAdminFrame extends JFrame {
 		gbc_lblNomeAdmin.gridy = 2;
 		loginFormPanel.add(lblNomeAdmin, gbc_lblNomeAdmin);
 		
-		JFormattedTextField nomeAdminField = new JFormattedTextField();
+		RoundedTextField nomeAdminField = new RoundedTextField(15,30,30);
 		nomeAdminField.setForeground(new Color(0, 0, 0));
 		nomeAdminField.setFont(new Font("Arial", Font.PLAIN, 14));
 		nomeAdminField.setBackground(new Color(192, 192, 192));
@@ -176,7 +178,7 @@ public class LoginAdminFrame extends JFrame {
 		gbc_lblPassword.gridy = 4;
 		loginFormPanel.add(lblPassword, gbc_lblPassword);
 		
-		passwordField = new JPasswordField();
+		passwordField = new RoundedPasswordField(15,30,30);
 		passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -187,7 +189,7 @@ public class LoginAdminFrame extends JFrame {
 		passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		loginFormPanel.add(passwordField, gbc_passwordField);
 		JFrame myFrame=this;
-		JButton btnAccedi = new JButton("Accedi");
+		RoundedButton btnAccedi = new RoundedButton("Accedi",30,30);
 		btnAccedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nomeAdmin=nomeAdminField.getText();

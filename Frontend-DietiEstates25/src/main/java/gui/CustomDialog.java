@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import customElements.RoundedButton;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -101,7 +104,7 @@ public class CustomDialog extends JDialog {
 					panel.add(testo, gbc_testo);
 				}
 				{
-					JButton btnCentrale = new JButton(textButton);
+					RoundedButton btnCentrale = new RoundedButton(textButton,30,30);
 					btnCentrale.setFont(new Font("Arial", Font.PLAIN, 16));
 					btnCentrale.setBackground(new Color(255, 175, 68));
 					btnCentrale.addActionListener(new ActionListener() {
