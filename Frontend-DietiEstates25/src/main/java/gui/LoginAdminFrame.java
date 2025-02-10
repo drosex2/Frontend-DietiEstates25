@@ -28,11 +28,14 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.jgoodies.forms.layout.FormLayout;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import customElements.*;
 import controller.LoginAdminController;
+import dto.Agenzia;
 import dto.Amministratore;
 import starter.Starter;
 
@@ -58,7 +61,7 @@ public class LoginAdminFrame extends JFrame {
 
 	public LoginAdminFrame(Starter starter) {
 		loginAdminController=new LoginAdminController(this);
-		this.starter=starter;
+		this.setStarter(starter);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 770, 512);
@@ -195,18 +198,22 @@ public class LoginAdminFrame extends JFrame {
 				String nomeAdmin=nomeAdminField.getText();
 				String password=new String(passwordField.getPassword());
 				try {
-					Amministratore adminConnesso=loginAdminController.login(nomeAdmin,password);
-					String token="myToken"; //token che deve essere restituito dalla chiamata al login
+					String response=loginAdminController.login(nomeAdmin,password);
+					JsonObject jsonResponse= new Gson().fromJson(response, JsonObject.class);
+					Amministratore adminConnesso = getAdminFromJsonResponse(nomeAdmin, password, jsonResponse);
+					String token=jsonResponse.get("token").getAsString();
 					starter.switchLoginAdminToHomePageAdmin(adminConnesso,token);
+					
 				}catch(Exception ex) {
 					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
-					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
 					dialog.setVisible(true);
 				}
 					
 				
 			}
+
+			
 		});
 		btnAccedi.setBackground(new Color(255, 175, 68));
 		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -246,5 +253,17 @@ public class LoginAdminFrame extends JFrame {
 		gbc_fooBar.gridx = 0;
 		gbc_fooBar.gridy = 2;
 		panePrincipale.add(fooBar, gbc_fooBar);
+	}
+	private Amministratore getAdminFromJsonResponse(String nomeAdmin, String password,JsonObject jsonResponse) {
+				JsonObject agenziaJson=jsonResponse.getAsJsonObject("agenzia");
+				Agenzia agency= new Gson().fromJson(agenziaJson, Agenzia.class);
+				Amministratore adminConnesso= new Amministratore(nomeAdmin,password,agency);
+				return adminConnesso;
+	}
+	public Starter getStarter() {
+		return starter;
+	}
+	public void setStarter(Starter starter) {
+		this.starter = starter;
 	}
 }

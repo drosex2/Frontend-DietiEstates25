@@ -34,6 +34,7 @@ public class CustomDialog extends JDialog {
 			JPanel panePrincipale = new JPanel();
 			panePrincipale.setSize(450, 300);
 			setResizable(false);
+			setModal(true);
 			getContentPane().add(panePrincipale, BorderLayout.NORTH);
 			GridBagLayout gbl_panePrincipale = new GridBagLayout();
 			gbl_panePrincipale.columnWidths = new int[]{574, 0};

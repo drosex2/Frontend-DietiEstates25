@@ -51,18 +51,10 @@ public class SignUpFrame extends JFrame {
 	private JPasswordField passwordField;
 	private SignUpController signUpController;
 	
-	/**
-	 * Launch the application.
-	 */
 	
-
-	/**
-	 * Create the frame.
-	 */
 	public SignUpFrame(Starter starter) {
 		
 		this.starter=starter;
-		
 		this.signUpController=new SignUpController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -346,11 +338,11 @@ public class SignUpFrame extends JFrame {
 				try {
 					signUpController.signUp(email,nome,cognome,password);
 					CustomDialog dialog=new CustomDialog("Registrazione avvenuta con successo!","Torna alla Home");
-					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
 					dialog.setVisible(true);
 					starter.switchSignUpFrameToLoginFrame();
 				}catch(Exception ex) {
+					ex.printStackTrace();
 					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
 					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
@@ -391,5 +383,15 @@ public class SignUpFrame extends JFrame {
 		gbc_fooBar.gridy = 2;
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
+
+	public Starter getStarter() {
+		return starter;
+	}
+
+	public void setStarter(Starter starter) {
+		this.starter = starter;
+	}
+
+	
 
 }

@@ -6,6 +6,7 @@ import dto.Amministratore;
 import gui.*;
 
 public class Starter {
+	private static final String BASE_URI="http://3.89.254.227:8080/api/1.0/";
 	private LoginFrame loginFrame;
 	private LoginAdminFrame loginAdminFrame;
 	private HomePageAdminFrame homePageAdmin;
@@ -110,6 +111,12 @@ public class Starter {
 		modificaPasswordFrame.setVisible(true);
 		
 		
+	}
+
+
+
+	public static String getBASE_URI() {
+		return BASE_URI;
 	}
 
 
