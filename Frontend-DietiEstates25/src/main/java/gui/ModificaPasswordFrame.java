@@ -22,6 +22,7 @@ import controller.ModificaAgenteController;
 import controller.ModificaPasswordController;
 import controller.CreaAmministratoreController;
 import controller.LoginController;
+import customElements.*;
 import dto.Amministratore;
 import starter.Starter;
 import utils.CredentialCheckerUtils;
@@ -156,7 +157,7 @@ public class ModificaPasswordFrame extends JFrame {
 		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_formPanelInterno.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
-		JButton btnModifica = new JButton("Modifica");
+		RoundedButton btnModifica = new RoundedButton("Modifica",30,30);
 		
 		JLabel lblVecchiaPassword = new JLabel("Vecchia password");
 		lblVecchiaPassword.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -167,7 +168,7 @@ public class ModificaPasswordFrame extends JFrame {
 		gbc_lblVecchiaPassword.gridy = 0;
 		formPanelInterno.add(lblVecchiaPassword, gbc_lblVecchiaPassword);
 		
-		vecchiaPasswordField = new JPasswordField();
+		vecchiaPasswordField = new RoundedPasswordField(15,30,30);
 		vecchiaPasswordField.setFont(new Font("Arial", Font.PLAIN, 18));
 		vecchiaPasswordField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		vecchiaPasswordField.setBackground(Color.LIGHT_GRAY);
@@ -215,7 +216,7 @@ public class ModificaPasswordFrame extends JFrame {
 		gbc_lblPassword.gridy = 2;
 		formPanelInterno.add(lblPassword, gbc_lblPassword);
 		
-		passwordField = new JPasswordField();
+		passwordField = new RoundedPasswordField(15,30,30);
 		passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -305,7 +306,7 @@ public class ModificaPasswordFrame extends JFrame {
 		gbc_btnModifica.gridy = 0;
 		panel_1.add(btnModifica, gbc_btnModifica);
 		
-		JButton btnAnnulla = new JButton("Annulla");
+		RoundedButton btnAnnulla = new RoundedButton("Annulla",30,30);
 		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

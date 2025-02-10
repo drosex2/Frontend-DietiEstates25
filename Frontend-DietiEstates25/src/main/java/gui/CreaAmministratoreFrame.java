@@ -23,6 +23,7 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 import controller.ModificaAgenteController;
+import customElements.*;
 import controller.CreaAmministratoreController;
 import controller.LoginController;
 import dto.Amministratore;
@@ -159,7 +160,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_formPanelInterno.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
-		JButton btnCrea = new JButton("Crea");
+		RoundedButton btnCrea = new RoundedButton("Crea",30,30);
 		
 		JLabel lblNomeAdmin = new JLabel("NomeAdmin");
 		lblNomeAdmin.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -170,7 +171,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		gbc_lblNomeAdmin.gridy = 0;
 		formPanelInterno.add(lblNomeAdmin, gbc_lblNomeAdmin);
 		
-		nomeAdminField = new JTextField();
+		nomeAdminField = new RoundedTextField(15,30,30);
 		nomeAdminField.setFont(new Font("Arial", Font.PLAIN, 18));
 		nomeAdminField.setColumns(10);
 		nomeAdminField.setBackground(new Color(192, 192, 192));
@@ -191,7 +192,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		gbc_lblPassword.gridy = 2;
 		formPanelInterno.add(lblPassword, gbc_lblPassword);
 		
-		passwordField = new JPasswordField();
+		passwordField = new RoundedPasswordField(15,30,30);
 		passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -279,7 +280,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		gbc_btnCrea.gridy = 0;
 		panel_1.add(btnCrea, gbc_btnCrea);
 		
-		JButton btnAnnulla = new JButton("Annulla");
+		RoundedButton btnAnnulla = new RoundedButton("Annulla",30,30);
 		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

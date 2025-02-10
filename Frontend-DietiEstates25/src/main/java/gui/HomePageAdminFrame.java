@@ -31,6 +31,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import controller.HomePageAdminController;
 import controller.LoginController;
+import customElements.RoundedButton;
 import dto.Amministratore;
 import starter.Starter;
 
@@ -168,7 +169,7 @@ public class HomePageAdminFrame extends JFrame {
 		gbl_loginFormPanel.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, Double.MIN_VALUE};
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
-		JButton btnVisualizzaInserzioni = new JButton("Visualizza inserzioni dell'agenzia");
+		RoundedButton btnVisualizzaInserzioni = new RoundedButton("Visualizza inserzioni dell'agenzia",30,30);
 		btnVisualizzaInserzioni.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVisualizzaInserzioni.setForeground(new Color(255, 255, 255));
 		btnVisualizzaInserzioni.setBackground(new Color(16, 49, 71));
@@ -179,7 +180,7 @@ public class HomePageAdminFrame extends JFrame {
 		gbc_btnVisualizzaInserzioni.gridy = 2;
 		loginFormPanel.add(btnVisualizzaInserzioni, gbc_btnVisualizzaInserzioni);
 		
-		JButton btnNuovoAdmin = new JButton("Crea nuovo amministratore");
+		RoundedButton btnNuovoAdmin = new RoundedButton("Crea nuovo amministratore",30,30);
 		btnNuovoAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				starter.switchHomePageAdminToCreaAmministratoreFrame(adminConnesso,token);
@@ -195,7 +196,7 @@ public class HomePageAdminFrame extends JFrame {
 		gbc_btnNuovoAdmin.gridy = 4;
 		loginFormPanel.add(btnNuovoAdmin, gbc_btnNuovoAdmin);
 		
-		JButton btnNuovoAgente = new JButton("Crea nuovo agente immobiliare");
+		RoundedButton btnNuovoAgente = new RoundedButton("Crea nuovo agente immobiliare",30,30);
 		btnNuovoAgente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				starter.switchHomePageAdminToCreaAgenteFrame(adminConnesso,token);
@@ -211,7 +212,7 @@ public class HomePageAdminFrame extends JFrame {
 		gbc_btnNuovoAgente.gridy = 6;
 		loginFormPanel.add(btnNuovoAgente, gbc_btnNuovoAgente);
 		
-		JButton btnModificaPassword = new JButton("Modifica password");
+		RoundedButton btnModificaPassword = new RoundedButton("Modifica password",30,30);
 		btnModificaPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				starter.switchHomePageAdminToModificaPasswordFrame(adminConnesso,token);

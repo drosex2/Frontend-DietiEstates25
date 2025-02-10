@@ -1,5 +1,5 @@
-/gui/
-/panel/
-/starter/
-/utils/
+/customElements/
 /META-INF/
+/controller/
+/dto/
+/gui/

@@ -30,6 +30,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import controller.LoginController;
+import customElements.*;
 import starter.Starter;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -157,7 +158,7 @@ public class LoginFrame extends JFrame {
 		gbc_lblEmail.gridy = 2;
 		loginFormPanel.add(lblEmail, gbc_lblEmail);
 		
-		JFormattedTextField emailField = new JFormattedTextField();
+		RoundedTextField emailField = new RoundedTextField(15,30,30);
 		emailField.setForeground(new Color(0, 0, 0));
 		emailField.setFont(new Font("Arial", Font.PLAIN, 14));
 		emailField.setBackground(new Color(192, 192, 192));
@@ -178,7 +179,7 @@ public class LoginFrame extends JFrame {
 		gbc_lblPassword.gridy = 4;
 		loginFormPanel.add(lblPassword, gbc_lblPassword);
 		
-		passwordField = new JPasswordField();
+		passwordField = new RoundedPasswordField(15,30,30);
 		passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -207,7 +208,7 @@ public class LoginFrame extends JFrame {
 		gbc_tglbtnAgente.gridy = 7;
 		loginFormPanel.add(tglbtnAgente, gbc_tglbtnAgente);
 		
-		JButton btnAccedi = new JButton("Accedi");
+		RoundedButton btnAccedi = new RoundedButton("Accedi",30,30);
 		btnAccedi.setBackground(new Color(255, 175, 68));
 		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnAccedi = new GridBagConstraints();

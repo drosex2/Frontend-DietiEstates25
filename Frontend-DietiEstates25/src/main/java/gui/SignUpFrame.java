@@ -25,6 +25,9 @@ import javax.swing.border.EmptyBorder;
 import controller.ModificaAgenteController;
 import controller.LoginController;
 import controller.SignUpController;
+import customElements.RoundedButton;
+import customElements.RoundedPasswordField;
+import customElements.RoundedTextField;
 import dto.Amministratore;
 import starter.Starter;
 import utils.CredentialCheckerUtils;
@@ -48,18 +51,10 @@ public class SignUpFrame extends JFrame {
 	private JPasswordField passwordField;
 	private SignUpController signUpController;
 	
-	/**
-	 * Launch the application.
-	 */
 	
-
-	/**
-	 * Create the frame.
-	 */
 	public SignUpFrame(Starter starter) {
 		
 		this.starter=starter;
-		
 		this.signUpController=new SignUpController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -165,7 +160,7 @@ public class SignUpFrame extends JFrame {
 		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_formPanelInterno.rowWeights = new double[]{2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
-		JButton btnRegistrati = new JButton("Registrati");
+		RoundedButton btnRegistrati = new RoundedButton("Registrati",30,30);
 		JLabel lblEmail = new JLabel("E-Mail");
 		lblEmail.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -177,7 +172,7 @@ public class SignUpFrame extends JFrame {
 		JLabel lblErroreMail = new JLabel("<html> Inserire una mail del tipo  example@domain.dom\r\n </html>");
 		lblErroreMail.setVisible(false);
 		
-		emailField = new JTextField();
+		emailField = new RoundedTextField(15,30,30);
 		
 		emailField.setBackground(new Color(192, 192, 192));
 		emailField.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -231,7 +226,7 @@ public class SignUpFrame extends JFrame {
 		gbc_lblNome.gridy = 2;
 		formPanelInterno.add(lblNome, gbc_lblNome);
 		
-		nomeField = new JTextField();
+		nomeField = new RoundedTextField(15,30,30);
 		nomeField.setFont(new Font("Arial", Font.PLAIN, 18));
 		nomeField.setColumns(10);
 		nomeField.setBackground(new Color(192, 192, 192));
@@ -252,7 +247,7 @@ public class SignUpFrame extends JFrame {
 		gbc_lblCognome.gridy = 4;
 		formPanelInterno.add(lblCognome, gbc_lblCognome);
 		
-		cognomeField = new JTextField();
+		cognomeField = new RoundedTextField(15,30,30);
 		cognomeField.setFont(new Font("Arial", Font.PLAIN, 18));
 		cognomeField.setColumns(10);
 		cognomeField.setBackground(new Color(192, 192, 192));
@@ -273,7 +268,7 @@ public class SignUpFrame extends JFrame {
 		gbc_lblPassword.gridy = 6;
 		formPanelInterno.add(lblPassword, gbc_lblPassword);
 		
-		passwordField = new JPasswordField();
+		passwordField = new RoundedPasswordField(15,30,30);
 		passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -343,11 +338,11 @@ public class SignUpFrame extends JFrame {
 				try {
 					signUpController.signUp(email,nome,cognome,password);
 					CustomDialog dialog=new CustomDialog("Registrazione avvenuta con successo!","Torna alla Home");
-					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
 					dialog.setVisible(true);
 					starter.switchSignUpFrameToLoginFrame();
 				}catch(Exception ex) {
+					ex.printStackTrace();
 					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
 					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
@@ -365,7 +360,7 @@ public class SignUpFrame extends JFrame {
 		gbc_btnRegistrati.gridy = 0;
 		panel_1.add(btnRegistrati, gbc_btnRegistrati);
 		
-		JButton btnAnnulla = new JButton("Annulla");
+		RoundedButton btnAnnulla = new RoundedButton("Annulla",30,30);
 		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -388,5 +383,15 @@ public class SignUpFrame extends JFrame {
 		gbc_fooBar.gridy = 2;
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
+
+	public Starter getStarter() {
+		return starter;
+	}
+
+	public void setStarter(Starter starter) {
+		this.starter = starter;
+	}
+
+	
 
 }

@@ -1,8 +1,15 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 import dto.Agenzia;
 import dto.Amministratore;
 import gui.LoginAdminFrame;
+import starter.Starter;
 
 public class LoginAdminController {
 	private LoginAdminFrame loginAdminFrame;
@@ -11,16 +18,34 @@ public class LoginAdminController {
 		this.loginAdminFrame=loginAdminFrame;
 	}
 	
-	public Amministratore login(String nomeAdmin, String password) throws Exception{
+	public String login(String nomeAdmin, String password) throws Exception{
 		if(!nomeAdmin.isBlank() && !password.isBlank()) {
-			//chiamata rest per login amministratore, ritorna amministratore
-			Agenzia agency=new Agenzia("first","agency",".com");
-			Amministratore admin=new Amministratore("admin1","paSsword1@",agency);
-			return admin;
+			HttpResponse<String> loginResponse = loginRequest(nomeAdmin, password);
+			if(loginResponse.statusCode()==200) {
+				return loginResponse.body();
+			}else {
+				throw new Exception("NomeAdmin e/o password errati");
+			}
 		}else
 		{
 			throw new Exception("Compilare i campi");
 		}
+	}
+
+
+	private HttpResponse<String> loginRequest(String nomeAdmin, String password)
+			throws IOException, InterruptedException {
+		String bodyPublisher=String.format("{\"nomeAdmin\":\"%s\", \"password\":\"%s\"}",nomeAdmin,password);
+		String BASE_URI=Starter.getBASE_URI();
+		HttpClient client = HttpClient.newHttpClient();
+
+		HttpRequest loginRequest = HttpRequest.newBuilder()
+				.uri(URI.create(BASE_URI+"auth/admin"))
+				.headers("Content-type", "application/json")
+				.POST(HttpRequest.BodyPublishers.ofString(bodyPublisher))
+				.build();
+		HttpResponse<String> loginResponse = client.send(loginRequest, HttpResponse.BodyHandlers.ofString());
+		return loginResponse;
 	}
 	
 }
