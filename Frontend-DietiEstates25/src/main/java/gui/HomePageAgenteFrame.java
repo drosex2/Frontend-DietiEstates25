@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.HomePageAgenteController;
+import customElements.RoundedButton;
 import dto.Agente;
 import starter.Starter;
 
@@ -137,21 +138,21 @@ public class HomePageAgenteFrame extends JFrame {
 		gbc_loginFormPanel.gridy = 0;
 		panel.add(loginFormPanel, gbc_loginFormPanel);
 		GridBagLayout gbl_loginFormPanel = new GridBagLayout();
-		gbl_loginFormPanel.columnWidths = new int[]{120, 560, 118, 0};
-		gbl_loginFormPanel.rowHeights = new int[]{0, 25, 70, 20, 70, 20, 70, 20, 70, 0, 10, 0};
+		gbl_loginFormPanel.columnWidths = new int[]{120, 560, 120, 0};
+		gbl_loginFormPanel.rowHeights = new int[]{0, 70, 20, 70, 20, 70, 20, 70, 20, 70, 10, 0};
 		gbl_loginFormPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_loginFormPanel.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, Double.MIN_VALUE};
+		gbl_loginFormPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		
 		
-		JButton btnInserisciInserzione = new JButton("Inserisci inserzione");
+		RoundedButton btnInserisciInserzione = new RoundedButton("Inserisci inserzione",30,30);
 		btnInserisciInserzione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnInserisciInserzione.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnInserisciInserzione.setForeground(new Color(0, 0, 0));
+		btnInserisciInserzione.setForeground(new Color(255, 255, 255));
 		btnInserisciInserzione.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnInserisciInserzione = new GridBagConstraints();
 		gbc_btnInserisciInserzione.fill = GridBagConstraints.BOTH;
@@ -161,13 +162,13 @@ public class HomePageAgenteFrame extends JFrame {
 		loginFormPanel.add(btnInserisciInserzione, gbc_btnInserisciInserzione);
 		
 		
-		JButton btnInserisciOfferta = new JButton("Inserisci offerta manualmente");
+		RoundedButton btnInserisciOfferta = new RoundedButton("Inserisci offerta manualmente",30,30);
 		btnInserisciOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnInserisciOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnInserisciOfferta.setForeground(new Color(0, 0, 0));
+		btnInserisciOfferta.setForeground(new Color(255, 255, 255));
 		btnInserisciOfferta.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnInserisciOfferta = new GridBagConstraints();
 		gbc_btnInserisciOfferta.fill = GridBagConstraints.BOTH;
@@ -176,13 +177,13 @@ public class HomePageAgenteFrame extends JFrame {
 		gbc_btnInserisciOfferta.gridy = 3;
 		loginFormPanel.add(btnInserisciOfferta, gbc_btnInserisciOfferta);
 		
-		JButton btnVisualizzaOfferte = new JButton("Visualizza offerte");
+		RoundedButton btnVisualizzaOfferte = new RoundedButton("Visualizza offerte",30,30);
 		btnVisualizzaOfferte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnVisualizzaOfferte.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnVisualizzaOfferte.setForeground(new Color(0, 0, 0));
+		btnVisualizzaOfferte.setForeground(new Color(255, 255, 255));
 		btnVisualizzaOfferte.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnVisualizzaOfferte = new GridBagConstraints();
 		gbc_btnVisualizzaOfferte.fill = GridBagConstraints.BOTH;
@@ -191,7 +192,8 @@ public class HomePageAgenteFrame extends JFrame {
 		gbc_btnVisualizzaOfferte.gridy = 5;
 		loginFormPanel.add(btnVisualizzaOfferte, gbc_btnVisualizzaOfferte);
 		
-		JButton btnVisualizzaControfferte = new JButton("Visualizza controfferte");
+		RoundedButton btnVisualizzaControfferte = new RoundedButton("Visualizza controfferte",30,30);
+		btnVisualizzaControfferte.setForeground(new Color(255, 255, 255));
 		btnVisualizzaControfferte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -199,12 +201,14 @@ public class HomePageAgenteFrame extends JFrame {
 		btnVisualizzaControfferte.setBackground(new Color(13, 49, 71));
 		btnVisualizzaControfferte.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnVisualizzaControfferte = new GridBagConstraints();
+		gbc_btnVisualizzaControfferte.fill = GridBagConstraints.BOTH;
 		gbc_btnVisualizzaControfferte.insets = new Insets(0, 0, 5, 5);
 		gbc_btnVisualizzaControfferte.gridx = 1;
 		gbc_btnVisualizzaControfferte.gridy = 7;
 		loginFormPanel.add(btnVisualizzaControfferte, gbc_btnVisualizzaControfferte);
 		
-		JButton btnModificaInserzioni = new JButton("Modifica inserzioni");
+		RoundedButton btnModificaInserzioni = new RoundedButton("Modifica inserzioni",30,30);
+		btnModificaInserzioni.setForeground(new Color(255, 255, 255));
 		
 		btnModificaInserzioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,6 +217,7 @@ public class HomePageAgenteFrame extends JFrame {
 		btnModificaInserzioni.setBackground(new Color(13, 49, 71));
 		btnModificaInserzioni.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnModificaInserzioni = new GridBagConstraints();
+		gbc_btnModificaInserzioni.fill = GridBagConstraints.BOTH;
 		gbc_btnModificaInserzioni.insets = new Insets(0, 0, 5, 5);
 		gbc_btnModificaInserzioni.gridx = 1;
 		gbc_btnModificaInserzioni.gridy = 9;
