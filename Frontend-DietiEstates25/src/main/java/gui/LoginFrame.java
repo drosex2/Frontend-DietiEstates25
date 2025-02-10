@@ -41,6 +41,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.ActionEvent;
 
 
@@ -199,13 +200,22 @@ public class LoginFrame extends JFrame {
 		gbc_lblAgente.gridy = 6;
 		loginFormPanel.add(lblAgente, gbc_lblAgente);
 		
-		JToggleButton tglbtnAgente = new JToggleButton("Conferma");
+		JToggleButton tglbtnAgente = new RoundedToggleButton("Conferma",30,30);
+		tglbtnAgente.setBackground(new Color(192, 192, 192));
+		
 		tglbtnAgente.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_tglbtnAgente = new GridBagConstraints();
 		gbc_tglbtnAgente.anchor = GridBagConstraints.WEST;
 		gbc_tglbtnAgente.insets = new Insets(0, 0, 5, 5);
 		gbc_tglbtnAgente.gridx = 1;
 		gbc_tglbtnAgente.gridy = 7;
+		tglbtnAgente.addItemListener(e -> {
+			if(e.getStateChange()==ItemEvent.SELECTED) {
+				tglbtnAgente.setBackground(new Color(160,160,160));
+			}else {
+				tglbtnAgente.setBackground(new Color(192,192,192));
+			}
+		});
 		loginFormPanel.add(tglbtnAgente, gbc_tglbtnAgente);
 		
 		RoundedButton btnAccedi = new RoundedButton("Accedi",30,30);
