@@ -1,8 +1,12 @@
 package starter;
 
+import java.util.List;
+
 import javax.swing.JFrame;
 
 import dto.Amministratore;
+import dto.Inserzione;
+import dto.Utente;
 import gui.*;
 
 public class Starter {
@@ -10,10 +14,12 @@ public class Starter {
 	private LoginFrame loginFrame;
 	private LoginAdminFrame loginAdminFrame;
 	private HomePageAdminFrame homePageAdmin;
+	private HomePageUtenteFrame homePageUtente;
 	private CreaAgenteFrame creaAgenteFrame;
 	private SignUpFrame signUpFrame;
 	private CreaAmministratoreFrame creaAmministratoreFrame;
 	private ModificaPasswordFrame modificaPasswordFrame;
+	private VisualizzaInserzioniAgenzia visualizzaInserzioniAgenzia;
 	
 	
 	public Starter() {
@@ -121,7 +127,36 @@ public class Starter {
 
 
 
-	
+	public void switchModificaPasswordFrameToHomePageAdmin() {
+		modificaPasswordFrame.setVisible(false);
+		homePageAdmin.setVisible(true);		
+	}
+
+
+
+	public void switchLoginToHomePageUtnte(Utente utenteConnesso, String token) {
+		homePageUtente= new HomePageUtenteFrame(this,utenteConnesso,token);
+		loginFrame.setVisible(false);
+		homePageUtente.setVisible(true);
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void switchHomePageAdminToVisualizzaInserzioni(Starter starter, String token, List<Inserzione> inserzioni) {
+		visualizzaInserzioniAgenzia=new VisualizzaInserzioniAgenzia(starter,token,inserzioni);
+		homePageAdmin.setVisible(false);
+		visualizzaInserzioniAgenzia.setVisible(true);
+	}
+
+
+
+	public void switchVisualizzaInserzioniToHomePageAdmin() {
+		visualizzaInserzioniAgenzia.setVisible(false);
+		homePageAdmin.setVisible(true);
+	}
 
 
 

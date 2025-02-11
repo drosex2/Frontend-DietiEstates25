@@ -19,32 +19,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.HomePageAgenteController;
+import controller.HomePageUtenteController;
 import customElements.RoundedButton;
-import dto.Agente;
+import dto.Utente;
 import starter.Starter;
 
-public class HomePageAgenteFrame extends JFrame {
+public class HomePageUtenteFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	public JPanel panePrincipale;
 	private Starter starter;
-	private HomePageAgenteController homePageAgenteController;
-	private Agente agenteConnesso;
+	private HomePageUtenteController homePageUtenteController;
+	private Utente utenteConnesso;
 	private String token;
 
-
-	public HomePageAgenteFrame(Starter starter,Agente agenteConnesso,String token) {
-		this.agenteConnesso=agenteConnesso;
-		this.starter=starter;
-		this.token=token;
-		this.homePageAgenteController=new HomePageAgenteController(this);
+	public HomePageUtenteFrame(Starter starter, Utente utenteConnesso, String token) {
+		this.utenteConnesso = utenteConnesso;
+		this.starter = starter;
+		this.token = token;
+		this.homePageUtenteController = new HomePageUtenteController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
-		setTitle("HomePage agente");
+		panePrincipale.setBackground(new Color(13, 49, 71));
+		setTitle("HomePage Utente");
 
 		setContentPane(panePrincipale);
 		GridBagLayout gbl_panePrincipale = new GridBagLayout();
@@ -55,7 +55,7 @@ public class HomePageAgenteFrame extends JFrame {
 		panePrincipale.setLayout(gbl_panePrincipale);
 		
 		JPanel navBar = new JPanel();
-		navBar.setBackground(new Color(6,128,180));
+		navBar.setBackground(new Color(6, 128, 180));
 		GridBagConstraints gbc_navBar = new GridBagConstraints();
 		gbc_navBar.fill = GridBagConstraints.BOTH;
 		gbc_navBar.insets = new Insets(0, 0, 5, 0);
@@ -70,8 +70,6 @@ public class HomePageAgenteFrame extends JFrame {
 		navBar.setLayout(gbl_navBar);
 		
 		JLabel logoImage = new JLabel("");
-		
-
 		logoImage.setIcon(new ImageIcon(LoginFrame.class.getResource("/DietiEstates25/client/gui/images/logoFigma80.png")));
 		GridBagConstraints gbc_logoImage = new GridBagConstraints();
 		gbc_logoImage.fill = GridBagConstraints.VERTICAL;
@@ -90,7 +88,8 @@ public class HomePageAgenteFrame extends JFrame {
 		gbc_lblTitle.gridx = 1;
 		gbc_lblTitle.gridy = 0;
 		navBar.add(lblTitle, gbc_lblTitle);
-		JFrame myFrame=this;
+		
+		JFrame myFrame = this;
 		JLabel logoutImage = new JLabel("");
 		logoutImage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -145,117 +144,121 @@ public class HomePageAgenteFrame extends JFrame {
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		
-		
-		RoundedButton btnInserisciInserzione = new RoundedButton("Inserisci inserzione",30,30);
-		btnInserisciInserzione.addActionListener(new ActionListener() {
+		RoundedButton btnRicerca = new RoundedButton("Ricerca", 30, 30);
+		btnRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnInserisciInserzione.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnInserisciInserzione.setForeground(new Color(255, 255, 255));
-		btnInserisciInserzione.setBackground(new Color(13, 49, 71));
-		GridBagConstraints gbc_btnInserisciInserzione = new GridBagConstraints();
-		gbc_btnInserisciInserzione.fill = GridBagConstraints.BOTH;
-		gbc_btnInserisciInserzione.insets = new Insets(0, 0, 5, 5);
-		gbc_btnInserisciInserzione.gridx = 1;
-		gbc_btnInserisciInserzione.gridy = 1;
-		loginFormPanel.add(btnInserisciInserzione, gbc_btnInserisciInserzione);
+		btnRicerca.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnRicerca.setForeground(new Color(255, 255, 255));
+		btnRicerca.setBackground(new Color(13, 49, 71));
+		GridBagConstraints gbc_btnRicerca = new GridBagConstraints();
+		gbc_btnRicerca.fill = GridBagConstraints.BOTH;
+		gbc_btnRicerca.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRicerca.gridx = 1;
+		gbc_btnRicerca.gridy = 1;
+		loginFormPanel.add(btnRicerca, gbc_btnRicerca);
 		
 		
-		RoundedButton btnInserisciOfferta = new RoundedButton("Inserisci offerta manualmente",30,30);
-		btnInserisciOfferta.addActionListener(new ActionListener() {
+		RoundedButton btnCronologiaRicerca = new RoundedButton("Cronologia Ricerca", 30, 30);
+		btnCronologiaRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnInserisciOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnInserisciOfferta.setForeground(new Color(255, 255, 255));
-		btnInserisciOfferta.setBackground(new Color(13, 49, 71));
-		GridBagConstraints gbc_btnInserisciOfferta = new GridBagConstraints();
-		gbc_btnInserisciOfferta.fill = GridBagConstraints.BOTH;
-		gbc_btnInserisciOfferta.insets = new Insets(0, 0, 5, 5);
-		gbc_btnInserisciOfferta.gridx = 1;
-		gbc_btnInserisciOfferta.gridy = 3;
-		loginFormPanel.add(btnInserisciOfferta, gbc_btnInserisciOfferta);
+		btnCronologiaRicerca.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnCronologiaRicerca.setForeground(new Color(255, 255, 255));
+		btnCronologiaRicerca.setBackground(new Color(13, 49, 71));
+		GridBagConstraints gbc_btnCronologiaRicerca = new GridBagConstraints();
+		gbc_btnCronologiaRicerca.fill = GridBagConstraints.BOTH;
+		gbc_btnCronologiaRicerca.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCronologiaRicerca.gridx = 1;
+		gbc_btnCronologiaRicerca.gridy = 3;
+		loginFormPanel.add(btnCronologiaRicerca, gbc_btnCronologiaRicerca);
 		
-		RoundedButton btnVisualizzaOfferte = new RoundedButton("Visualizza offerte",30,30);
-		btnVisualizzaOfferte.addActionListener(new ActionListener() {
+		
+		RoundedButton btnNotifiche = new RoundedButton("Notifiche", 30, 30);
+		btnNotifiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnVisualizzaOfferte.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnVisualizzaOfferte.setForeground(new Color(255, 255, 255));
-		btnVisualizzaOfferte.setBackground(new Color(13, 49, 71));
-		GridBagConstraints gbc_btnVisualizzaOfferte = new GridBagConstraints();
-		gbc_btnVisualizzaOfferte.fill = GridBagConstraints.BOTH;
-		gbc_btnVisualizzaOfferte.insets = new Insets(0, 0, 5, 5);
-		gbc_btnVisualizzaOfferte.gridx = 1;
-		gbc_btnVisualizzaOfferte.gridy = 5;
-		loginFormPanel.add(btnVisualizzaOfferte, gbc_btnVisualizzaOfferte);
+		btnNotifiche.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnNotifiche.setForeground(new Color(255, 255, 255));
+		btnNotifiche.setBackground(new Color(13, 49, 71));
+		GridBagConstraints gbc_btnNotifiche = new GridBagConstraints();
+		gbc_btnNotifiche.fill = GridBagConstraints.BOTH;
+		gbc_btnNotifiche.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNotifiche.gridx = 1;
+		gbc_btnNotifiche.gridy = 5;
+		loginFormPanel.add(btnNotifiche, gbc_btnNotifiche);
 		
-		RoundedButton btnVisualizzaControfferte = new RoundedButton("Visualizza controfferte",30,30);
-		btnVisualizzaControfferte.setForeground(new Color(255, 255, 255));
-		btnVisualizzaControfferte.addActionListener(new ActionListener() {
+		
+		RoundedButton btnOfferta = new RoundedButton("Offerta", 30, 30);
+		btnOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnVisualizzaControfferte.setBackground(new Color(13, 49, 71));
-		btnVisualizzaControfferte.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_btnVisualizzaControfferte = new GridBagConstraints();
-		gbc_btnVisualizzaControfferte.fill = GridBagConstraints.BOTH;
-		gbc_btnVisualizzaControfferte.insets = new Insets(0, 0, 5, 5);
-		gbc_btnVisualizzaControfferte.gridx = 1;
-		gbc_btnVisualizzaControfferte.gridy = 7;
-		loginFormPanel.add(btnVisualizzaControfferte, gbc_btnVisualizzaControfferte);
+		btnOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnOfferta.setForeground(new Color(255, 255, 255));
+		btnOfferta.setBackground(new Color(13, 49, 71));
+		GridBagConstraints gbc_btnOfferta = new GridBagConstraints();
+		gbc_btnOfferta.fill = GridBagConstraints.BOTH;
+		gbc_btnOfferta.insets = new Insets(0, 0, 5, 5);
+		gbc_btnOfferta.gridx = 1;
+		gbc_btnOfferta.gridy = 7;
+		loginFormPanel.add(btnOfferta, gbc_btnOfferta);
 		
-		RoundedButton btnModificaInserzioni = new RoundedButton("Modifica inserzioni",30,30);
-		btnModificaInserzioni.setForeground(new Color(255, 255, 255));
 		
-		btnModificaInserzioni.addActionListener(new ActionListener() {
+		RoundedButton btnContrOfferta = new RoundedButton("Controfferta", 30, 30);
+		btnContrOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
-		btnModificaInserzioni.setBackground(new Color(13, 49, 71));
-		btnModificaInserzioni.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_btnModificaInserzioni = new GridBagConstraints();
-		gbc_btnModificaInserzioni.fill = GridBagConstraints.BOTH;
-		gbc_btnModificaInserzioni.insets = new Insets(0, 0, 5, 5);
-		gbc_btnModificaInserzioni.gridx = 1;
-		gbc_btnModificaInserzioni.gridy = 9;
-		loginFormPanel.add(btnModificaInserzioni, gbc_btnModificaInserzioni);
-		
-		JPanel fooBar = new JPanel();
-		fooBar.setBackground(new Color(13, 49, 71));
-		GridBagConstraints gbc_fooBar = new GridBagConstraints();
-		gbc_fooBar.fill = GridBagConstraints.BOTH;
-		gbc_fooBar.gridx = 0;
-		gbc_fooBar.gridy = 2;
-		panePrincipale.add(fooBar, gbc_fooBar);
-	}	
+		btnContrOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnContrOfferta.setForeground(new Color(255, 255, 255));
+		btnContrOfferta.setBackground(new Color(13, 49, 71));
+		GridBagConstraints gbc_btnControOfferta = new GridBagConstraints();
+		gbc_btnControOfferta.fill = GridBagConstraints.BOTH;
+		gbc_btnControOfferta.insets = new Insets(0, 0, 5, 5);
+		gbc_btnControOfferta.gridx = 1;
+		gbc_btnControOfferta.gridy = 9;
+		loginFormPanel.add(btnContrOfferta, gbc_btnControOfferta);
+	}
+
+	// Getter e Setter
 	public Starter getStarter() {
 		return starter;
 	}
 
-
 	public void setStarter(Starter starter) {
 		this.starter = starter;
 	}
-	public HomePageAgenteController getHomePageAgenteController() {
-		return homePageAgenteController;
+	
+	public HomePageUtenteController getHomePageUtenteController() {
+		return homePageUtenteController;
 	}
-	public void setHomePageAgenteController(HomePageAgenteController homePageAgenteController) {
-		this.homePageAgenteController = homePageAgenteController;
+	
+	public void setHomePageUtenteController(HomePageUtenteController homePageUtenteController) {
+		this.homePageUtenteController = homePageUtenteController;
 	}
-	public Agente getAgenteConnesso() {
-		return agenteConnesso;
+
+	public Utente getUtenteConnesso() {
+		return utenteConnesso;
 	}
-	public void setAdminConnesso(Agente agenteConnesso) {
-		this.agenteConnesso = agenteConnesso;
+
+	public void setUtenteConnesso(Utente utenteConnesso) {
+		this.utenteConnesso = utenteConnesso;
 	}
+
 	public String getToken() {
 		return token;
 	}
+
 	public void setToken(String token) {
 		this.token = token;
 	}
-
 }

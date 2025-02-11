@@ -21,11 +21,10 @@ public class SignUpController {
 
 	public void signUp(String email, String nome, String cognome, String password) throws Exception {
 		if(verificaCampi(email, nome, cognome, password)) {
-			//chiamata rest saveUtente
-			Utente utente=new Utente(email,nome,cognome,password);
+			Utente utente=new Utente(nome,cognome,email,password);
 			HttpResponse<String> signUpResponse=signUpRequest(utente);
 			if(signUpResponse.statusCode()!=201) {
-				throw new Exception("Impossibile effettuare la registrazione, email già utilizzata");
+				throw new Exception("Impossibile effettuare la registrazione"+ signUpResponse.statusCode());
 			}
 		}else
 		{
@@ -36,7 +35,6 @@ public class SignUpController {
 
 	private HttpResponse<String> signUpRequest(Utente utente) throws IOException, InterruptedException {
 		String json=new Gson().toJson(utente);
-		
 		HttpClient client = HttpClient.newHttpClient();
 
 		HttpRequest signUpRequest = HttpRequest.newBuilder()

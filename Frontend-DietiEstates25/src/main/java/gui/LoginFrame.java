@@ -26,11 +26,15 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.jgoodies.forms.layout.FormLayout;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import controller.LoginController;
 import customElements.*;
+import dto.Amministratore;
+import dto.Utente;
 import starter.Starter;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -41,7 +45,11 @@ import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
 
 
 public class LoginFrame extends JFrame {
@@ -149,7 +157,7 @@ public class LoginFrame extends JFrame {
 		gbc_lblWelcome.gridy = 1;
 		loginFormPanel.add(lblWelcome, gbc_lblWelcome);
 		
-		JLabel lblEmail = new JLabel("E-Mail");
+		JLabel lblEmail = new JLabel(" E-Mail");
 		lblEmail.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.anchor = GridBagConstraints.SOUTHWEST;
@@ -170,7 +178,7 @@ public class LoginFrame extends JFrame {
 		emailField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		loginFormPanel.add(emailField, gbc_emailField);
 		
-		JLabel lblPassword = new JLabel("Password");
+		JLabel lblPassword = new JLabel(" Password");
 		lblPassword.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.SOUTHWEST;
@@ -189,26 +197,41 @@ public class LoginFrame extends JFrame {
 		gbc_passwordField.gridy = 5;
 		passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		loginFormPanel.add(passwordField, gbc_passwordField);
-		
-		JLabel lblAgente = new JLabel("Sei un agente immobiliare?");
-		lblAgente.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblAgente = new GridBagConstraints();
-		gbc_lblAgente.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_lblAgente.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAgente.gridx = 1;
-		gbc_lblAgente.gridy = 6;
-		loginFormPanel.add(lblAgente, gbc_lblAgente);
-		
-		JToggleButton tglbtnAgente = new JToggleButton("Conferma");
-		tglbtnAgente.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_tglbtnAgente = new GridBagConstraints();
-		gbc_tglbtnAgente.anchor = GridBagConstraints.WEST;
-		gbc_tglbtnAgente.insets = new Insets(0, 0, 5, 5);
-		gbc_tglbtnAgente.gridx = 1;
-		gbc_tglbtnAgente.gridy = 7;
-		loginFormPanel.add(tglbtnAgente, gbc_tglbtnAgente);
-		
+		JCheckBox checkAgente = new ModernCheckBox("Sono un agente immobiliare");
+		checkAgente.setForeground(new Color(0, 0, 0));
 		RoundedButton btnAccedi = new RoundedButton("Accedi",30,30);
+		btnAccedi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(checkAgente.isSelected()) {
+					//loginAgente
+				}else {
+					String emailUtente=emailField.getText();
+					String password=new String(passwordField.getPassword());
+					try {
+						String response = loginController.loginUtente(emailUtente,password);
+			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
+			            String token = jsonResponse.get("token").getAsString();
+			            Utente utenteConnesso = new Gson().fromJson(jsonResponse.get("utente"), Utente.class);
+			            starter.switchLoginToHomePageUtnte(utenteConnesso, token);
+					}catch(Exception ex) {
+						CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
+						dialog.setVisible(true);
+						}
+				}
+				
+			}
+		});
+		
+		
+		checkAgente.setBackground(new Color(217, 217, 217));
+		checkAgente.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		checkAgente.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
+		gbc_chckbxNewCheckBox.anchor = GridBagConstraints.WEST;
+		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxNewCheckBox.gridx = 1;
+		gbc_chckbxNewCheckBox.gridy = 6;
+		loginFormPanel.add(checkAgente, gbc_chckbxNewCheckBox);
 		btnAccedi.setBackground(new Color(255, 175, 68));
 		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnAccedi = new GridBagConstraints();
