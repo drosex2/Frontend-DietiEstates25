@@ -16,6 +16,22 @@ public class LoginController {
         this.loginFrame = loginFrame;
     }
 
+    public String loginAgente(String email, String password) throws Exception {
+    	if (!email.isBlank() && !password.isBlank()) {
+            HttpResponse<String> loginResponse = loginRequest(email, password);
+            if (loginResponse.statusCode()==200) {
+                return loginResponse.body();
+            } else {
+            	System.out.println("Status Code: " + loginResponse.statusCode());
+            	System.out.println("Response Body: " + loginResponse.body());
+                throw new Exception("NomeUtente e/o password errati");
+            }
+        } else {
+            throw new Exception("Compilare i campi");
+        }
+    	
+    }
+    
     public String loginUtente(String email, String password) throws Exception {
         if (!email.isBlank() && !password.isBlank()) {
             HttpResponse<String> loginResponse = loginRequest(email, password);

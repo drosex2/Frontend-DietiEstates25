@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import dto.Agente;
 import dto.Amministratore;
 import dto.Inserzione;
 import dto.Utente;
@@ -15,6 +16,7 @@ public class Starter {
 	private LoginAdminFrame loginAdminFrame;
 	private HomePageAdminFrame homePageAdmin;
 	private HomePageUtenteFrame homePageUtente;
+	private HomePageAgenteFrame homePageAgente;
 	private CreaAgenteFrame creaAgenteFrame;
 	private SignUpFrame signUpFrame;
 	private CreaAmministratoreFrame creaAmministratoreFrame;
@@ -134,7 +136,7 @@ public class Starter {
 
 
 
-	public void switchLoginToHomePageUtnte(Utente utenteConnesso, String token) {
+	public void switchLoginToHomePageUtente(Utente utenteConnesso, String token) {
 		homePageUtente= new HomePageUtenteFrame(this,utenteConnesso,token);
 		loginFrame.setVisible(false);
 		homePageUtente.setVisible(true);
@@ -143,7 +145,11 @@ public class Starter {
 		
 	}
 
-
+	public void switchLoginToHomePageAgente(Agente agenteConnesso, String token) {
+		homePageAgente = new HomePageAgenteFrame(this, agenteConnesso, token);
+		loginFrame.setVisible(false);
+		homePageAgente.setVisible(true);
+	}
 
 	public void switchHomePageAdminToVisualizzaInserzioni(Starter starter, String token, List<Inserzione> inserzioni) {
 		visualizzaInserzioniAgenzia=new VisualizzaInserzioniAgenzia(starter,token,inserzioni);

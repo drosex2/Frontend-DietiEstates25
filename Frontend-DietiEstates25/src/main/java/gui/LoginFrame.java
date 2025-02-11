@@ -33,6 +33,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import controller.LoginController;
 import customElements.*;
+import dto.Agente;
 import dto.Amministratore;
 import dto.Utente;
 import starter.Starter;
@@ -203,7 +204,18 @@ public class LoginFrame extends JFrame {
 		btnAccedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkAgente.isSelected()) {
-					//loginAgente
+					String emailAgente=emailField.getText();
+					String password=new String(passwordField.getPassword());
+					try {
+						String response = loginController.loginAgente(emailAgente,password);
+			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
+			            String token = jsonResponse.get("token").getAsString();
+			            Agente agenteConnesso = new Gson().fromJson(jsonResponse.get("agente"), Agente.class);
+			            starter.switchLoginToHomePageAgente(agenteConnesso, token);
+					}catch(Exception ex) {
+						CustomDialog dialog=new CustomDialog(ex.getMessage(),"ok");
+						dialog.setVisible(true);
+						}
 				}else {
 					String emailUtente=emailField.getText();
 					String password=new String(passwordField.getPassword());
@@ -212,7 +224,7 @@ public class LoginFrame extends JFrame {
 			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
 			            String token = jsonResponse.get("token").getAsString();
 			            Utente utenteConnesso = new Gson().fromJson(jsonResponse.get("utente"), Utente.class);
-			            starter.switchLoginToHomePageUtnte(utenteConnesso, token);
+			            starter.switchLoginToHomePageUtente(utenteConnesso, token);
 					}catch(Exception ex) {
 						CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
 						dialog.setVisible(true);
