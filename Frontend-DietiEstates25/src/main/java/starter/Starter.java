@@ -121,7 +121,10 @@ public class Starter {
 
 
 
-	
+	public void switchModificaPasswordFrameToHomePageAdmin() {
+		modificaPasswordFrame.setVisible(false);
+		homePageAdmin.setVisible(true);		
+	}
 
 
 

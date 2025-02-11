@@ -58,7 +58,7 @@ public class ModificaPasswordFrame extends JFrame {
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
-		setTitle("Crea un nuovo amministratore");
+		setTitle("Modifica password");
 
 		setContentPane(panePrincipale);
 		GridBagLayout gbl_panePrincipale = new GridBagLayout();
@@ -283,14 +283,13 @@ public class ModificaPasswordFrame extends JFrame {
 				
 				try {
 					modificaPasswordController.modificaPassword(nuovaPassword);
-					CustomDialog dialog=new CustomDialog("Nuovo agente creato con successo!","Torna alla Home");
-					dialog.setModal(true);
+					CustomDialog dialog=new CustomDialog("Password modificata con successo","Torna alla Home");
 					dialog.setLocationRelativeTo(myFrame);
 					dialog.setVisible(true);
-					starter.switchCreaAmministratoreFrameToHomePageAdmin();
+					adminConnesso.setPassword(nuovaPassword);
+					starter.switchModificaPasswordFrameToHomePageAdmin();
 				}catch(Exception ex) {
 					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
-					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
 					dialog.setVisible(true);
 				}
