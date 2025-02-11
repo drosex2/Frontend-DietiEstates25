@@ -1,8 +1,11 @@
 package starter;
 
+import java.util.List;
+
 import javax.swing.JFrame;
 
 import dto.Amministratore;
+import dto.Inserzione;
 import dto.Utente;
 import gui.*;
 
@@ -16,6 +19,7 @@ public class Starter {
 	private SignUpFrame signUpFrame;
 	private CreaAmministratoreFrame creaAmministratoreFrame;
 	private ModificaPasswordFrame modificaPasswordFrame;
+	private VisualizzaInserzioniAgenzia visualizzaInserzioniAgenzia;
 	
 	
 	public Starter() {
@@ -137,6 +141,21 @@ public class Starter {
 		
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	public void switchHomePageAdminToVisualizzaInserzioni(Starter starter, String token, List<Inserzione> inserzioni) {
+		visualizzaInserzioniAgenzia=new VisualizzaInserzioniAgenzia(starter,token,inserzioni);
+		homePageAdmin.setVisible(false);
+		visualizzaInserzioniAgenzia.setVisible(true);
+	}
+
+
+
+	public void switchVisualizzaInserzioniToHomePageAdmin() {
+		visualizzaInserzioniAgenzia.setVisible(false);
+		homePageAdmin.setVisible(true);
 	}
 
 

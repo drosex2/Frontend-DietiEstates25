@@ -25,6 +25,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
@@ -33,6 +35,7 @@ import controller.HomePageAdminController;
 import controller.LoginController;
 import customElements.RoundedButton;
 import dto.Amministratore;
+import dto.Inserzione;
 import starter.Starter;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -170,6 +173,22 @@ public class HomePageAdminFrame extends JFrame {
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		RoundedButton btnVisualizzaInserzioni = new RoundedButton("Visualizza inserzioni dell'agenzia",30,30);
+		btnVisualizzaInserzioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				List<Inserzione> inserzioni=homePageAdminController.ottieniInserzioniAgenzia(adminConnesso.getAgenzia().getNome());
+				if(inserzioni.isEmpty()) {
+					throw new Exception("Nessuna inserzione disponibile");
+				}
+				starter.switchHomePageAdminToVisualizzaInserzioni(starter,token,inserzioni);
+				}catch(Exception ex) {
+					ex.printStackTrace();
+					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
+					dialog.setLocationRelativeTo(myFrame);
+					dialog.setVisible(true);
+				}
+			}
+		});
 		btnVisualizzaInserzioni.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnVisualizzaInserzioni.setForeground(new Color(255, 255, 255));
 		btnVisualizzaInserzioni.setBackground(new Color(16, 49, 71));

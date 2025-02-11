@@ -1,19 +1,12 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -21,46 +14,34 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
-
-import panel.InserzionePanel;
-import panel.InserzioneRicercaPanel;
-import utils.CredentialCheckerUtils;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
-public class ProvaScrollFrame extends JFrame {
+import customElements.RoundedButton;
+import dto.Inserzione;
+import panel.InserzionePanel;
+import starter.Starter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ProvaScrollFrame frame = new ProvaScrollFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
-	private JPanel panePrincipale;
-
+public class VisualizzaInserzioniAgenzia extends JFrame{
 	
-	public ProvaScrollFrame() {
+	private static final long serialVersionUID = 1L;
+	private JPanel panePrincipale;
+	private Starter starter;
+	private String token;
+	private List<Inserzione> inserzioni;
+	
+	public VisualizzaInserzioniAgenzia(Starter starter,String token,List<Inserzione> inserzioni) {
+		this.setStarter(starter);
+		this.setToken(token);
+		this.setInserzioni(inserzioni);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		panePrincipale = new JPanel();
-		setTitle("Scroll");
+		setTitle("Inserzioni");
 		try {
-            // Imposta il Look and Feel di Windows
             UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
         } catch (Exception e) {
            
@@ -149,7 +130,13 @@ public class ProvaScrollFrame extends JFrame {
 		gbl_panelSx.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		panelSx.setLayout(gbl_panelSx);
 		
-		JButton btnIndietro = new JButton("Indietro");
+		JButton btnIndietro = new RoundedButton("Indietro",30,30);
+		btnIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				starter.switchVisualizzaInserzioniToHomePageAdmin();
+			}
+		});
+		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnIndietro.setBackground(new Color(217, 217, 217));
 		GridBagConstraints gbc_btnIndietro = new GridBagConstraints();
 		gbc_btnIndietro.insets = new Insets(0, 0, 5, 5);
@@ -163,8 +150,8 @@ public class ProvaScrollFrame extends JFrame {
         panelInserzioni.setLayout(new BoxLayout(panelInserzioni, BoxLayout.Y_AXIS)); // Layout verticale
 
         
-        for (int i = 1; i <= 10; i++) {
-            panelInserzioni.add(new InserzionePanel());
+        for (Inserzione inserzione: inserzioni) {
+            panelInserzioni.add(new InserzionePanel(inserzione));
             panelInserzioni.add(Box.createVerticalStrut(10));
         }
 
@@ -200,7 +187,28 @@ public class ProvaScrollFrame extends JFrame {
 		gbc_fooBar.gridy = 3;
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
-	
-	
 
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public Starter getStarter() {
+		return starter;
+	}
+
+	public void setStarter(Starter starter) {
+		this.starter = starter;
+	}
+
+	public List<Inserzione> getInserzioni() {
+		return inserzioni;
+	}
+
+	public void setInserzioni(List<Inserzione> inserzioni) {
+		this.inserzioni = inserzioni;
+	}
 }
