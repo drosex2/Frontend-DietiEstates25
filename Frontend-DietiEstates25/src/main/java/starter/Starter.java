@@ -10,6 +10,7 @@ public class Starter {
 	private LoginFrame loginFrame;
 	private LoginAdminFrame loginAdminFrame;
 	private HomePageAdminFrame homePageAdmin;
+	private HomePageUtenteFrame homePageUtente;
 	private CreaAgenteFrame creaAgenteFrame;
 	private SignUpFrame signUpFrame;
 	private CreaAmministratoreFrame creaAmministratoreFrame;
