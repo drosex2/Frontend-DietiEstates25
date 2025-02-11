@@ -26,11 +26,15 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.jgoodies.forms.layout.FormLayout;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import controller.LoginController;
 import customElements.*;
+import dto.Amministratore;
+import dto.Utente;
 import starter.Starter;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -201,7 +205,18 @@ public class LoginFrame extends JFrame {
 				if(checkAgente.isSelected()) {
 					//loginAgente
 				}else {
-					//loginUtente
+					String emailUtente=emailField.getText();
+					String password=new String(passwordField.getPassword());
+					try {
+						String response = loginController.loginUtente(emailUtente,password);
+			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
+			            String token = jsonResponse.get("token").getAsString();
+			            Utente utenteConnesso = new Gson().fromJson(jsonResponse.get("utente"), Utente.class);
+			            starter.switchLoginToHomePageUtnte(utenteConnesso, token);
+					}catch(Exception ex) {
+						CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
+						dialog.setVisible(true);
+						}
 				}
 				
 			}

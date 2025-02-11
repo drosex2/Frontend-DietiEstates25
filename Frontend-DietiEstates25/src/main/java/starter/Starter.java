@@ -3,6 +3,7 @@ package starter;
 import javax.swing.JFrame;
 
 import dto.Amministratore;
+import dto.Utente;
 import gui.*;
 
 public class Starter {
@@ -125,6 +126,17 @@ public class Starter {
 	public void switchModificaPasswordFrameToHomePageAdmin() {
 		modificaPasswordFrame.setVisible(false);
 		homePageAdmin.setVisible(true);		
+	}
+
+
+
+	public void switchLoginToHomePageUtnte(Utente utenteConnesso, String token) {
+		homePageUtente= new HomePageUtenteFrame(this,utenteConnesso,token);
+		loginFrame.setVisible(false);
+		homePageUtente.setVisible(true);
+		
+		// TODO Auto-generated method stub
+		
 	}
 
 
