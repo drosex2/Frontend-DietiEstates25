@@ -16,9 +16,9 @@ public class LoginController {
         this.loginFrame = loginFrame;
     }
 
-    public String loginUtente(String emailUtente, String password) throws Exception {
-        if (!emailUtente.isBlank() && !password.isBlank()) {
-            HttpResponse<String> loginResponse = loginRequest(emailUtente, password);
+    public String loginUtente(String email, String password) throws Exception {
+        if (!email.isBlank() && !password.isBlank()) {
+            HttpResponse<String> loginResponse = loginRequest(email, password);
             if (loginResponse.statusCode() == 200) {
                 return loginResponse.body();
             } else {
@@ -31,12 +31,12 @@ public class LoginController {
         }
     }
 
-    private HttpResponse<String> loginRequest(String emailUtente, String password) 
+    private HttpResponse<String> loginRequest(String email, String password) 
             throws IOException, InterruptedException {
-        String bodyPublisher = String.format("{\"emailUtente\":\"%s\", \"password\":\"%s\"}", emailUtente, password);
+        String bodyPublisher = String.format("{\"emailUtente\":\"%s\", \"password\":\"%s\"}", email, password);
         String BASE_URI = Starter.getBASE_URI();
         HttpClient client = HttpClient.newHttpClient();
-        System.out.println("Email: " + emailUtente);  // Verifica l'email
+        System.out.println("Email: " + email);  // Verifica l'email
         System.out.println("Password: " + password);  // Verifica la password
 
         HttpRequest loginRequest = HttpRequest.newBuilder()
