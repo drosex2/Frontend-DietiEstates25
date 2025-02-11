@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
-import controller.ModificaAgenteController;
+import controller.CreaAgenteController;
 import customElements.*;
 import controller.LoginController;
 import dto.Amministratore;
@@ -47,7 +47,7 @@ public class CreaAgenteFrame extends JFrame {
 	private JTextField cognomeField;
 	private JPasswordField passwordField;
 	private Amministratore adminConnesso;
-	private ModificaAgenteController creaAgenteController;
+	private CreaAgenteController creaAgenteController;
 	private String token;
 
 	
@@ -56,7 +56,7 @@ public class CreaAgenteFrame extends JFrame {
 		this.starter=starter;
 		this.adminConnesso=admin;
 		this.token=token;
-		this.creaAgenteController=new ModificaAgenteController(this);
+		this.creaAgenteController=new CreaAgenteController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 770, 512);

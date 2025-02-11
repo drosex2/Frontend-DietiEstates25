@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
-import controller.ModificaAgenteController;
+import controller.CreaAgenteController;
 import customElements.*;
 import controller.CreaAmministratoreController;
 import controller.LoginController;

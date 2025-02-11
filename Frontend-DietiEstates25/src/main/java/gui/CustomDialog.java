@@ -106,7 +106,7 @@ public class CustomDialog extends JDialog {
 				}
 				{
 					RoundedButton btnCentrale = new RoundedButton(textButton,30,30);
-					btnCentrale.setFont(new Font("Arial", Font.PLAIN, 16));
+					btnCentrale.setFont(new Font("Arial", Font.PLAIN, 18));
 					btnCentrale.setBackground(new Color(255, 175, 68));
 					btnCentrale.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {

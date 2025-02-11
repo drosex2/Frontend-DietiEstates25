@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
-import controller.ModificaAgenteController;
+import controller.CreaAgenteController;
 import controller.LoginController;
 import controller.SignUpController;
 import customElements.RoundedButton;
@@ -342,7 +342,6 @@ public class SignUpFrame extends JFrame {
 					dialog.setVisible(true);
 					starter.switchSignUpFrameToLoginFrame();
 				}catch(Exception ex) {
-					ex.printStackTrace();
 					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
 					dialog.setModal(true);
 					dialog.setLocationRelativeTo(myFrame);
