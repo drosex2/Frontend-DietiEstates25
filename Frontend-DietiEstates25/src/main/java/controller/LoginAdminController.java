@@ -19,16 +19,20 @@ public class LoginAdminController {
 	}
 	
 	public String login(String nomeAdmin, String password) throws Exception{
-		if(!nomeAdmin.isBlank() && !password.isBlank()) {
-			HttpResponse<String> loginResponse = loginRequest(nomeAdmin, password);
-			if(loginResponse.statusCode()==200) {
-				return loginResponse.body();
-			}else {
-				throw new Exception("NomeAdmin e/o password errati");
+		try {
+			if(!nomeAdmin.isBlank() && !password.isBlank()) {
+				HttpResponse<String> loginResponse = loginRequest(nomeAdmin, password);
+				if(loginResponse.statusCode()==200) {
+					return loginResponse.body();
+				}else {
+					throw new Exception("NomeAdmin e/o password errati");
+				}
+			}else
+			{
+				throw new Exception("Compilare i campi");
 			}
-		}else
-		{
-			throw new Exception("Compilare i campi");
+		}catch(IOException | InterruptedException e) {
+			 throw new Exception("Impossibile connettersi al server.");
 		}
 	}
 

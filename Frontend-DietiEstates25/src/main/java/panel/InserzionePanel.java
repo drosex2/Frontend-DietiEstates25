@@ -5,6 +5,7 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import javax.swing.JPanel;
 
+import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
 
@@ -26,13 +27,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InserzionePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Inserzione inserzione;
-	public InserzionePanel(Inserzione inserzione) {
+	private VisualizzaInserzioniController visualizzaInserzioniController;
+	public InserzionePanel(Inserzione inserzione,VisualizzaInserzioniController visualizzaInserzioni) {
+		setMaximumSize(new Dimension(800, 200));
 		this.inserzione=inserzione;
+		this.visualizzaInserzioniController=visualizzaInserzioni;
 		setBackground(new Color(217, 217, 217));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 131, 0, 393, 127, 0};
@@ -183,6 +189,11 @@ public class InserzionePanel extends JPanel {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnModifica = new RoundedButton("Modifica",30,30);
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
 		btnModifica.setBackground(new Color(255, 175, 68));
 		btnModifica.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnModifica = new GridBagConstraints();
@@ -193,6 +204,11 @@ public class InserzionePanel extends JPanel {
 		panel_1.add(btnModifica, gbc_btnModifica);
 		
 		JButton btnElimina = new RoundedButton("Elimina",30,30);
+		btnElimina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visualizzaInserzioniController.eliminaInserzione(inserzione);
+			}
+		});
 		btnElimina.setMaximumSize(new Dimension(71, 23));
 		btnElimina.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnElimina.setBackground(new Color(192, 192, 192));

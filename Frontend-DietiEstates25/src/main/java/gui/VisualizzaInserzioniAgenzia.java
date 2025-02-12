@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
 import panel.InserzionePanel;
@@ -28,14 +29,17 @@ public class VisualizzaInserzioniAgenzia extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
+	private JPanel panelInserzioni;
 	private Starter starter;
 	private String token;
+	private VisualizzaInserzioniController visualizzaInserzioniController;
 	private List<Inserzione> inserzioni;
 	
 	public VisualizzaInserzioniAgenzia(Starter starter,String token,List<Inserzione> inserzioni) {
 		this.setStarter(starter);
 		this.setToken(token);
 		this.setInserzioni(inserzioni);
+		this.visualizzaInserzioniController=new VisualizzaInserzioniController(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -146,15 +150,10 @@ public class VisualizzaInserzioniAgenzia extends JFrame{
 		panelSx.add(btnIndietro, gbc_btnIndietro);
 		
 		
-		JPanel panelInserzioni = new JPanel();
+		panelInserzioni = new JPanel();
         panelInserzioni.setLayout(new BoxLayout(panelInserzioni, BoxLayout.Y_AXIS)); // Layout verticale
 
-        
-        for (Inserzione inserzione: inserzioni) {
-            panelInserzioni.add(new InserzionePanel(inserzione));
-            panelInserzioni.add(Box.createVerticalStrut(10));
-        }
-
+        loadInserzioni();
         
         JScrollPane scrollPane = new JScrollPane(panelInserzioni);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -188,6 +187,25 @@ public class VisualizzaInserzioniAgenzia extends JFrame{
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
 
+	public void loadInserzioni() {
+		panelInserzioni.removeAll();
+        for (Inserzione inserzione: inserzioni) {
+            panelInserzioni.add(new InserzionePanel(inserzione,this.visualizzaInserzioniController));
+            panelInserzioni.add(Box.createVerticalStrut(10));
+        }
+        panelInserzioni.revalidate();
+        panelInserzioni.repaint();
+	}
+	public void showDeleteDialog() {
+		CustomDialog deleteDialog=new CustomDialog("Inserzione eliminata con successo","Ok");
+		deleteDialog.setLocationRelativeTo(panePrincipale);
+		deleteDialog.setVisible(true);
+	}
+	public void showErrorDeleteDialog() {
+		CustomDialog deleteDialog=new CustomDialog("Errore nell'eliminazione dell'inserzione","Ok");
+		deleteDialog.setLocationRelativeTo(panePrincipale);
+		deleteDialog.setVisible(true);
+	}
 	public String getToken() {
 		return token;
 	}

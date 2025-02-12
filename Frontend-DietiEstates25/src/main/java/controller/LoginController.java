@@ -17,30 +17,37 @@ public class LoginController {
     }
 
     public String loginAgente(String email, String password) throws Exception {
-    	if (!email.isBlank() && !password.isBlank()) {
-            HttpResponse<String> loginResponse = loginAgenteRequest(email, password);
-            if (loginResponse.statusCode()==200) {
-                return loginResponse.body();
-            } else {
-            	throw new Exception("NomeUtente e/o password errati");
-            }
-        } else {
-            throw new Exception("Compilare i campi");
-        }
-    	
+    	try {
+	    	if (!email.isBlank() && !password.isBlank()) {
+	            HttpResponse<String> loginResponse = loginAgenteRequest(email, password);
+	            if (loginResponse.statusCode()==200) {
+	                return loginResponse.body();
+	            } else {
+	            	throw new Exception("E-mail e/o password errati");
+	            }
+	        } else {
+	            throw new Exception("Compilare i campi");
+	        }
+    	}catch(IOException | InterruptedException e) {
+    		 throw new Exception("Impossibile connettersi al server.");
+    	}
     }
     
     public String loginUtente(String email, String password) throws Exception {
-        if (!email.isBlank() && !password.isBlank()) {
-            HttpResponse<String> loginResponse = loginUtenteRequest(email, password);
-            if (loginResponse.statusCode() == 200) {
-                return loginResponse.body();
-            } else {
-                throw new Exception("NomeUtente e/o password errati");
-            }
-        } else {
-            throw new Exception("Compilare i campi");
-        }
+        try {
+	    	if (!email.isBlank() && !password.isBlank()) {
+	            HttpResponse<String> loginResponse = loginUtenteRequest(email, password);
+	            if (loginResponse.statusCode() == 200) {
+	                return loginResponse.body();
+	            } else {
+	                throw new Exception("E-mail e/o password errati");
+	            }
+	        } else {
+	            throw new Exception("Compilare i campi");
+	        }
+	    }catch(IOException | InterruptedException e) {
+			 throw new Exception("Impossibile connettersi al server.");
+		}
     }
 
     private HttpResponse<String> loginUtenteRequest(String email, String password) 

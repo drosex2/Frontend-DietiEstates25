@@ -44,6 +44,7 @@ public class HomePageAgenteFrame extends JFrame {
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
+		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("HomePage agente");
 
 		setContentPane(panePrincipale);
@@ -141,7 +142,7 @@ public class HomePageAgenteFrame extends JFrame {
 		gbl_loginFormPanel.columnWidths = new int[]{120, 560, 120, 0};
 		gbl_loginFormPanel.rowHeights = new int[]{0, 70, 20, 70, 20, 70, 20, 70, 20, 70, 10, 0};
 		gbl_loginFormPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_loginFormPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_loginFormPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		

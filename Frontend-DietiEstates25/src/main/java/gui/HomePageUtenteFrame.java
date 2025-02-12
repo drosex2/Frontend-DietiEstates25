@@ -43,7 +43,7 @@ public class HomePageUtenteFrame extends JFrame {
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
-		panePrincipale.setBackground(new Color(13, 49, 71));
+		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("HomePage Utente");
 
 		setContentPane(panePrincipale);
@@ -140,11 +140,12 @@ public class HomePageUtenteFrame extends JFrame {
 		gbl_loginFormPanel.columnWidths = new int[]{120, 560, 120, 0};
 		gbl_loginFormPanel.rowHeights = new int[]{0, 70, 20, 70, 20, 70, 20, 70, 20, 70, 10, 0};
 		gbl_loginFormPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_loginFormPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_loginFormPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		
 		RoundedButton btnRicerca = new RoundedButton("Ricerca", 30, 30);
+		btnRicerca.setText("Effettua ricerca");
 		btnRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -162,6 +163,7 @@ public class HomePageUtenteFrame extends JFrame {
 		
 		
 		RoundedButton btnCronologiaRicerca = new RoundedButton("Cronologia Ricerca", 30, 30);
+		btnCronologiaRicerca.setText("Visualizza cronologia ricerche");
 		btnCronologiaRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -179,6 +181,7 @@ public class HomePageUtenteFrame extends JFrame {
 		
 		
 		RoundedButton btnNotifiche = new RoundedButton("Notifiche", 30, 30);
+		btnNotifiche.setText("Visualizza notifiche");
 		btnNotifiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -196,6 +199,7 @@ public class HomePageUtenteFrame extends JFrame {
 		
 		
 		RoundedButton btnOfferta = new RoundedButton("Offerta", 30, 30);
+		btnOfferta.setText("Visualizza offerte inviate");
 		btnOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -213,6 +217,7 @@ public class HomePageUtenteFrame extends JFrame {
 		
 		
 		RoundedButton btnContrOfferta = new RoundedButton("Controfferta", 30, 30);
+		btnContrOfferta.setText("Visualizza controfferte ricevute");
 		btnContrOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

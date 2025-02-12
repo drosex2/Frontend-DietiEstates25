@@ -152,7 +152,7 @@ public class LoginFrame extends JFrame {
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		JLabel lblWelcome = new JLabel("Effettua il login");
-		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 26));
+		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 32));
 		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
 		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWelcome.gridx = 1;
@@ -160,7 +160,7 @@ public class LoginFrame extends JFrame {
 		loginFormPanel.add(lblWelcome, gbc_lblWelcome);
 		
 		JLabel lblEmail = new JLabel(" E-Mail");
-		lblEmail.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblEmail.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
@@ -170,7 +170,7 @@ public class LoginFrame extends JFrame {
 		
 		RoundedTextField emailField = new RoundedTextField(15,30,30);
 		emailField.setForeground(new Color(0, 0, 0));
-		emailField.setFont(new Font("Arial", Font.PLAIN, 14));
+		emailField.setFont(new Font("Arial", Font.PLAIN, 20));
 		emailField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_emailField = new GridBagConstraints();
 		gbc_emailField.fill = GridBagConstraints.HORIZONTAL;
@@ -181,7 +181,7 @@ public class LoginFrame extends JFrame {
 		loginFormPanel.add(emailField, gbc_emailField);
 		
 		JLabel lblPassword = new JLabel(" Password");
-		lblPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblPassword.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
@@ -190,7 +190,7 @@ public class LoginFrame extends JFrame {
 		loginFormPanel.add(lblPassword, gbc_lblPassword);
 		
 		passwordField = new RoundedPasswordField(15,30,30);
-		passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
+		passwordField.setFont(new Font("Arial", Font.PLAIN, 20));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
@@ -244,7 +244,7 @@ public class LoginFrame extends JFrame {
 		
 		checkAgente.setBackground(new Color(217, 217, 217));
 		checkAgente.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		checkAgente.setFont(new Font("Arial", Font.PLAIN, 18));
+		checkAgente.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
 		gbc_chckbxNewCheckBox.anchor = GridBagConstraints.WEST;
 		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
@@ -252,7 +252,7 @@ public class LoginFrame extends JFrame {
 		gbc_chckbxNewCheckBox.gridy = 6;
 		loginFormPanel.add(checkAgente, gbc_chckbxNewCheckBox);
 		btnAccedi.setBackground(new Color(255, 175, 68));
-		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_btnAccedi = new GridBagConstraints();
 		gbc_btnAccedi.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAccedi.gridx = 1;
@@ -274,7 +274,7 @@ public class LoginFrame extends JFrame {
 				lblSignUp.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		lblSignUp.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblSignUp.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblSignUp = new GridBagConstraints();
 		gbc_lblSignUp.anchor = GridBagConstraints.WEST;
 		gbc_lblSignUp.insets = new Insets(0, 0, 5, 5);
@@ -297,7 +297,7 @@ public class LoginFrame extends JFrame {
 				lblLoginAmministratore.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		lblLoginAmministratore.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblLoginAmministratore.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblLoginAmministratore = new GridBagConstraints();
 		gbc_lblLoginAmministratore.anchor = GridBagConstraints.WEST;
 		gbc_lblLoginAmministratore.insets = new Insets(0, 0, 0, 5);

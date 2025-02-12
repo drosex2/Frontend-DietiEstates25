@@ -144,7 +144,7 @@ public class LoginAdminFrame extends JFrame {
 		loginFormPanel.setLayout(gbl_loginFormPanel);
 		
 		JLabel lblWelcome = new JLabel("Effettua il login");
-		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 26));
+		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 32));
 		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
 		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWelcome.gridx = 1;
@@ -152,7 +152,7 @@ public class LoginAdminFrame extends JFrame {
 		loginFormPanel.add(lblWelcome, gbc_lblWelcome);
 		
 		JLabel lblNomeAdmin = new JLabel("Nome Amministratore");
-		lblNomeAdmin.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNomeAdmin.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblNomeAdmin = new GridBagConstraints();
 		gbc_lblNomeAdmin.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblNomeAdmin.insets = new Insets(0, 0, 5, 5);
@@ -162,7 +162,7 @@ public class LoginAdminFrame extends JFrame {
 		
 		RoundedTextField nomeAdminField = new RoundedTextField(15,30,30);
 		nomeAdminField.setForeground(new Color(0, 0, 0));
-		nomeAdminField.setFont(new Font("Arial", Font.PLAIN, 14));
+		nomeAdminField.setFont(new Font("Arial", Font.PLAIN, 20));
 		nomeAdminField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_nomeAdminField = new GridBagConstraints();
 		gbc_nomeAdminField.fill = GridBagConstraints.HORIZONTAL;
@@ -173,7 +173,7 @@ public class LoginAdminFrame extends JFrame {
 		loginFormPanel.add(nomeAdminField, gbc_nomeAdminField);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblPassword.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
@@ -182,7 +182,7 @@ public class LoginAdminFrame extends JFrame {
 		loginFormPanel.add(lblPassword, gbc_lblPassword);
 		
 		passwordField = new RoundedPasswordField(15,30,30);
-		passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
+		passwordField.setFont(new Font("Arial", Font.PLAIN, 20));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
@@ -216,7 +216,7 @@ public class LoginAdminFrame extends JFrame {
 			
 		});
 		btnAccedi.setBackground(new Color(255, 175, 68));
-		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnAccedi.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_btnAccedi = new GridBagConstraints();
 		gbc_btnAccedi.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAccedi.gridx = 1;
@@ -238,7 +238,7 @@ public class LoginAdminFrame extends JFrame {
 				lblTornaLogin.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		lblTornaLogin.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblTornaLogin.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblTornaLogin = new GridBagConstraints();
 		gbc_lblTornaLogin.anchor = GridBagConstraints.WEST;
 		gbc_lblTornaLogin.insets = new Insets(0, 0, 5, 5);
