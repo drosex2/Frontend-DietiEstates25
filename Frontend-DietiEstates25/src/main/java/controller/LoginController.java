@@ -18,13 +18,11 @@ public class LoginController {
 
     public String loginAgente(String email, String password) throws Exception {
     	if (!email.isBlank() && !password.isBlank()) {
-            HttpResponse<String> loginResponse = loginRequest(email, password);
+            HttpResponse<String> loginResponse = loginAgenteRequest(email, password);
             if (loginResponse.statusCode()==200) {
                 return loginResponse.body();
             } else {
-            	System.out.println("Status Code: " + loginResponse.statusCode());
-            	System.out.println("Response Body: " + loginResponse.body());
-                throw new Exception("NomeUtente e/o password errati");
+            	throw new Exception("NomeUtente e/o password errati");
             }
         } else {
             throw new Exception("Compilare i campi");
@@ -34,12 +32,10 @@ public class LoginController {
     
     public String loginUtente(String email, String password) throws Exception {
         if (!email.isBlank() && !password.isBlank()) {
-            HttpResponse<String> loginResponse = loginRequest(email, password);
+            HttpResponse<String> loginResponse = loginUtenteRequest(email, password);
             if (loginResponse.statusCode() == 200) {
                 return loginResponse.body();
             } else {
-            	System.out.println("Status Code: " + loginResponse.statusCode());
-            	System.out.println("Response Body: " + loginResponse.body());
                 throw new Exception("NomeUtente e/o password errati");
             }
         } else {
@@ -47,18 +43,33 @@ public class LoginController {
         }
     }
 
-    private HttpResponse<String> loginRequest(String email, String password) 
+    private HttpResponse<String> loginUtenteRequest(String email, String password) 
             throws IOException, InterruptedException {
-        String bodyPublisher = String.format("{\"emailUtente\":\"%s\", \"password\":\"%s\"}", email, password);
+        String bodyPublisher = String.format("{\"email\":\"%s\", \"password\":\"%s\"}", email, password);
         String BASE_URI = Starter.getBASE_URI();
         HttpClient client = HttpClient.newHttpClient();
-        System.out.println("Email: " + email);  // Verifica l'email
-        System.out.println("Password: " + password);  // Verifica la password
+        
 
         HttpRequest loginRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URI + "auth/utente"))
                 .headers("Content-type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(""))
+                .POST(HttpRequest.BodyPublishers.ofString(bodyPublisher))
+                .build();
+
+        HttpResponse<String> loginResponse = client.send(loginRequest, HttpResponse.BodyHandlers.ofString());
+        return loginResponse;
+    }
+    
+    private HttpResponse<String> loginAgenteRequest(String email, String password) 
+            throws IOException, InterruptedException {
+        String bodyPublisher = String.format("{\"email\":\"%s\", \"password\":\"%s\"}", email, password);
+        String BASE_URI = Starter.getBASE_URI();
+        HttpClient client = HttpClient.newHttpClient();
+    
+        HttpRequest loginRequest = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URI + "auth/agente"))
+                .headers("Content-type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(bodyPublisher))
                 .build();
 
         HttpResponse<String> loginResponse = client.send(loginRequest, HttpResponse.BodyHandlers.ofString());

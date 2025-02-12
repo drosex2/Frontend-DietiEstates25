@@ -34,6 +34,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import controller.LoginController;
 import customElements.*;
 import dto.Agente;
+import dto.Agenzia;
 import dto.Amministratore;
 import dto.Utente;
 import starter.Starter;
@@ -204,29 +205,35 @@ public class LoginFrame extends JFrame {
 		btnAccedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(checkAgente.isSelected()) {
-					String emailAgente=emailField.getText();
+					String email=emailField.getText();
 					String password=new String(passwordField.getPassword());
 					try {
-						String response = loginController.loginAgente(emailAgente,password);
+						String response = loginController.loginAgente(email,password);
 			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
 			            String token = jsonResponse.get("token").getAsString();
-			            Agente agenteConnesso = new Gson().fromJson(jsonResponse.get("agente"), Agente.class);
+			            Agente agenteConnesso = getAgenteFromJsonResponse(email,password,jsonResponse);
+			            emailField.setText("");
+			            passwordField.setText("");
 			            starter.switchLoginToHomePageAgente(agenteConnesso, token);
 					}catch(Exception ex) {
 						CustomDialog dialog=new CustomDialog(ex.getMessage(),"ok");
+						dialog.setLocationRelativeTo(panePrincipale);
 						dialog.setVisible(true);
 						}
 				}else {
-					String emailUtente=emailField.getText();
+					String email=emailField.getText();
 					String password=new String(passwordField.getPassword());
 					try {
-						String response = loginController.loginUtente(emailUtente,password);
+						String response = loginController.loginUtente(email,password);
 			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
 			            String token = jsonResponse.get("token").getAsString();
-			            Utente utenteConnesso = new Gson().fromJson(jsonResponse.get("utente"), Utente.class);
+			            Utente utenteConnesso = getUtenteFromJsonResponse(email,password,jsonResponse);
+			            emailField.setText("");
+			            passwordField.setText("");
 			            starter.switchLoginToHomePageUtente(utenteConnesso, token);
 					}catch(Exception ex) {
 						CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
+						dialog.setLocationRelativeTo(panePrincipale);
 						dialog.setVisible(true);
 						}
 				}
@@ -323,5 +330,20 @@ public class LoginFrame extends JFrame {
 
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
+	}
+	private Agente getAgenteFromJsonResponse(String email, String password,JsonObject jsonResponse) {
+		JsonObject agenziaJson=jsonResponse.getAsJsonObject("agenzia");
+		Agenzia agency= new Gson().fromJson(agenziaJson, Agenzia.class);
+		String nome = jsonResponse.get("nome").getAsString();
+		String cognome = jsonResponse.get("cognome").getAsString();
+		Agente agenteConnesso= new Agente(nome,cognome,email,password,agency);
+		return agenteConnesso;
+	}
+	
+	private Utente getUtenteFromJsonResponse(String email, String password,JsonObject jsonResponse) {
+		String nome = jsonResponse.get("nome").getAsString();
+		String cognome = jsonResponse.get("cognome").getAsString();
+		Utente utenteConnesso= new Utente(nome,cognome,email,password);
+		return utenteConnesso;
 	}
 }
