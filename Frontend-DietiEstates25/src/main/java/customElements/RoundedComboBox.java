@@ -1,14 +1,20 @@
 package customElements;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
-@SuppressWarnings("serial")
-public class RoundedTextField extends JTextField {
+import java.awt.event.*;
+import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RoundedComboBox<E> extends JComboBox<E> {
 	private int arcWidth;
     private int arcHeight;
 
-    public RoundedTextField(int columns, int arcWidth, int arcHeight) {
-        super(15);
+    public RoundedComboBox(E[] items) {
+        super(items);
         this.arcWidth = 30;
         this.arcHeight = 30;
         setOpaque(false); 

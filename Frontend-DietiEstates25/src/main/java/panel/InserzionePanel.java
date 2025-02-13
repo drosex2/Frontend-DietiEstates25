@@ -3,6 +3,8 @@ import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import utils.S3Utils;
+
 import javax.swing.JPanel;
 
 import controller.VisualizzaInserzioniController;
@@ -48,7 +50,8 @@ public class InserzionePanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JLabel lblIconFoto = new JLabel("");
-		lblIconFoto.setIcon(getIconFromS3(inserzione.getFoto()));
+		S3Utils s3Utils=new S3Utils();
+		lblIconFoto.setIcon(s3Utils.getIconFromS3(inserzione.getFoto()));
 		GridBagConstraints gbc_lblIconFoto = new GridBagConstraints();
 		gbc_lblIconFoto.insets = new Insets(0, 0, 0, 5);
 		gbc_lblIconFoto.gridx = 1;
@@ -65,9 +68,9 @@ public class InserzionePanel extends JPanel {
 		add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{64, 103, 138, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblVuota = new JLabel("      ");
@@ -104,7 +107,7 @@ public class InserzionePanel extends JPanel {
 		gbc_lblDimensioni.gridy = 2;
 		panel.add(lblDimensioni, gbc_lblDimensioni);
 		int dimensione = inserzione.getImmobile().getDimensione();
-		JLabel valueDimensioni = new JLabel(String.valueOf(dimensione));
+		JLabel valueDimensioni = new JLabel(String.valueOf(dimensione)+ "mq");
 		valueDimensioni.setFont(new Font("Arial", Font.PLAIN, 16));
 		GridBagConstraints gbc_valueDimensioni = new GridBagConstraints();
 		gbc_valueDimensioni.anchor = GridBagConstraints.WEST;
@@ -167,11 +170,29 @@ public class InserzionePanel extends JPanel {
 		gbc_valueCitta.gridy = 5;
 		panel.add(valueCitta, gbc_valueCitta);
 		
+		JLabel lblAgente = new JLabel("Agente:");
+		lblAgente.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_lblAgente = new GridBagConstraints();
+		gbc_lblAgente.anchor = GridBagConstraints.WEST;
+		gbc_lblAgente.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAgente.gridx = 1;
+		gbc_lblAgente.gridy = 6;
+		panel.add(lblAgente, gbc_lblAgente);
+		String agente=inserzione.getAgente().getNome()+" "+inserzione.getAgente().getCognome();
+		JLabel valueAgente = new JLabel(agente);
+		valueAgente.setFont(new Font("Arial", Font.PLAIN, 16));
+		GridBagConstraints gbc_valueAgente = new GridBagConstraints();
+		gbc_valueAgente.anchor = GridBagConstraints.WEST;
+		gbc_valueAgente.insets = new Insets(0, 0, 5, 0);
+		gbc_valueAgente.gridx = 2;
+		gbc_valueAgente.gridy = 6;
+		panel.add(valueAgente, gbc_valueAgente);
+		
 		JLabel lblVuota2 = new JLabel("         ");
 		GridBagConstraints gbc_lblVuota2 = new GridBagConstraints();
 		gbc_lblVuota2.insets = new Insets(0, 0, 0, 5);
 		gbc_lblVuota2.gridx = 1;
-		gbc_lblVuota2.gridy = 6;
+		gbc_lblVuota2.gridy = 7;
 		panel.add(lblVuota2, gbc_lblVuota2);
 		
 		JPanel panel_1 = new JPanel();
@@ -191,7 +212,7 @@ public class InserzionePanel extends JPanel {
 		JButton btnModifica = new RoundedButton("Modifica",30,30);
 		btnModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				visualizzaInserzioniController.modificaInserzione(inserzione);
 			}
 		});
 		btnModifica.setBackground(new Color(255, 175, 68));
@@ -220,51 +241,5 @@ public class InserzionePanel extends JPanel {
 		panel_1.add(btnElimina, gbc_btnElimina);
 
 	}
-	private ImageIcon getIconFromS3(String foto) {
-		String bucketName = "dietiestates25-bucket";
-        String region = "eu-central-1"; 
-        String accessKey = "AKIAUZPNLDS3IPKBLMEX";
-        String secretKey = "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";
-
-       
-        S3Client s3 = S3Client.builder()
-                .region(software.amazon.awssdk.regions.Region.of(region))
-                .credentialsProvider(StaticCredentialsProvider.create(
-                        AwsBasicCredentials.create(accessKey, secretKey)))
-                .build();
-
-    
-        InputStream imageStream;
-        try {
-            imageStream = s3.getObject(GetObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(foto)
-                    .build());
-        } catch (Exception e) {
-            imageStream=null;
-        }
-       
-        if (imageStream != null) {
-            return getImageIcon(imageStream);
-        }
-		return null;
-	}
-	private ImageIcon getImageIcon(InputStream imageStream) {
-        try {
-            
-            Image image = ImageIO.read(imageStream);
-
-         
-            ImageIcon imageIcon = new ImageIcon(image);
-            ImageIcon resizedIcon = resizeImageIcon(imageIcon, 120, 120);
-            return resizedIcon;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-	private ImageIcon resizeImageIcon(ImageIcon imageIcon, int larghezza, int altezza) {
-		Image image = imageIcon.getImage();
-        Image newImage = image.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH);
-        return new ImageIcon(newImage);
-	}
+	
 }

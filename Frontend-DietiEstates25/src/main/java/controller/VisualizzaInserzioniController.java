@@ -45,6 +45,11 @@ public class VisualizzaInserzioniController {
 		HttpResponse<String> eliminaInserzioneResponse = client.send(eliminaInserzioneRequest, HttpResponse.BodyHandlers.ofString());
 		return eliminaInserzioneResponse;
 	}
+
+	public void modificaInserzione(Inserzione inserzione) {
+		visualizzaInserzioniAgenzia.getStarter().switchVisualizzaInserzioniToModificaInserzione(inserzione);
+		
+	}
 	
 	
 	

@@ -72,6 +72,7 @@ public class HomePageAdminFrame extends JFrame {
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
+		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("HomePage amministratore");
 
 		setContentPane(panePrincipale);

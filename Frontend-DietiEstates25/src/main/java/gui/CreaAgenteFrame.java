@@ -62,6 +62,7 @@ public class CreaAgenteFrame extends JFrame {
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
+		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("Crea un nuovo agente");
 
 		setContentPane(panePrincipale);
@@ -140,7 +141,7 @@ public class CreaAgenteFrame extends JFrame {
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblWelcome = new JLabel("Crea un nuovo agente immobiliare");
-		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 28));
+		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 32));
 		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
 		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWelcome.gridx = 1;

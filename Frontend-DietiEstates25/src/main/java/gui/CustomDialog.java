@@ -32,6 +32,7 @@ public class CustomDialog extends JDialog {
 		setBounds(100, 100, 600, 360);
 		{
 			JPanel panePrincipale = new JPanel();
+			panePrincipale.setBackground(new Color(217, 217, 217));
 			panePrincipale.setSize(450, 300);
 			setResizable(false);
 			setModal(true);

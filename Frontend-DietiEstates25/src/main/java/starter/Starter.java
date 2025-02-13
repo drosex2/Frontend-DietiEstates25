@@ -22,6 +22,7 @@ public class Starter {
 	private CreaAmministratoreFrame creaAmministratoreFrame;
 	private ModificaPasswordFrame modificaPasswordFrame;
 	private VisualizzaInserzioniAgenzia visualizzaInserzioniAgenzia;
+	private ModificaInserzioneFrame modificaInserzioneFrame;
 	
 	
 	public Starter() {
@@ -162,6 +163,21 @@ public class Starter {
 	public void switchVisualizzaInserzioniToHomePageAdmin() {
 		visualizzaInserzioniAgenzia.setVisible(false);
 		homePageAdmin.setVisible(true);
+	}
+
+
+
+	public void switchVisualizzaInserzioniToModificaInserzione(Inserzione inserzione) {
+		modificaInserzioneFrame=new ModificaInserzioneFrame(this,visualizzaInserzioniAgenzia.getToken(),inserzione);
+		visualizzaInserzioniAgenzia.setVisible(false);
+		modificaInserzioneFrame.setVisible(true);
+		
+	}
+	public void switchModificaInserzioneToVisualizzaInserzioni() {
+		modificaInserzioneFrame.setVisible(false);
+		visualizzaInserzioniAgenzia.setVisible(true);
+		
+		
 	}
 
 

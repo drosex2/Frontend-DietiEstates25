@@ -58,6 +58,7 @@ public class ModificaPasswordFrame extends JFrame {
 		setBounds(50, 50, 770, 512);
 		
 		panePrincipale = new JPanel();
+		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("Modifica password");
 
 		setContentPane(panePrincipale);
@@ -309,7 +310,7 @@ public class ModificaPasswordFrame extends JFrame {
 		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchCreaAmministratoreFrameToHomePageAdmin();
+				starter.switchModificaPasswordFrameToHomePageAdmin();
 			}
 		});
 		btnAnnulla.setPreferredSize(new Dimension(150, 30));

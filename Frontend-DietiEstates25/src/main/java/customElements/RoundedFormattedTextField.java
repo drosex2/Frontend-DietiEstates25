@@ -1,14 +1,20 @@
 package customElements;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.NumberFormatter;
+
 @SuppressWarnings("serial")
-public class RoundedTextField extends JTextField {
+public class RoundedFormattedTextField extends JFormattedTextField {
 	private int arcWidth;
     private int arcHeight;
 
-    public RoundedTextField(int columns, int arcWidth, int arcHeight) {
-        super(15);
+    public RoundedFormattedTextField(NumberFormatter formatter) {
+        super(formatter);
         this.arcWidth = 30;
         this.arcHeight = 30;
         setOpaque(false); 

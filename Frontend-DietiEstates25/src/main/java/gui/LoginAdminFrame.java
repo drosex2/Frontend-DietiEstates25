@@ -66,6 +66,7 @@ public class LoginAdminFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 770, 512);
 		panePrincipale = new JPanel();
+		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("Login Admin");
 
 		setContentPane(panePrincipale);
