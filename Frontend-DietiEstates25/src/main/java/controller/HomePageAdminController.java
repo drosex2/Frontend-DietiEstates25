@@ -38,10 +38,5 @@ public class HomePageAdminController {
 			Type listType = new TypeToken<ArrayList<Inserzione>>(){}.getType();
 			inserzioni=new Gson().fromJson(ottieniInserzioniResponse.body(),listType);
 			return inserzioni;
-		
-		
-
-		
-		
 	}
 }

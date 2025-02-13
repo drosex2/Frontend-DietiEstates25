@@ -21,7 +21,7 @@ public class Starter {
 	private SignUpFrame signUpFrame;
 	private CreaAmministratoreFrame creaAmministratoreFrame;
 	private ModificaPasswordFrame modificaPasswordFrame;
-	private VisualizzaInserzioniAgenzia visualizzaInserzioniAgenzia;
+	private VisualizzaInserzioni visualizzaInserzioni;
 	private ModificaInserzioneFrame modificaInserzioneFrame;
 	
 	
@@ -153,31 +153,48 @@ public class Starter {
 	}
 
 	public void switchHomePageAdminToVisualizzaInserzioni(Starter starter, String token, List<Inserzione> inserzioni) {
-		visualizzaInserzioniAgenzia=new VisualizzaInserzioniAgenzia(starter,token,inserzioni);
+		visualizzaInserzioni=new VisualizzaInserzioni(starter,token,inserzioni,homePageAdmin);
 		homePageAdmin.setVisible(false);
-		visualizzaInserzioniAgenzia.setVisible(true);
+		visualizzaInserzioni.setVisible(true);
 	}
 
 
 
-	public void switchVisualizzaInserzioniToHomePageAdmin() {
-		visualizzaInserzioniAgenzia.setVisible(false);
-		homePageAdmin.setVisible(true);
+	public void switchVisualizzaInserzioniToHomePage(JFrame homePage) {
+		visualizzaInserzioni.setVisible(false);
+		homePage.setVisible(true);
 	}
 
 
 
-	public void switchVisualizzaInserzioniToModificaInserzione(Inserzione inserzione) {
-		modificaInserzioneFrame=new ModificaInserzioneFrame(this,visualizzaInserzioniAgenzia.getToken(),inserzione);
-		visualizzaInserzioniAgenzia.setVisible(false);
+	public void switchVisualizzaInserzioniToModificaInserzione(Inserzione inserzione,JFrame homePage) {
+		modificaInserzioneFrame=new ModificaInserzioneFrame(this,visualizzaInserzioni.getToken(),inserzione,homePage);
+		visualizzaInserzioni.setVisible(false);
 		modificaInserzioneFrame.setVisible(true);
 		
 	}
 	public void switchModificaInserzioneToVisualizzaInserzioni() {
 		modificaInserzioneFrame.setVisible(false);
-		visualizzaInserzioniAgenzia.setVisible(true);
+		visualizzaInserzioni.setVisible(true);
 		
 		
+	}
+
+
+
+	public void switchModificaInserzioneToHomePage(JFrame homePage) {
+		modificaInserzioneFrame.setVisible(false);
+		homePage.setVisible(true);
+		
+	}
+
+
+
+	public void switchHomePageAgenteToVisualizzaInserzioni(Starter starter, String token, List<Inserzione> inserzioni) {
+	
+		visualizzaInserzioni=new VisualizzaInserzioni(starter,token,inserzioni,homePageAgente);
+		homePageAgente.setVisible(false);
+		visualizzaInserzioni.setVisible(true);
 	}
 
 

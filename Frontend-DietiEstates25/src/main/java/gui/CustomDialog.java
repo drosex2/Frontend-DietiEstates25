@@ -119,6 +119,9 @@ public class CustomDialog extends JDialog {
 					gbc_btnCentrale.gridx = 1;
 					gbc_btnCentrale.gridy = 1;
 					panel.add(btnCentrale, gbc_btnCentrale);
+					if(textButton.isBlank()) {
+						btnCentrale.setVisible(false);
+					}
 				}
 			}
 			{

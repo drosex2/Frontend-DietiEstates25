@@ -23,6 +23,8 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -208,11 +210,11 @@ public class InserzionePanel extends JPanel {
 		gbl_panel_1.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
-		
+		JFrame homePage=visualizzaInserzioniController.getVisualizzaInserzioni().getHomePage();
 		JButton btnModifica = new RoundedButton("Modifica",30,30);
 		btnModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				visualizzaInserzioniController.modificaInserzione(inserzione);
+				visualizzaInserzioniController.modificaInserzione(inserzione,homePage);
 			}
 		});
 		btnModifica.setBackground(new Color(255, 175, 68));

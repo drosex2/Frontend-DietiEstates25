@@ -25,7 +25,7 @@ import starter.Starter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VisualizzaInserzioniAgenzia extends JFrame{
+public class VisualizzaInserzioni extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
@@ -34,11 +34,13 @@ public class VisualizzaInserzioniAgenzia extends JFrame{
 	private String token;
 	private VisualizzaInserzioniController visualizzaInserzioniController;
 	private List<Inserzione> inserzioni;
+	private JFrame homePage;
 	
-	public VisualizzaInserzioniAgenzia(Starter starter,String token,List<Inserzione> inserzioni) {
+	public VisualizzaInserzioni(Starter starter,String token,List<Inserzione> inserzioni,JFrame homePage) {
 		this.setStarter(starter);
 		this.setToken(token);
 		this.setInserzioni(inserzioni);
+		this.setHomePage(homePage);
 		this.visualizzaInserzioniController=new VisualizzaInserzioniController(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
@@ -137,7 +139,7 @@ public class VisualizzaInserzioniAgenzia extends JFrame{
 		JButton btnIndietro = new RoundedButton("Indietro",30,30);
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchVisualizzaInserzioniToHomePageAdmin();
+				starter.switchVisualizzaInserzioniToHomePage(homePage);
 			}
 		});
 		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -228,5 +230,13 @@ public class VisualizzaInserzioniAgenzia extends JFrame{
 
 	public void setInserzioni(List<Inserzione> inserzioni) {
 		this.inserzioni = inserzioni;
+	}
+
+	public JFrame getHomePage() {
+		return homePage;
+	}
+
+	public void setHomePage(JFrame homePage) {
+		this.homePage = homePage;
 	}
 }

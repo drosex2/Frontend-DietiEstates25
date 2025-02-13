@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import dto.Inserzione;
 import gui.ModificaInserzioneFrame;
+import starter.Starter;
 
 public class ModificaInserzioneController {
 	
@@ -36,6 +38,32 @@ public class ModificaInserzioneController {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         ArrayList<String> comuni = gson.fromJson(response.body(), type);
 		return comuni;
+	}
+	public void aggiornaInserzione(Inserzione inserzione) throws Exception {
+		try {
+			HttpResponse<String> response=modificaInserzioneRequest(inserzione);
+			if(response.statusCode()!=201) {
+				
+				throw new Exception("Aggiornamento inserzione non riuscito");
+			}
+		}catch(IOException | InterruptedException ex) {
+			ex.printStackTrace();
+			throw new Exception("Aggiornamento inserzione non riuscito");
+		}
+		
+	}
+	private HttpResponse<String> modificaInserzioneRequest(Inserzione inserzione) throws IOException, InterruptedException {
+		
+		HttpClient client = HttpClient.newHttpClient();
+		String json=new Gson().toJson(inserzione);
+		HttpRequest modificaInserzioneRequest = HttpRequest.newBuilder()
+				.uri(URI.create(Starter.getBASE_URI()+"inserzione"))
+				.header("Content-type", "application/json")
+				.header("Authorization","Bearer "+modificaInserzioneFrame.getToken())
+				.PUT(HttpRequest.BodyPublishers.ofString(json))
+				.build();
+		HttpResponse<String> modificaInserzioneResponse = client.send(modificaInserzioneRequest, HttpResponse.BodyHandlers.ofString());
+		return modificaInserzioneResponse;
 	}
 
 }

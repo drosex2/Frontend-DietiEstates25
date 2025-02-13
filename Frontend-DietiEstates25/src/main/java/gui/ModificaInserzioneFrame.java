@@ -17,11 +17,14 @@ import javax.swing.JPanel;
 import controller.ModificaInserzioneController;
 import dto.Inserzione;
 import starter.Starter;
+import utils.S3Utils;
+
 import javax.swing.JList;
 
 import customElements.RoundedTextArea;
 import customElements.RoundedTextField;
 import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
 import javax.swing.text.NumberFormatter;
 
 
@@ -48,11 +51,29 @@ public class ModificaInserzioneFrame extends JFrame {
 	private Inserzione inserzione;
 	private String token;
 	private ModificaInserzioneController modificaInserzioneController;
+	private RoundedTextField titoloField;
+	private JTextArea textArea;
+	private RoundedFormattedTextField prezzoField;
+	private JLabel lblFoto;
+	private JComboBox<String> comboBoxTipologia;
+	private RoundedTextField indirizzoField;
+	private JComboBox<String> comboBoxCitta;
+	private RoundedTextField codicePostaleField;
+	private RoundedFormattedTextField dimensioneField;
+	private RoundedFormattedTextField pianoField;
+	private ModernCheckBox checkboxAscensore;
+	private JComboBox<String> comboBoxClasseEnergetica;
+	private RoundedFormattedTextField numeroStanzeField;
+	private JFrame homePage;
 	
-	public ModificaInserzioneFrame(Starter starter, String token, Inserzione inserzione) {
+	
+	
+	
+	public ModificaInserzioneFrame(Starter starter, String token, Inserzione inserzione,JFrame homePage) {
 		this.starter=starter;
-		this.token=token;
+		this.setToken(token);
 		this.inserzione=inserzione;
+		this.homePage=homePage;
 		this.modificaInserzioneController=new ModificaInserzioneController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +86,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		setContentPane(panePrincipale);
 		GridBagLayout gbl_panePrincipale = new GridBagLayout();
 		gbl_panePrincipale.columnWidths = new int[]{881, 0};
-		gbl_panePrincipale.rowHeights = new int[]{97, 368, 40, 0};
+		gbl_panePrincipale.rowHeights = new int[]{97, 871, 20, 0};
 		gbl_panePrincipale.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panePrincipale.rowWeights = new double[]{1.0, 10.0, 0.0, Double.MIN_VALUE};
 		panePrincipale.setLayout(gbl_panePrincipale);
@@ -155,9 +176,9 @@ public class ModificaInserzioneFrame extends JFrame {
 		formPanel.add(formPanelInterno, gbc_formPanelInterno);
 		GridBagLayout gbl_formPanelInterno = new GridBagLayout();
 		gbl_formPanelInterno.columnWidths = new int[]{275, 456, 321, 0};
-		gbl_formPanelInterno.rowHeights = new int[]{30, 40, 30, 63, 30, 40, 30, 0, 40, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_formPanelInterno.rowHeights = new int[]{30, 40, 30, 63, 30, 40, 30, 0, 40, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_formPanelInterno.rowWeights = new double[]{2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_formPanelInterno.rowWeights = new double[]{2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
 		
 		JLabel lblTitolo = new JLabel("Titolo");
@@ -169,7 +190,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblTitolo.gridy = 0;
 		formPanelInterno.add(lblTitolo, gbc_lblTitolo);
 		
-		RoundedTextField titoloField = new RoundedTextField(15, 30, 30);
+		titoloField = new RoundedTextField(15, 30, 30);
 		titoloField.setText(inserzione.getTitolo());
 		titoloField.setFont(new Font("Arial", Font.PLAIN, 14));
 		titoloField.setBackground(new Color(192, 192, 192));
@@ -189,7 +210,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblDescrizione.gridy = 2;
 		formPanelInterno.add(lblDescrizione, gbc_lblDescrizione);
 		
-		JTextArea textArea = new RoundedTextArea(30,30);
+		textArea = new RoundedTextArea(30,30);
 		textArea.setText(inserzione.getDescrizione());
 		textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true); 
@@ -214,11 +235,11 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblPrezzo.gridy = 4;
 		formPanelInterno.add(lblPrezzo, gbc_lblPrezzo);
 		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
-        numberFormatter.setAllowsInvalid(false); // Impedisce caratteri non validi
+        numberFormatter.setAllowsInvalid(false);
         numberFormatter.setMinimum(1);
-		RoundedFormattedTextField prezzoField = new RoundedFormattedTextField(numberFormatter);
+        prezzoField = new RoundedFormattedTextField(numberFormatter);
 		
-		prezzoField.setText(String.valueOf(inserzione.getPrezzo()));
+		prezzoField.setValue(inserzione.getPrezzo());
 		prezzoField.setFont(new Font("Arial", Font.PLAIN, 14));
 		prezzoField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_prezzoField = new GridBagConstraints();
@@ -244,7 +265,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		AtomicReference<File> selectedFile= new AtomicReference<>();
 		RoundedButton btnFoto = new RoundedButton("Modifica Foto", 30, 30);
-		JLabel lblFoto = new JLabel(inserzione.getFoto());
+		lblFoto = new JLabel(inserzione.getFoto());
 		btnFoto.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnFoto.setBackground(Color.LIGHT_GRAY);
 		btnFoto.addActionListener(e -> {
@@ -277,7 +298,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblTipologia.gridy = 7;
 		formPanelInterno.add(lblTipologia, gbc_lblTipologia);
 		
-		JComboBox<String> comboBoxTipologia = new JComboBox<String>();
+		comboBoxTipologia = new JComboBox<String>();
 		comboBoxTipologia.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBoxTipologia.setModel(new DefaultComboBoxModel<String>(new String[] {"affitto", "vendita"}));
 		comboBoxTipologia.setBackground(new Color(192, 192, 192));
@@ -298,7 +319,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblIndirizzo.gridy = 9;
 		formPanelInterno.add(lblIndirizzo, gbc_lblIndirizzo);
 		
-		RoundedTextField indirizzoField = new RoundedTextField(15, 30, 30);
+		indirizzoField = new RoundedTextField(15, 30, 30);
 		indirizzoField.setText(inserzione.getImmobile().getIndirizzo());
 		indirizzoField.setFont(new Font("Arial", Font.PLAIN, 14));
 		indirizzoField.setBackground(new Color(192, 192, 192));
@@ -323,8 +344,8 @@ public class ModificaInserzioneFrame extends JFrame {
 		} catch (IOException | InterruptedException e) {
 			comuni=new ArrayList<String>();
 		}
-		@SuppressWarnings("unchecked")
-		JComboBox<String> comboBoxCitta = new JComboBox<String>(comuni.toArray(new String[0]));
+		
+		comboBoxCitta = new JComboBox<String>(comuni.toArray(new String[0]));
 		comboBoxCitta.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBoxCitta.setBackground(new Color(192, 192, 192));
 		comboBoxCitta.setSelectedItem(inserzione.getImmobile().getCitta());
@@ -344,7 +365,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblCodicePostale.gridy = 13;
 		formPanelInterno.add(lblCodicePostale, gbc_lblCodicePostale);
 		
-		RoundedTextField codicePostaleField = new RoundedTextField(15, 30, 30);
+		codicePostaleField = new RoundedTextField(15, 30, 30);
 		codicePostaleField.setText(inserzione.getImmobile().getCodicePostale());
 		codicePostaleField.setFont(new Font("Arial", Font.PLAIN, 14));
 		codicePostaleField.setBackground(Color.LIGHT_GRAY);
@@ -355,7 +376,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_codicePostaleField.gridy = 14;
 		formPanelInterno.add(codicePostaleField, gbc_codicePostaleField);
 		
-		JLabel lblDimensione = new JLabel("Dimensione");
+		JLabel lblDimensione = new JLabel("Dimensione (mq)");
 		lblDimensione.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDimensione = new GridBagConstraints();
 		gbc_lblDimensione.anchor = GridBagConstraints.WEST;
@@ -364,8 +385,8 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblDimensione.gridy = 15;
 		formPanelInterno.add(lblDimensione, gbc_lblDimensione);
 		
-		RoundedFormattedTextField dimensioneField = new RoundedFormattedTextField((NumberFormatter) null);
-		dimensioneField.setText(String.valueOf(inserzione.getImmobile().getDimensione()));
+		dimensioneField = new RoundedFormattedTextField(numberFormatter);
+		dimensioneField.setValue(inserzione.getImmobile().getDimensione());
 		dimensioneField.setFont(new Font("Arial", Font.PLAIN, 14));
 		dimensioneField.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_dimensioneField = new GridBagConstraints();
@@ -384,8 +405,8 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblPiano.gridy = 17;
 		formPanelInterno.add(lblPiano, gbc_lblPiano);
 		
-		RoundedFormattedTextField pianoField = new RoundedFormattedTextField((NumberFormatter) null);
-		pianoField.setText(String.valueOf(inserzione.getImmobile().getPiano()));
+		pianoField = new RoundedFormattedTextField(numberFormatter);
+		pianoField.setValue(inserzione.getImmobile().getPiano());
 		pianoField.setFont(new Font("Arial", Font.PLAIN, 14));
 		pianoField.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_pianoField = new GridBagConstraints();
@@ -395,12 +416,12 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_pianoField.gridy = 18;
 		formPanelInterno.add(pianoField, gbc_pianoField);
 		
-		ModernCheckBox mdrnchckbxAscensore = new ModernCheckBox((String) null);
-		mdrnchckbxAscensore.setForeground(new Color(0, 0, 0));
-		mdrnchckbxAscensore.setFont(new Font("Arial", Font.PLAIN, 18));
-		mdrnchckbxAscensore.setText("Ascensore");
+		checkboxAscensore = new ModernCheckBox((String) null);
+		checkboxAscensore.setForeground(new Color(0, 0, 0));
+		checkboxAscensore.setFont(new Font("Arial", Font.PLAIN, 18));
+		checkboxAscensore.setText("Ascensore");
 		if(inserzione.getImmobile().isAscensore()) {
-			mdrnchckbxAscensore.setSelected(true);
+			checkboxAscensore.setSelected(true);
 		}
 		
 		GridBagConstraints gbc_mdrnchckbxAscensore = new GridBagConstraints();
@@ -408,7 +429,27 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_mdrnchckbxAscensore.insets = new Insets(0, 0, 5, 5);
 		gbc_mdrnchckbxAscensore.gridx = 1;
 		gbc_mdrnchckbxAscensore.gridy = 19;
-		formPanelInterno.add(mdrnchckbxAscensore, gbc_mdrnchckbxAscensore);
+		formPanelInterno.add(checkboxAscensore, gbc_mdrnchckbxAscensore);
+		
+		JLabel lblNumeroStanze = new JLabel("Numero stanze");
+		lblNumeroStanze.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblNumeroStanze = new GridBagConstraints();
+		gbc_lblNumeroStanze.anchor = GridBagConstraints.WEST;
+		gbc_lblNumeroStanze.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNumeroStanze.gridx = 1;
+		gbc_lblNumeroStanze.gridy = 20;
+		formPanelInterno.add(lblNumeroStanze, gbc_lblNumeroStanze);
+		
+		numeroStanzeField = new RoundedFormattedTextField(numberFormatter);
+		numeroStanzeField.setFont(new Font("Arial", Font.PLAIN, 14));
+		numeroStanzeField.setBackground(Color.LIGHT_GRAY);
+		numeroStanzeField.setValue(inserzione.getImmobile().getNumeroStanze());
+		GridBagConstraints gbc_numeroStanzeField = new GridBagConstraints();
+		gbc_numeroStanzeField.insets = new Insets(0, 0, 5, 5);
+		gbc_numeroStanzeField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_numeroStanzeField.gridx = 1;
+		gbc_numeroStanzeField.gridy = 21;
+		formPanelInterno.add(numeroStanzeField, gbc_numeroStanzeField);
 		
 		JLabel lblClasseEnergetica = new JLabel("Classe Energetica");
 		lblClasseEnergetica.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -416,10 +457,10 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblClasseEnergetica.anchor = GridBagConstraints.WEST;
 		gbc_lblClasseEnergetica.insets = new Insets(0, 0, 5, 5);
 		gbc_lblClasseEnergetica.gridx = 1;
-		gbc_lblClasseEnergetica.gridy = 20;
+		gbc_lblClasseEnergetica.gridy = 22;
 		formPanelInterno.add(lblClasseEnergetica, gbc_lblClasseEnergetica);
 	
-		JComboBox<String> comboBoxClasseEnergetica = new JComboBox<String>();
+		comboBoxClasseEnergetica = new JComboBox<String>();
 		comboBoxClasseEnergetica.setModel(new DefaultComboBoxModel<String>(new String[] {"A4", "A3", "A2", "A1", "B", "C", "D", "E", "F", "G"}));
 		comboBoxClasseEnergetica.setBackground(new Color(192, 192, 192));
 		comboBoxClasseEnergetica.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -428,7 +469,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_comboBoxClasseEnergetica.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxClasseEnergetica.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBoxClasseEnergetica.gridx = 1;
-		gbc_comboBoxClasseEnergetica.gridy = 21;
+		gbc_comboBoxClasseEnergetica.gridy = 23;
 		formPanelInterno.add(comboBoxClasseEnergetica, gbc_comboBoxClasseEnergetica);
 		
 		JPanel panelBottoni = new JPanel();
@@ -437,7 +478,7 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_panelBottoni.insets = new Insets(0, 0, 0, 5);
 		gbc_panelBottoni.fill = GridBagConstraints.BOTH;
 		gbc_panelBottoni.gridx = 1;
-		gbc_panelBottoni.gridy = 22;
+		gbc_panelBottoni.gridy = 24;
 		formPanelInterno.add(panelBottoni, gbc_panelBottoni);
 		GridBagLayout gbl_panelBottoni = new GridBagLayout();
 		gbl_panelBottoni.columnWidths = new int[]{247, 271, 0};
@@ -447,10 +488,46 @@ public class ModificaInserzioneFrame extends JFrame {
 		panelBottoni.setLayout(gbl_panelBottoni);
 		
 		RoundedButton btnModifica = new RoundedButton("Registrati", 30, 30);
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(controllaCampi()) {
+					CustomDialog loadingDialog = new CustomDialog("Aggiornamento in corso","");
+					loadingDialog.setLocationRelativeTo(panePrincipale);
+					
+						SwingWorker<Void, Void> worker = new SwingWorker<>() {
+				            @Override
+				            protected Void doInBackground() throws Exception {
+				                aggiornaInserzione(inserzione, selectedFile);
+				                return null;
+				            }
+
+				            @Override
+				            protected void done() {
+				            	try {
+				            		loadingDialog.dispose();
+				            		aggiornamentoInserzioneRiuscitoDialog();
+				            		starter.switchModificaInserzioneToHomePage(homePage);
+				                }catch(Exception ex){
+				                	loadingDialog.dispose();
+				                	aggiornamentoInserzioneFallitoDialog();
+				                }
+				            }
+				        };
+				     worker.execute();
+				     loadingDialog.setVisible(true);
+					
+					
+				}else {
+					compilaCampiDialog();
+				}
+			}
+
+			
+
+		});
 		btnModifica.setText("Modifica");
 		btnModifica.setPreferredSize(new Dimension(150, 30));
 		btnModifica.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnModifica.setEnabled(false);
 		btnModifica.setBackground(new Color(255, 175, 68));
 		GridBagConstraints gbc_btnModifica = new GridBagConstraints();
 		gbc_btnModifica.anchor = GridBagConstraints.SOUTHEAST;
@@ -473,8 +550,6 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_btnAnnulla.gridx = 1;
 		gbc_btnAnnulla.gridy = 0;
 		panelBottoni.add(btnAnnulla, gbc_btnAnnulla);
-		String[] tipologia = {"Roma", "Milano", "Napoli", "Torino", "Firenze", "Bologna", "Venezia"};
-		
 		JPanel fooBar = new JPanel();
 		fooBar.setBackground(new Color(16, 49, 71));
 		GridBagConstraints gbc_fooBar = new GridBagConstraints();
@@ -482,6 +557,16 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_fooBar.gridx = 0;
 		gbc_fooBar.gridy = 2;
 		panePrincipale.add(fooBar, gbc_fooBar);
+	}
+	protected void aggiornamentoInserzioneRiuscitoDialog() {
+		CustomDialog dialog=new CustomDialog("Aggiornamento inserzione eseguito con successo!","Ok");
+		dialog.setLocationRelativeTo(panePrincipale);
+		dialog.setVisible(true);
+		
+	}
+	protected boolean controllaCampi() {
+		return !titoloField.getText().isBlank() && !textArea.getText().isBlank() 
+				&& !indirizzoField.getText().isBlank() && !codicePostaleField.getText().isBlank(); 
 	}
 	private File selectFile(JFrame frame) {
         FileDialog fileDialog = new FileDialog(frame, "Seleziona un'immagine", FileDialog.LOAD);
@@ -492,4 +577,46 @@ public class ModificaInserzioneFrame extends JFrame {
         }
         return null;
     }
+	public void aggiornaInserzione(Inserzione inserzione, AtomicReference<File> selectedFile) throws Exception {
+		inserzione.setTitolo(titoloField.getText());
+		inserzione.setDescrizione(textArea.getText());
+		inserzione.setPrezzo(((Number)prezzoField.getValue()).intValue());
+		if(!inserzione.getFoto().equals(lblFoto.getText())) {
+			S3Utils s3Utils= new S3Utils();
+			s3Utils.uploadToS3(selectedFile.get());
+			inserzione.setFoto(selectedFile.get().getName());
+		}
+		inserzione.setTipologia((String) comboBoxTipologia.getSelectedItem());
+		inserzione.getImmobile().setIndirizzo(indirizzoField.getText());
+		inserzione.getImmobile().setCitta((String) comboBoxCitta.getSelectedItem());
+		inserzione.getImmobile().setCodicePostale(codicePostaleField.getText());
+		inserzione.getImmobile().setDimensione(((Number)dimensioneField.getValue()).intValue());
+		inserzione.getImmobile().setPiano(((Number)pianoField.getValue()).intValue());
+		inserzione.getImmobile().setAscensore(checkboxAscensore.isSelected());
+		inserzione.getImmobile().setNumeroStanze(((Number)numeroStanzeField.getValue()).intValue());
+		inserzione.getImmobile().setClasseEnergetica((String) comboBoxClasseEnergetica.getSelectedItem());
+		modificaInserzioneController.aggiornaInserzione(inserzione);
+	}
+	public void compilaCampiDialog() {
+		CustomDialog dialog=new CustomDialog("Compila tutti i campi","Ok");
+		dialog.setLocationRelativeTo(panePrincipale);
+		dialog.setVisible(true);
+	}
+	public void aggiornamentoInserzioneFallitoDialog() {
+		CustomDialog dialog=new CustomDialog("Aggiornamento inserzione non riuscito","Torna alla home");
+		dialog.setLocationRelativeTo(panePrincipale);
+		dialog.setVisible(true);
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public JFrame getHomePage() {
+		return homePage;
+	}
+	public void setHomePage(JFrame homePage) {
+		this.homePage = homePage;
+	}
 }

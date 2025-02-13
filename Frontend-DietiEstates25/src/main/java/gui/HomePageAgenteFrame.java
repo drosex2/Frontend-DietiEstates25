@@ -11,17 +11,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
 import controller.HomePageAgenteController;
 import customElements.RoundedButton;
 import dto.Agente;
+import dto.Inserzione;
 import starter.Starter;
 
 public class HomePageAgenteFrame extends JFrame {
@@ -213,6 +216,35 @@ public class HomePageAgenteFrame extends JFrame {
 		
 		btnModificaInserzioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Inserzione> inserzioni = homePageAgenteController.ottieniInserzioniAgente(agenteConnesso.getEmail());
+						if (inserzioni.isEmpty()) {
+							throw new Exception("Nessuna inserzione disponibile");
+						}
+						starter.switchHomePageAgenteToVisualizzaInserzioni(starter, token, inserzioni);
+						return null;
+					}
+
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna inserzione disponibile", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 			}
 		});
 		btnModificaInserzioni.setBackground(new Color(13, 49, 71));

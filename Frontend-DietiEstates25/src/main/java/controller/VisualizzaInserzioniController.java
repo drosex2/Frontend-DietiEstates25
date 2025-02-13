@@ -6,30 +6,32 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import javax.swing.JFrame;
+
 import dto.Inserzione;
-import gui.VisualizzaInserzioniAgenzia;
+import gui.VisualizzaInserzioni;
 import starter.Starter;
 
 public class VisualizzaInserzioniController {
-	private VisualizzaInserzioniAgenzia visualizzaInserzioniAgenzia;
+	private VisualizzaInserzioni visualizzaInserzioni;
 
-	public VisualizzaInserzioniController(VisualizzaInserzioniAgenzia visualizzaInserzioniAgenzia) {
-		this.visualizzaInserzioniAgenzia = visualizzaInserzioniAgenzia;
+	public VisualizzaInserzioniController(VisualizzaInserzioni visualizzaInserzioniAgenzia) {
+		this.visualizzaInserzioni = visualizzaInserzioniAgenzia;
 	}
 
 	public void eliminaInserzione(Inserzione inserzione) {
 		try {
 			HttpResponse<String> eliminaInserzioneResponse=eliminaInserzioneRequest(inserzione.getId());
 			if(eliminaInserzioneResponse.statusCode()==200) {
-				visualizzaInserzioniAgenzia.getInserzioni().remove(inserzione);
-				visualizzaInserzioniAgenzia.loadInserzioni();
-				visualizzaInserzioniAgenzia.showDeleteDialog();
+				visualizzaInserzioni.getInserzioni().remove(inserzione);
+				visualizzaInserzioni.loadInserzioni();
+				visualizzaInserzioni.showDeleteDialog();
 			}else {
-				visualizzaInserzioniAgenzia.showErrorDeleteDialog();
+				visualizzaInserzioni.showErrorDeleteDialog();
 			}
 			
 		}catch(Exception e) {
-			visualizzaInserzioniAgenzia.showErrorDeleteDialog();
+			visualizzaInserzioni.showErrorDeleteDialog();
 		}
 	}
 
@@ -39,16 +41,24 @@ public class VisualizzaInserzioniController {
 		HttpRequest eliminaInserzioneRequest = HttpRequest.newBuilder()
 				.uri(URI.create(Starter.getBASE_URI()+url))
 				.header("Content-type", "application/json")
-				.header("Authorization","Bearer "+visualizzaInserzioniAgenzia.getToken())
+				.header("Authorization","Bearer "+visualizzaInserzioni.getToken())
 				.DELETE()
 				.build();
 		HttpResponse<String> eliminaInserzioneResponse = client.send(eliminaInserzioneRequest, HttpResponse.BodyHandlers.ofString());
 		return eliminaInserzioneResponse;
 	}
 
-	public void modificaInserzione(Inserzione inserzione) {
-		visualizzaInserzioniAgenzia.getStarter().switchVisualizzaInserzioniToModificaInserzione(inserzione);
+	public void modificaInserzione(Inserzione inserzione,JFrame homePage) {
+		visualizzaInserzioni.getStarter().switchVisualizzaInserzioniToModificaInserzione(inserzione,homePage);
 		
+	}
+
+	public VisualizzaInserzioni getVisualizzaInserzioni() {
+		return visualizzaInserzioni;
+	}
+
+	public void setVisualizzaInserzioni(VisualizzaInserzioni visualizzaInserzioni) {
+		this.visualizzaInserzioni = visualizzaInserzioni;
 	}
 	
 	
