@@ -23,6 +23,9 @@ public class Starter {
 	private ModificaPasswordFrame modificaPasswordFrame;
 	private VisualizzaInserzioni visualizzaInserzioni;
 	private ModificaInserzioneFrame modificaInserzioneFrame;
+	private InserisciInserzioneFrame inserisciInserzioneFrame;
+	private VisualizzaOfferteAgenteFrame visualizzaOfferteAgenteFrame;
+	private VisualizzaControfferteAgenteFrame visualizzaControfferteAgenteFrame;
 	
 	
 	public Starter() {
@@ -195,6 +198,19 @@ public class Starter {
 		visualizzaInserzioni=new VisualizzaInserzioni(starter,token,inserzioni,homePageAgente);
 		homePageAgente.setVisible(false);
 		visualizzaInserzioni.setVisible(true);
+	}
+
+
+
+	public void switchHomePageAgenteToInserisciInserzione(Agente agenteConnesso, String token) {
+		inserisciInserzioneFrame=new InserisciInserzioneFrame(this,token,agenteConnesso);
+		homePageAgente.setVisible(false);
+		inserisciInserzioneFrame.setVisible(true);
+		
+	}
+	public void switchInserisciInserzioneToHomePageAgente() {
+		inserisciInserzioneFrame.setVisible(false);
+		homePageAgente.setVisible(true);
 	}
 
 

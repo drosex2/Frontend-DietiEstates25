@@ -153,6 +153,7 @@ public class HomePageAgenteFrame extends JFrame {
 		RoundedButton btnInserisciInserzione = new RoundedButton("Inserisci inserzione",30,30);
 		btnInserisciInserzione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				starter.switchHomePageAgenteToInserisciInserzione(agenteConnesso,token);
 			}
 		});
 		btnInserisciInserzione.setFont(new Font("Arial", Font.PLAIN, 18));

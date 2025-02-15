@@ -83,8 +83,8 @@ public class S3Utils {
                             AwsBasicCredentials.create(accessKey, secretKey)))
                     .build();
 
-            // Upload del file su S3
-            String objectKey =file.getName(); // Percorso nel bucket
+            
+            String objectKey =file.getName(); 
             s3.putObject(PutObjectRequest.builder()
                             .bucket(bucketName)
                             .key(objectKey)

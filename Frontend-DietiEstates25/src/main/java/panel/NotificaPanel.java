@@ -1,0 +1,55 @@
+package panel;
+
+import javax.swing.JPanel;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Dimension;
+
+public class NotificaPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Create the panel.
+	 */
+	public NotificaPanel() {
+		setMaximumSize(new Dimension(700, 100));
+		setBackground(new Color(220, 220, 220));
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{652, 0, 74, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		JLabel lblDescrizione = new JLabel("Testo della notifica");
+		lblDescrizione.setFont(new Font("Arial", Font.PLAIN, 22));
+		GridBagConstraints gbc_lblDescrizione = new GridBagConstraints();
+		gbc_lblDescrizione.anchor = GridBagConstraints.WEST;
+		gbc_lblDescrizione.insets = new Insets(0, 0, 0, 5);
+		gbc_lblDescrizione.gridx = 0;
+		gbc_lblDescrizione.gridy = 0;
+		add(lblDescrizione, gbc_lblDescrizione);
+		
+		JLabel lblTipologia = new JLabel("<Tipologia>");
+		lblTipologia.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		GridBagConstraints gbc_lblTipologia = new GridBagConstraints();
+		gbc_lblTipologia.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTipologia.gridx = 1;
+		gbc_lblTipologia.gridy = 0;
+		add(lblTipologia, gbc_lblTipologia);
+		
+		JLabel lblDataOra = new JLabel("<html>15/02 <br>14:43 </html>");
+		lblDataOra.setFont(new Font("Arial", Font.PLAIN, 20));
+		GridBagConstraints gbc_lblDataOra = new GridBagConstraints();
+		gbc_lblDataOra.gridx = 2;
+		gbc_lblDataOra.gridy = 0;
+		add(lblDataOra, gbc_lblDataOra);
+
+	}
+
+}

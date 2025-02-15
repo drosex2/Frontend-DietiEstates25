@@ -12,16 +12,24 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import dto.Inserzione;
-import gui.ModificaInserzioneFrame;
+import gui.InserisciInserzioneFrame;
 import starter.Starter;
 
-public class ModificaInserzioneController {
+public class InserisciInserzioneController {
+	private InserisciInserzioneFrame inserisciInserzioneFrame;
 	
-	private ModificaInserzioneFrame modificaInserzioneFrame;
-
-	public ModificaInserzioneController(ModificaInserzioneFrame modificaInserzioneFrame) {
-		this.modificaInserzioneFrame=modificaInserzioneFrame;
+	public InserisciInserzioneController(InserisciInserzioneFrame frame) {
+		this.setInserisciInserzioneFrame(frame);
 	}
+
+	public InserisciInserzioneFrame getInserisciInserzioneFrame() {
+		return inserisciInserzioneFrame;
+	}
+
+	public void setInserisciInserzioneFrame(InserisciInserzioneFrame inserisciInserzioneFrame) {
+		this.inserisciInserzioneFrame = inserisciInserzioneFrame;
+	}
+
 	public ArrayList<String> getComuni() throws IOException, InterruptedException{
 		Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<String>>() {
@@ -39,30 +47,31 @@ public class ModificaInserzioneController {
         ArrayList<String> comuni = gson.fromJson(response.body(), type);
 		return comuni;
 	}
-	public void aggiornaInserzione(Inserzione inserzione) throws Exception {
+
+	public void inserisciInserzione(Inserzione inserzione) throws Exception {
 		try {
-			HttpResponse<String> response=modificaInserzioneRequest(inserzione);
+			HttpResponse<String> response=inserisciInserzioneRequest(inserzione);
 			if(response.statusCode()!=201) {
 				
-				throw new Exception("Aggiornamento inserzione non riuscito");
+				throw new Exception("Inserimento inserzione non riuscito");
 			}
 		}catch(IOException | InterruptedException ex) {
-			throw new Exception("Aggiornamento inserzione non riuscito");
+			throw new Exception("Inserimento inserzione non riuscito");
 		}
 		
 	}
-	private HttpResponse<String> modificaInserzioneRequest(Inserzione inserzione) throws IOException, InterruptedException {
+
+	private HttpResponse<String> inserisciInserzioneRequest(Inserzione inserzione) throws IOException, InterruptedException {
 		
 		HttpClient client = HttpClient.newHttpClient();
 		String json=new Gson().toJson(inserzione);
-		HttpRequest modificaInserzioneRequest = HttpRequest.newBuilder()
+		HttpRequest inserisciInserzioneRequest = HttpRequest.newBuilder()
 				.uri(URI.create(Starter.getBASE_URI()+"inserzione"))
 				.header("Content-type", "application/json")
-				.header("Authorization","Bearer "+modificaInserzioneFrame.getToken())
-				.PUT(HttpRequest.BodyPublishers.ofString(json))
+				.header("Authorization","Bearer "+inserisciInserzioneFrame.getToken())
+				.POST(HttpRequest.BodyPublishers.ofString(json))
 				.build();
-		HttpResponse<String> modificaInserzioneResponse = client.send(modificaInserzioneRequest, HttpResponse.BodyHandlers.ofString());
-		return modificaInserzioneResponse;
+		HttpResponse<String> inserisciInserzioneResponse = client.send(inserisciInserzioneRequest, HttpResponse.BodyHandlers.ofString());
+		return inserisciInserzioneResponse;
 	}
-
 }
