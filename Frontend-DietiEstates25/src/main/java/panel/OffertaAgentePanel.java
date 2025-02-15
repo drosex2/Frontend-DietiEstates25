@@ -1,6 +1,9 @@
 package panel;
 
 import javax.swing.JPanel;
+
+import controller.VisualizzaOfferteAgenteController;
+
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -11,14 +14,18 @@ import customElements.RoundedButton;
 import dto.Offerta;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class OffertaAgentePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Offerta offerta;
+	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
 	
-	public OffertaAgentePanel(Offerta offerta) {
+	public OffertaAgentePanel(Offerta offerta,VisualizzaOfferteAgenteController controller) {
 		this.offerta=offerta;
+		this.visualizzaOfferteAgenteController=controller;
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(2000, 200));
@@ -48,6 +55,11 @@ public class OffertaAgentePanel extends JPanel {
 		add(lblPrezzo, gbc_lblPrezzo);
 		
 		RoundedButton btnAccetta = new RoundedButton("Accetta", 30, 30);
+		btnAccetta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visualizzaOfferteAgenteController.aggiornaEsito(offerta, "accettata");
+			}
+		});
 		btnAccetta.setText("    Accetta   ");
 		btnAccetta.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAccetta.setBackground(new Color(255, 175, 68));
@@ -66,14 +78,14 @@ public class OffertaAgentePanel extends JPanel {
 		gbc_lblUtente.gridy = 2;
 		add(lblUtente, gbc_lblUtente);
 		
-		RoundedButton roundedButton = new RoundedButton("Controfferta", 30, 30);
-		roundedButton.setBackground(new Color(200, 200, 200));
-		roundedButton.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_roundedButton = new GridBagConstraints();
-		gbc_roundedButton.insets = new Insets(0, 0, 5, 0);
-		gbc_roundedButton.gridx = 3;
-		gbc_roundedButton.gridy = 2;
-		add(roundedButton, gbc_roundedButton);
+		RoundedButton btnControfferta = new RoundedButton("Controfferta", 30, 30);
+		btnControfferta.setBackground(new Color(200, 200, 200));
+		btnControfferta.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_btnControfferta = new GridBagConstraints();
+		gbc_btnControfferta.insets = new Insets(0, 0, 5, 0);
+		gbc_btnControfferta.gridx = 3;
+		gbc_btnControfferta.gridy = 2;
+		add(btnControfferta, gbc_btnControfferta);
 		
 		JLabel lblValore = new JLabel("Offerta: €"+offerta.getValore());
 		lblValore.setFont(new Font("Arial", Font.PLAIN, 22));
@@ -84,16 +96,21 @@ public class OffertaAgentePanel extends JPanel {
 		gbc_lblValore.gridy = 3;
 		add(lblValore, gbc_lblValore);
 		
-		RoundedButton rndbtnAccetta = new RoundedButton("Rifiuta", 30, 30);
-		rndbtnAccetta.setText("     Rifiuta    ");
-		rndbtnAccetta.setMaximumSize(new Dimension(69, 22));
-		rndbtnAccetta.setBackground(new Color(181, 180, 180));
-		rndbtnAccetta.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_rndbtnAccetta = new GridBagConstraints();
-		gbc_rndbtnAccetta.insets = new Insets(0, 0, 5, 0);
-		gbc_rndbtnAccetta.gridx = 3;
-		gbc_rndbtnAccetta.gridy = 3;
-		add(rndbtnAccetta, gbc_rndbtnAccetta);
+		RoundedButton btnRifiuta = new RoundedButton("Rifiuta", 30, 30);
+		btnRifiuta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visualizzaOfferteAgenteController.aggiornaEsito(offerta, "rifiutata");
+			}
+		});
+		btnRifiuta.setText("     Rifiuta    ");
+		btnRifiuta.setMaximumSize(new Dimension(69, 22));
+		btnRifiuta.setBackground(new Color(181, 180, 180));
+		btnRifiuta.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_btnRifiuta = new GridBagConstraints();
+		gbc_btnRifiuta.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRifiuta.gridx = 3;
+		gbc_btnRifiuta.gridy = 3;
+		add(btnRifiuta, gbc_btnRifiuta);
 
 	}
 

@@ -1,0 +1,57 @@
+package controller;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import dto.Offerta;
+import gui.VisualizzaOfferteAgenteFrame;
+import starter.Starter;
+
+public class VisualizzaOfferteAgenteController {
+	private VisualizzaOfferteAgenteFrame visualizzaOfferteAgenteFrame;
+	
+	public VisualizzaOfferteAgenteController(VisualizzaOfferteAgenteFrame frame) {
+		this.visualizzaOfferteAgenteFrame=frame;
+	}
+	
+	
+	public void aggiornaEsito(Offerta offerta,String esito) {
+		try {
+			updateEsitoRequest(offerta.getId(),esito);
+			offerta.setEsito(esito);
+			visualizzaOfferteAgenteFrame.loadOfferteInAttesa();
+			if(esito.equals("accettata")) {
+				visualizzaOfferteAgenteFrame.showUpdateDialog("Offerta accettata con successo");
+			}else {
+				visualizzaOfferteAgenteFrame.showUpdateDialog("Offerta rifiutata con successo");
+			}	
+		}catch(Exception e) {
+			visualizzaOfferteAgenteFrame.showUpdateDialog(e.getMessage());
+		}
+	}
+	public void updateEsitoRequest(int id,String esito) throws Exception {
+		HttpClient client = HttpClient.newHttpClient();
+		String url=String.format("offerta/id/%d/esito/%s",id,esito);
+		HttpRequest modificaEsitoRequest = HttpRequest.newBuilder()
+				.uri(URI.create(Starter.getBASE_URI()+url))
+				.header("Content-type", "application/json")
+				.header("Authorization","Bearer "+visualizzaOfferteAgenteFrame.getToken())
+				.PUT(HttpRequest.BodyPublishers.ofString(""))
+				.build();
+		HttpResponse<String> modificaEsitoResponse;
+		try {
+			modificaEsitoResponse = client.send(modificaEsitoRequest, HttpResponse.BodyHandlers.ofString());
+			if(modificaEsitoResponse.statusCode()!=200) {
+			throw new Exception("Errore nell'aggiornamento dell'esito");
+			}
+		} catch (IOException | InterruptedException e) {
+			throw new Exception("Errore nell'aggiornamento dell'esito");
+		}
+		
+	}
+	
+
+}

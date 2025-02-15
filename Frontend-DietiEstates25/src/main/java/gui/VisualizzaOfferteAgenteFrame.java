@@ -9,6 +9,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import controller.VisualizzaOfferteAgenteController;
 import customElements.RoundedButton;
 import dto.Inserzione;
 import dto.Offerta;
@@ -32,35 +34,21 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
 	private JPanel panelOfferte;
-	private ArrayList<Offerta> offerte;
+	private List<Offerta> offerte;
 	private Starter starter;
+	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
+	private String token;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VisualizzaOfferteAgenteFrame frame = new VisualizzaOfferteAgenteFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public VisualizzaOfferteAgenteFrame() {
-		
+	public VisualizzaOfferteAgenteFrame(Starter starter,List<Offerta> offerte,String token) {
+		this.starter=starter;
+		this.offerte=offerte;
+		this.setToken(token);
+		this.visualizzaOfferteAgenteController=new VisualizzaOfferteAgenteController(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		panePrincipale = new JPanel();
-		setTitle("Inserzioni");
+		setTitle("Offerte");
 		try {
             UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
         } catch (Exception e) {
@@ -153,7 +141,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		JButton btnIndietro = new RoundedButton("Indietro",30,30);
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				starter.switchVisualizzaOfferteAgenteToHomePageAgente();
 			}
 		});
 		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -169,10 +157,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		panelOfferte = new JPanel();
         panelOfferte.setLayout(new BoxLayout(panelOfferte, BoxLayout.Y_AXIS)); // Layout verticale
 
-        for (Offerta offerta: offerte) {
-            panelOfferte.add(new OffertaAgentePanel(offerta));
-            panelOfferte.add(Box.createVerticalStrut(10));
-        }
+        loadOfferteInAttesa();
         
         JScrollPane scrollPane = new JScrollPane(panelOfferte);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -204,6 +189,33 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		gbc_fooBar.gridx = 0;
 		gbc_fooBar.gridy = 3;
 		panePrincipale.add(fooBar, gbc_fooBar);
+	}
+
+	public void loadOfferteInAttesa() {
+		panelOfferte.removeAll();
+		for (Offerta offerta: offerte) {
+			if(offerta.getEsito().equals("in attesa")) {
+				panelOfferte.add(new OffertaAgentePanel(offerta,this.visualizzaOfferteAgenteController));
+				panelOfferte.add(Box.createVerticalStrut(10));
+			}  
+        }
+		panelOfferte.revalidate();
+		panelOfferte.repaint();
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public void showUpdateDialog(String message) {
+		CustomDialog updateDialog=new CustomDialog(message,"Ok");
+		updateDialog.setLocationRelativeTo(panePrincipale);
+		updateDialog.setVisible(true);
+		
 	}
 
 }
