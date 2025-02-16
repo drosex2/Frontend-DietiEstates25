@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
 
-public class InsersciControffertaAgentePanel extends JPanel {
+public class InserisciControffertaAgentePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtContrrofferta;
@@ -24,7 +24,7 @@ public class InsersciControffertaAgentePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public InsersciControffertaAgentePanel() {
+	public InserisciControffertaAgentePanel() {
 		setBackground(new Color(220, 220, 220));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 345, 140, 191, 0};
