@@ -8,7 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -19,12 +20,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
+
 
 import customElements.RoundedButton;
 import dto.Controfferta;
 import panel.ControffertaAgentePanel;
-import panel.OffertaAgentePanel;
+
 import starter.Starter;
 
 public class VisualizzaControfferteAgenteFrame extends JFrame {
@@ -32,29 +33,13 @@ public class VisualizzaControfferteAgenteFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
 	private JPanel panelControfferte;
-	private ArrayList<Controfferta> controfferte;
+	private List<Controfferta> controfferte;
 	private Starter starter;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VisualizzaControfferteAgenteFrame frame = new VisualizzaControfferteAgenteFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public VisualizzaControfferteAgenteFrame() {
+	
+	public VisualizzaControfferteAgenteFrame(Starter starter,List<Controfferta> controfferte) {
+		this.starter=starter;
+		this.controfferte=controfferte;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -152,7 +137,7 @@ public class VisualizzaControfferteAgenteFrame extends JFrame {
 		JButton btnIndietro = new RoundedButton("Indietro",30,30);
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				starter.switchVisualizzaControfferteAgenteToHomePageAgente();
 			}
 		});
 		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));

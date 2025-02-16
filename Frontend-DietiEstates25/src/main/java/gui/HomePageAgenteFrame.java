@@ -25,6 +25,8 @@ import controller.HomePageAgenteController;
 import customElements.RoundedButton;
 import dto.Agente;
 import dto.Inserzione;
+import dto.Offerta;
+import dto.Controfferta;
 import starter.Starter;
 
 public class HomePageAgenteFrame extends JFrame {
@@ -185,6 +187,35 @@ public class HomePageAgenteFrame extends JFrame {
 		RoundedButton btnVisualizzaOfferte = new RoundedButton("Visualizza offerte",30,30);
 		btnVisualizzaOfferte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Offerta> offerte = homePageAgenteController.ottieniOfferteAgente(agenteConnesso.getEmail());
+						if (offerte.isEmpty()) {
+							throw new Exception("Nessuna inserzione disponibile");
+						}
+						starter.switchHomePageAgenteToVisualizzaOfferteAgente(starter,token,offerte);
+						return null;
+					}
+
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna offerta disponibile", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 			}
 		});
 		btnVisualizzaOfferte.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -201,7 +232,37 @@ public class HomePageAgenteFrame extends JFrame {
 		btnVisualizzaControfferte.setForeground(new Color(255, 255, 255));
 		btnVisualizzaControfferte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Controfferta> controfferte = homePageAgenteController.ottieniControfferteAgente(agenteConnesso.getEmail());
+						if (controfferte.isEmpty()) {
+							throw new Exception("Nessuna inserzione disponibile");
+						}
+						starter.switchHomePageAgenteToVisualizzaControfferteAgente(starter,controfferte);
+						return null;
+					}
+
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna controfferta disponibile", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 			}
+			
 		});
 		btnVisualizzaControfferte.setBackground(new Color(13, 49, 71));
 		btnVisualizzaControfferte.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -236,7 +297,6 @@ public class HomePageAgenteFrame extends JFrame {
 							get();
 							loadingDialog.dispose();
 						} catch (Exception ex) {
-							ex.printStackTrace();
 							loadingDialog.dispose();
 							CustomDialog dialog = new CustomDialog("Nessuna inserzione disponibile", "Ok");
 							dialog.setLocationRelativeTo(panePrincipale);

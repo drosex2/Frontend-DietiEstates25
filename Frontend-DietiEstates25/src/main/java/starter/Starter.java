@@ -1,12 +1,15 @@
 package starter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import dto.Agente;
 import dto.Amministratore;
+import dto.Controfferta;
 import dto.Inserzione;
+import dto.Offerta;
 import dto.Utente;
 import gui.*;
 
@@ -211,6 +214,40 @@ public class Starter {
 	public void switchInserisciInserzioneToHomePageAgente() {
 		inserisciInserzioneFrame.setVisible(false);
 		homePageAgente.setVisible(true);
+	}
+
+
+
+	public void switchHomePageAgenteToVisualizzaOfferteAgente(Starter starter, String token, List<Offerta> offerte) {
+		visualizzaOfferteAgenteFrame=new VisualizzaOfferteAgenteFrame(starter,offerte,token);
+		homePageAgente.setVisible(false);
+		visualizzaOfferteAgenteFrame.setVisible(true);
+	}
+
+
+
+	public void switchVisualizzaOfferteAgenteToHomePageAgente() {
+		visualizzaOfferteAgenteFrame.setVisible(false);
+		homePageAgente.setVisible(true);
+		
+	}
+
+
+
+	public void switchHomePageAgenteToVisualizzaControfferteAgente(Starter starter,
+			List<Controfferta> controfferte) {
+		visualizzaControfferteAgenteFrame=new VisualizzaControfferteAgenteFrame(starter,controfferte);
+		homePageAgente.setVisible(false);
+		visualizzaControfferteAgenteFrame.setVisible(true);
+		
+	}
+
+
+
+	public void switchVisualizzaControfferteAgenteToHomePageAgente() {
+		visualizzaControfferteAgenteFrame.setVisible(false);
+		homePageAgente.setVisible(true);
+		
 	}
 
 
