@@ -1,3 +1,8 @@
-/panel/
 /META-INF/
 /gui/
+<<<<<<< HEAD
+=======
+/panel/
+/controller/
+/starter/
+>>>>>>> branch 'master' of https://github.com/drosex2/Frontend-DietiEstates25.git

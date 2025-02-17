@@ -172,6 +172,35 @@ public class HomePageAgenteFrame extends JFrame {
 		RoundedButton btnInserisciOfferta = new RoundedButton("Inserisci offerta manualmente",30,30);
 		btnInserisciOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Inserzione> inserzioni = homePageAgenteController.ottieniInserzioniAgente(agenteConnesso.getEmail());
+						if (inserzioni.isEmpty()) {
+							throw new Exception("Nessuna inserzione disponibile");
+						}
+						starter.switchHomePageAgenteToInserisciOffertaManuale(starter, token, inserzioni);
+						return null;
+					}
+
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna inserzione disponibile", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
+			
 			}
 		});
 		btnInserisciOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
