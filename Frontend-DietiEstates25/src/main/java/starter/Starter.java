@@ -1,10 +1,10 @@
 package starter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
+import controller.VisualizzaOfferteAgenteController;
 import dto.Agente;
 import dto.Amministratore;
 import dto.Controfferta;
@@ -31,7 +31,9 @@ public class Starter {
 	private VisualizzaControfferteAgenteFrame visualizzaControfferteAgenteFrame;
 	private InserisciOffertaManualeScrollFrame inserisciOffertaManualeScrollFrame;
 	private InserisciOffertaManualmenteFrame inserisciOffertaManualmenteFrame;
-	
+	private InserisciControffertaFrame inserisciControffertaFrame;
+	private VisualizzaOfferteUtenteFrame visualizzaOfferteUtenteFrame;
+	private VisualizzaControfferteUtenteFrame visualizzaControfferteUtenteFrame;
 	
 	public Starter() {
 		loginFrame=new LoginFrame(this);
@@ -280,10 +282,52 @@ public class Starter {
 
 
 	public void switchInserisciOffertaScrollFrameToHomePage() {
-		this.inserisciOffertaManualeScrollFrame.setVisible(false);
-		this.homePageAgente.setVisible(true);
+		inserisciOffertaManualeScrollFrame.setVisible(false);
+		homePageAgente.setVisible(true);
 	}
 
+
+
+	public void switchInserisciControffertaToVisualizzaOfferte() {
+		inserisciControffertaFrame.setVisible(false);
+		visualizzaOfferteAgenteFrame.setVisible(true);
+	}
+
+
+
+	public void switchVisualizzaOfferteToInserisciControfferta(Offerta offerta, String token,VisualizzaOfferteAgenteController controller) {
+		inserisciControffertaFrame=new InserisciControffertaFrame(this,offerta,token,controller);
+		visualizzaOfferteAgenteFrame.setVisible(false);
+		inserisciControffertaFrame.setVisible(true);
+		
+	}
+
+
+
+	public void switchVisualizzaOfferteUtenteToHomePageUtente() {
+		visualizzaOfferteUtenteFrame.setVisible(false);
+		homePageUtente.setVisible(true);
+	}
+
+
+
+	public void switchHomePageUtenteToVisualizzaOfferteUtente(List<Offerta> offerte) {
+		visualizzaOfferteUtenteFrame=new VisualizzaOfferteUtenteFrame(this,offerte);
+		homePageUtente.setVisible(false);
+		visualizzaOfferteUtenteFrame.setVisible(true);
+	}
+
+
+
+	public void switchVisualizzaControfferteUtenteToHomePageUtente() {
+		visualizzaControfferteUtenteFrame.setVisible(false);
+		homePageUtente.setVisible(true);		
+	}
+	public void switchHomePageUtenteToVisualizzaControfferteUtente(List<Controfferta> controfferte,String token) {
+		visualizzaControfferteUtenteFrame=new VisualizzaControfferteUtenteFrame(this,controfferte,token);
+		homePageUtente.setVisible(false);
+		visualizzaControfferteUtenteFrame.setVisible(true);
+	}
 
 
 }

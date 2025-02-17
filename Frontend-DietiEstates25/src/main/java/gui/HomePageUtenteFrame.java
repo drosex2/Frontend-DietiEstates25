@@ -11,16 +11,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
 import controller.HomePageUtenteController;
 import customElements.RoundedButton;
+import dto.Controfferta;
+import dto.Offerta;
 import dto.Utente;
 import starter.Starter;
 
@@ -202,6 +206,35 @@ public class HomePageUtenteFrame extends JFrame {
 		btnOfferta.setText("Visualizza offerte inviate");
 		btnOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Offerta> offerte = homePageUtenteController.ottieniOfferteUtente(utenteConnesso.getEmail());
+						if (offerte.isEmpty()) {
+							throw new Exception("Non ci sono offerte inviate");
+						}
+						starter.switchHomePageUtenteToVisualizzaOfferteUtente(offerte);
+						return null;
+					}
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna offerta disponibile", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
+			
 				
 			}
 		});
@@ -220,6 +253,37 @@ public class HomePageUtenteFrame extends JFrame {
 		btnContrOfferta.setText("Visualizza controfferte ricevute");
 		btnContrOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Controfferta> controfferte = homePageUtenteController.ottieniControfferteUtente(utenteConnesso.getEmail());
+						
+						if (!hasControfferteInAttesa(controfferte)) {
+							throw new Exception("Non ci sono controfferte ricevute");
+						}
+						starter.switchHomePageUtenteToVisualizzaControfferteUtente(controfferte,token);
+						return null;
+					}
+					
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna controfferta disponibile", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
+			
 				
 			}
 		});
@@ -233,8 +297,15 @@ public class HomePageUtenteFrame extends JFrame {
 		gbc_btnControOfferta.gridy = 9;
 		loginFormPanel.add(btnContrOfferta, gbc_btnControOfferta);
 	}
+	private boolean hasControfferteInAttesa(List<Controfferta> controfferte) {
+		for(Controfferta controfferta: controfferte) {
+			if(controfferta.getEsito().equals("in attesa")) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-	// Getter e Setter
 	public Starter getStarter() {
 		return starter;
 	}

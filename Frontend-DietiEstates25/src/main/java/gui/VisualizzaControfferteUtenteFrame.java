@@ -1,14 +1,12 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -21,34 +19,35 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import controller.VisualizzaControfferteUtenteController;
 import controller.VisualizzaOfferteAgenteController;
 import customElements.RoundedButton;
-import dto.Inserzione;
+import dto.Controfferta;
 import dto.Offerta;
-import panel.InserzionePanel;
+import panel.ControffertaUtentePanel;
 import panel.OffertaAgentePanel;
 import starter.Starter;
 
-public class VisualizzaOfferteAgenteFrame extends JFrame {
+public class VisualizzaControfferteUtenteFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
-	private JPanel panelOfferte;
-	private List<Offerta> offerte;
+	private JPanel panelControfferte;
+	private List<Controfferta> controfferte;
 	private Starter starter;
-	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
+	private VisualizzaControfferteUtenteController visualizzaControfferteUtenteController;
 	private String token;
 
-	public VisualizzaOfferteAgenteFrame(Starter starter,List<Offerta> offerte,String token) {
+	public VisualizzaControfferteUtenteFrame(Starter starter,List<Controfferta> controfferte,String token) {
 		this.starter=starter;
-		this.offerte=offerte;
+		this.controfferte=controfferte;
 		this.setToken(token);
-		this.visualizzaOfferteAgenteController=new VisualizzaOfferteAgenteController(this);
+		this.visualizzaControfferteUtenteController=new VisualizzaControfferteUtenteController(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		panePrincipale = new JPanel();
-		setTitle("Offerte");
+		setTitle("Controfferte ricevute");
 		try {
             UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
         } catch (Exception e) {
@@ -102,7 +101,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		
 		JFrame myFrame=this;
 		
-		JLabel lblNewLabel = new JLabel("Offerte ricevute");
+		JLabel lblNewLabel = new JLabel("Controfferte ricevute");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
@@ -141,7 +140,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		JButton btnIndietro = new RoundedButton("Indietro",30,30);
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchVisualizzaOfferteAgenteToHomePageAgente();
+				starter.switchVisualizzaControfferteUtenteToHomePageUtente();
 			}
 		});
 		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -154,12 +153,12 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		panelSx.add(btnIndietro, gbc_btnIndietro);
 		
 		
-		panelOfferte = new JPanel();
-        panelOfferte.setLayout(new BoxLayout(panelOfferte, BoxLayout.Y_AXIS)); // Layout verticale
+		panelControfferte = new JPanel();
+        panelControfferte.setLayout(new BoxLayout(panelControfferte, BoxLayout.Y_AXIS)); // Layout verticale
 
-        loadOfferteInAttesa();
+        loadControfferteInAttesa();
         
-        JScrollPane scrollPane = new JScrollPane(panelOfferte);
+        JScrollPane scrollPane = new JScrollPane(panelControfferte);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(null);
 
@@ -191,16 +190,16 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
 
-	public void loadOfferteInAttesa() {
-		panelOfferte.removeAll();
-		for (Offerta offerta: offerte) {
-			if(offerta.getEsito().equals("in attesa")) {
-				panelOfferte.add(new OffertaAgentePanel(offerta,this.visualizzaOfferteAgenteController,token,starter));
-				panelOfferte.add(Box.createVerticalStrut(10));
+	public void loadControfferteInAttesa() {
+		panelControfferte.removeAll();
+		for (Controfferta controfferta: controfferte) {
+			if(controfferta.getEsito().equals("in attesa")) {
+				panelControfferte.add(new ControffertaUtentePanel(controfferta,visualizzaControfferteUtenteController,token,starter));
+				panelControfferte.add(Box.createVerticalStrut(10));
 			}  
         }
-		panelOfferte.revalidate();
-		panelOfferte.repaint();
+		panelControfferte.revalidate();
+		panelControfferte.repaint();
 	}
 
 	public String getToken() {
@@ -217,5 +216,4 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		updateDialog.setVisible(true);
 		
 	}
-
 }

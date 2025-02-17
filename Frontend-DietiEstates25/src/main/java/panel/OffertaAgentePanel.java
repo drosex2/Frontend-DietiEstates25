@@ -12,6 +12,7 @@ import java.awt.Insets;
 import java.awt.Font;
 import customElements.RoundedButton;
 import dto.Offerta;
+import starter.Starter;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -22,10 +23,11 @@ public class OffertaAgentePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Offerta offerta;
 	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
-	
-	public OffertaAgentePanel(Offerta offerta,VisualizzaOfferteAgenteController controller) {
+	private String token;
+	public OffertaAgentePanel(Offerta offerta,VisualizzaOfferteAgenteController controller,String token,Starter starter) {
 		this.offerta=offerta;
 		this.visualizzaOfferteAgenteController=controller;
+		this.token=token;
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(2000, 200));
@@ -79,6 +81,11 @@ public class OffertaAgentePanel extends JPanel {
 		add(lblUtente, gbc_lblUtente);
 		
 		RoundedButton btnControfferta = new RoundedButton("Controfferta", 30, 30);
+		btnControfferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				starter.switchVisualizzaOfferteToInserisciControfferta(offerta,token,visualizzaOfferteAgenteController);
+			}
+		});
 		btnControfferta.setBackground(new Color(200, 200, 200));
 		btnControfferta.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnControfferta = new GridBagConstraints();
