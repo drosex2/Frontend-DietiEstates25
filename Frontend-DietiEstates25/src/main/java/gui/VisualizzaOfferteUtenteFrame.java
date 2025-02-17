@@ -1,14 +1,12 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -21,34 +19,29 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
-import controller.VisualizzaOfferteAgenteController;
 import customElements.RoundedButton;
-import dto.Inserzione;
+
 import dto.Offerta;
-import panel.InserzionePanel;
-import panel.OffertaAgentePanel;
+
+import panel.OffertaUtentePanel;
 import starter.Starter;
 
-public class VisualizzaOfferteAgenteFrame extends JFrame {
-
+public class VisualizzaOfferteUtenteFrame extends JFrame {		
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
-	private JPanel panelOfferte;
+	private JPanel panelControfferte;
 	private List<Offerta> offerte;
 	private Starter starter;
-	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
-	private String token;
 
-	public VisualizzaOfferteAgenteFrame(Starter starter,List<Offerta> offerte,String token) {
+	
+	public VisualizzaOfferteUtenteFrame(Starter starter,List<Offerta> offerte) {
 		this.starter=starter;
 		this.offerte=offerte;
-		this.setToken(token);
-		this.visualizzaOfferteAgenteController=new VisualizzaOfferteAgenteController(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		panePrincipale = new JPanel();
-		setTitle("Offerte");
+		setTitle("Offerte inviate");
 		try {
             UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
         } catch (Exception e) {
@@ -100,9 +93,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		navBar.add(lblTitle, gbc_lblTitle);
 		
 		
-		JFrame myFrame=this;
-		
-		JLabel lblNewLabel = new JLabel("Offerte ricevute");
+		JLabel lblNewLabel = new JLabel("Offerte inviate");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
@@ -141,7 +132,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		JButton btnIndietro = new RoundedButton("Indietro",30,30);
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchVisualizzaOfferteAgenteToHomePageAgente();
+				starter.switchVisualizzaOfferteUtenteToHomePageUtente();
 			}
 		});
 		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -154,12 +145,15 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		panelSx.add(btnIndietro, gbc_btnIndietro);
 		
 		
-		panelOfferte = new JPanel();
-        panelOfferte.setLayout(new BoxLayout(panelOfferte, BoxLayout.Y_AXIS)); // Layout verticale
-
-        loadOfferteInAttesa();
+		panelControfferte = new JPanel();
+        panelControfferte.setLayout(new BoxLayout(panelControfferte, BoxLayout.Y_AXIS)); // Layout verticale
         
-        JScrollPane scrollPane = new JScrollPane(panelOfferte);
+        for (Offerta offerta: offerte) {
+            panelControfferte.add(new OffertaUtentePanel(offerta));
+            panelControfferte.add(Box.createVerticalStrut(10));
+        }
+        
+        JScrollPane scrollPane = new JScrollPane(panelControfferte);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(null);
 
@@ -190,32 +184,6 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		gbc_fooBar.gridy = 3;
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
-
-	public void loadOfferteInAttesa() {
-		panelOfferte.removeAll();
-		for (Offerta offerta: offerte) {
-			if(offerta.getEsito().equals("in attesa")) {
-				panelOfferte.add(new OffertaAgentePanel(offerta,this.visualizzaOfferteAgenteController,token,starter));
-				panelOfferte.add(Box.createVerticalStrut(10));
-			}  
-        }
-		panelOfferte.revalidate();
-		panelOfferte.repaint();
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public void showUpdateDialog(String message) {
-		CustomDialog updateDialog=new CustomDialog(message,"Ok");
-		updateDialog.setLocationRelativeTo(panePrincipale);
-		updateDialog.setVisible(true);
-		
-	}
+	
 
 }

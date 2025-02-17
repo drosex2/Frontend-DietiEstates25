@@ -153,9 +153,9 @@ public class ModificaInserzioneFrame extends JFrame {
 		panel.add(formPanel, gbc_formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
 		gbl_formPanel.columnWidths = new int[]{74, 779, 74, 0};
-		gbl_formPanel.rowHeights = new int[]{0, 400, 0};
+		gbl_formPanel.rowHeights = new int[]{0, 0};
 		gbl_formPanel.columnWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_formPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_formPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblWelcome = new JLabel("Modifica inserzione");
@@ -165,15 +165,21 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblWelcome.gridx = 1;
 		gbc_lblWelcome.gridy = 0;
 		formPanel.add(lblWelcome, gbc_lblWelcome);
-		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 1;
+		formPanel.add(scrollPane, gbc_scrollPane);
+		scrollPane.setBorder(null);
 		JPanel formPanelInterno = new JPanel();
+		scrollPane.setViewportView(formPanelInterno);
+		
 		formPanelInterno.setBackground(new Color(217, 217, 217));
-		GridBagConstraints gbc_formPanelInterno = new GridBagConstraints();
-		gbc_formPanelInterno.insets = new Insets(0, 0, 0, 5);
-		gbc_formPanelInterno.fill = GridBagConstraints.BOTH;
-		gbc_formPanelInterno.gridx = 1;
-		gbc_formPanelInterno.gridy = 1;
-		formPanel.add(formPanelInterno, gbc_formPanelInterno);
+		
+		
+		
 		GridBagLayout gbl_formPanelInterno = new GridBagLayout();
 		gbl_formPanelInterno.columnWidths = new int[]{275, 456, 321, 0};
 		gbl_formPanelInterno.rowHeights = new int[]{30, 40, 30, 63, 30, 40, 30, 0, 40, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

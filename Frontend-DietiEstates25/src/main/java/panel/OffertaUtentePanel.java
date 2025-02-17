@@ -55,7 +55,7 @@ public class OffertaUtentePanel extends JPanel {
 		panel.add(titoloInserzione, gbc_titoloInserzione);
 		titoloInserzione.setFont(new Font("Arial", Font.PLAIN, 22));
 		
-		JLabel lblPrezzo = new JLabel("Prezzo: €"+offerta.getInserzione().getTitolo());
+		JLabel lblPrezzo = new JLabel("Prezzo: €"+offerta.getInserzione().getPrezzo());
 		GridBagConstraints gbc_lblPrezzo = new GridBagConstraints();
 		gbc_lblPrezzo.anchor = GridBagConstraints.EAST;
 		gbc_lblPrezzo.insets = new Insets(0, 0, 5, 0);
@@ -100,7 +100,6 @@ public class OffertaUtentePanel extends JPanel {
 			esitoValue.setForeground(new Color(200, 0, 0));
 
 		}
-		esitoValue.setForeground(new Color(0, 128, 0));
 		esitoValue.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_esitoValue = new GridBagConstraints();
 		gbc_esitoValue.anchor = GridBagConstraints.WEST;

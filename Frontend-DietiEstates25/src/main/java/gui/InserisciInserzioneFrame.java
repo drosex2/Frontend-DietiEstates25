@@ -24,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
 
@@ -39,6 +40,7 @@ import dto.Immobile;
 import dto.Inserzione;
 import starter.Starter;
 import utils.S3Utils;
+import javax.swing.JScrollPane;
 
 public class InserisciInserzioneFrame extends JFrame {
 
@@ -73,18 +75,22 @@ public class InserisciInserzioneFrame extends JFrame {
 		this.inserisciInserzioneController=new InserisciInserzioneController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(50, 50, 770, 512);
+		setBounds(50, 50, 1306, 1048);
 		
 		panePrincipale = new JPanel();
 		panePrincipale.setBackground(new Color(217, 217, 217));
 		setTitle("Inserisci Inserzione");
-
+		try {
+            UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
+        } catch (Exception e) {
+           
+        }
 		setContentPane(panePrincipale);
 		GridBagLayout gbl_panePrincipale = new GridBagLayout();
 		gbl_panePrincipale.columnWidths = new int[]{881, 0};
-		gbl_panePrincipale.rowHeights = new int[]{97, 871, 20, 0};
+		gbl_panePrincipale.rowHeights = new int[]{97, 760, 30, 0};
 		gbl_panePrincipale.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panePrincipale.rowWeights = new double[]{1.0, 10.0, 0.0, Double.MIN_VALUE};
+		gbl_panePrincipale.rowWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		panePrincipale.setLayout(gbl_panePrincipale);
 		
 		JPanel navBar = new JPanel();
@@ -134,7 +140,7 @@ public class InserisciInserzioneFrame extends JFrame {
 		panePrincipale.add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{100, 100, 100, 0};
-		gbl_panel.rowHeights = new int[]{363, 0};
+		gbl_panel.rowHeights = new int[]{750, 0};
 		gbl_panel.columnWeights = new double[]{5.0, 0.0, 5.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
@@ -149,9 +155,9 @@ public class InserisciInserzioneFrame extends JFrame {
 		panel.add(formPanel, gbc_formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
 		gbl_formPanel.columnWidths = new int[]{74, 779, 74, 0};
-		gbl_formPanel.rowHeights = new int[]{0, 400, 0};
+		gbl_formPanel.rowHeights = new int[]{0, 0, 35, 0};
 		gbl_formPanel.columnWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_formPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblWelcome = new JLabel("Inserisci inserzione");
@@ -162,14 +168,17 @@ public class InserisciInserzioneFrame extends JFrame {
 		gbc_lblWelcome.gridy = 0;
 		formPanel.add(lblWelcome, gbc_lblWelcome);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 2;
+		formPanel.add(scrollPane, gbc_scrollPane);
+		scrollPane.setBorder(null);
 		JPanel formPanelInterno = new JPanel();
+		scrollPane.setViewportView(formPanelInterno);
 		formPanelInterno.setBackground(new Color(217, 217, 217));
-		GridBagConstraints gbc_formPanelInterno = new GridBagConstraints();
-		gbc_formPanelInterno.insets = new Insets(0, 0, 0, 5);
-		gbc_formPanelInterno.fill = GridBagConstraints.BOTH;
-		gbc_formPanelInterno.gridx = 1;
-		gbc_formPanelInterno.gridy = 1;
-		formPanel.add(formPanelInterno, gbc_formPanelInterno);
 		GridBagLayout gbl_formPanelInterno = new GridBagLayout();
 		gbl_formPanelInterno.columnWidths = new int[]{275, 456, 321, 0};
 		gbl_formPanelInterno.rowHeights = new int[]{30, 40, 30, 63, 30, 40, 30, 0, 40, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -209,9 +218,9 @@ public class InserisciInserzioneFrame extends JFrame {
 		textArea = new RoundedTextArea(30,30);
 		
 		textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true); 
-        textArea.setPreferredSize(new Dimension(21, 28)); 
-        textArea.setMaximumSize(new Dimension(21, 28)); 
+		textArea.setWrapStyleWord(true); 
+		textArea.setPreferredSize(new Dimension(21, 28)); 
+		textArea.setMaximumSize(new Dimension(21, 28)); 
 		textArea.setMaximumSize(new Dimension(21, 28));
 		textArea.setBackground(new Color(192, 192, 192));
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -233,7 +242,7 @@ public class InserisciInserzioneFrame extends JFrame {
 		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
         numberFormatter.setAllowsInvalid(false);
         numberFormatter.setMinimum(1);
-        prezzoField = new RoundedFormattedTextField(numberFormatter);
+		prezzoField = new RoundedFormattedTextField(numberFormatter);
 		
 		
 		prezzoField.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -267,10 +276,10 @@ public class InserisciInserzioneFrame extends JFrame {
 		btnFoto.addActionListener(e -> {
             selectedFile.set(selectFile(this));
             if (selectedFile.get() != null) {
-                lblFoto.setText(selectedFile.get().getName());
-                
+            	lblFoto.setText(selectedFile.get().getName());
             }
         });
+		lblFoto.setText("nessuna foto inserita");
 		GridBagConstraints gbc_btnFoto = new GridBagConstraints();
 		gbc_btnFoto.insets = new Insets(0, 0, 0, 5);
 		gbc_btnFoto.gridx = 0;
@@ -340,7 +349,6 @@ public class InserisciInserzioneFrame extends JFrame {
 		} catch (IOException | InterruptedException e) {
 			comuni=new ArrayList<String>();
 		}
-		
 		comboBoxCitta = new JComboBox<String>(comuni.toArray(new String[0]));
 		comboBoxCitta.setFont(new Font("Arial", Font.PLAIN, 16));
 		comboBoxCitta.setBackground(new Color(192, 192, 192));
@@ -451,96 +459,102 @@ public class InserisciInserzioneFrame extends JFrame {
 		gbc_lblClasseEnergetica.gridx = 1;
 		gbc_lblClasseEnergetica.gridy = 22;
 		formPanelInterno.add(lblClasseEnergetica, gbc_lblClasseEnergetica);
-	
-		comboBoxClasseEnergetica = new JComboBox<String>();
-		comboBoxClasseEnergetica.setModel(new DefaultComboBoxModel<String>(new String[] {"A4", "A3", "A2", "A1", "B", "C", "D", "E", "F", "G"}));
-		comboBoxClasseEnergetica.setBackground(new Color(192, 192, 192));
-		comboBoxClasseEnergetica.setFont(new Font("Arial", Font.PLAIN, 16));
 		
-		GridBagConstraints gbc_comboBoxClasseEnergetica = new GridBagConstraints();
-		gbc_comboBoxClasseEnergetica.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxClasseEnergetica.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxClasseEnergetica.gridx = 1;
-		gbc_comboBoxClasseEnergetica.gridy = 23;
-		formPanelInterno.add(comboBoxClasseEnergetica, gbc_comboBoxClasseEnergetica);
-		
-		JPanel panelBottoni = new JPanel();
-		panelBottoni.setBackground(new Color(217, 217, 217));
-		GridBagConstraints gbc_panelBottoni = new GridBagConstraints();
-		gbc_panelBottoni.insets = new Insets(0, 0, 0, 5);
-		gbc_panelBottoni.fill = GridBagConstraints.BOTH;
-		gbc_panelBottoni.gridx = 1;
-		gbc_panelBottoni.gridy = 24;
-		formPanelInterno.add(panelBottoni, gbc_panelBottoni);
-		GridBagLayout gbl_panelBottoni = new GridBagLayout();
-		gbl_panelBottoni.columnWidths = new int[]{247, 271, 0};
-		gbl_panelBottoni.rowHeights = new int[]{30, 0};
-		gbl_panelBottoni.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelBottoni.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panelBottoni.setLayout(gbl_panelBottoni);
-		
-		RoundedButton btnInserisci = new RoundedButton("Registrati", 30, 30);
-		btnInserisci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(controllaCampi()) {
-					CustomDialog loadingDialog = new CustomDialog("Inserimento in corso","");
-					loadingDialog.setLocationRelativeTo(panePrincipale);
-					
-						SwingWorker<Void, Void> worker = new SwingWorker<>() {
-				            @Override
-				            protected Void doInBackground() throws Exception {
-				                inserisciInserzione(selectedFile);
-				                return null;
-				            }
-
-				            @Override
-				            protected void done() {
-				            	try {
-				            		loadingDialog.dispose();
-				            		inserimentoInserzioneRiuscitoDialog();
-				            		
-				                }catch(Exception ex){
-				                	loadingDialog.dispose();
-				                	inserimentoInserzioneFallitoDialog();
-				                }
-				            }
-				        };
-				     worker.execute();
-				     loadingDialog.setVisible(true);
-					
-				}else {
-					compilaCampiDialog();
-				}
-			}
-
+			comboBoxClasseEnergetica = new JComboBox<String>();
+			comboBoxClasseEnergetica.setModel(new DefaultComboBoxModel<String>(new String[] {"A4", "A3", "A2", "A1", "B", "C", "D", "E", "F", "G"}));
+			comboBoxClasseEnergetica.setBackground(new Color(192, 192, 192));
+			comboBoxClasseEnergetica.setFont(new Font("Arial", Font.PLAIN, 16));
 			
+			GridBagConstraints gbc_comboBoxClasseEnergetica = new GridBagConstraints();
+			gbc_comboBoxClasseEnergetica.insets = new Insets(0, 0, 5, 5);
+			gbc_comboBoxClasseEnergetica.fill = GridBagConstraints.HORIZONTAL;
+			gbc_comboBoxClasseEnergetica.gridx = 1;
+			gbc_comboBoxClasseEnergetica.gridy = 23;
+			formPanelInterno.add(comboBoxClasseEnergetica, gbc_comboBoxClasseEnergetica);
+			
+			JPanel panelBottoni = new JPanel();
+			panelBottoni.setBackground(new Color(217, 217, 217));
+			GridBagConstraints gbc_panelBottoni = new GridBagConstraints();
+			gbc_panelBottoni.insets = new Insets(0, 0, 0, 5);
+			gbc_panelBottoni.fill = GridBagConstraints.BOTH;
+			gbc_panelBottoni.gridx = 1;
+			gbc_panelBottoni.gridy = 24;
+			formPanelInterno.add(panelBottoni, gbc_panelBottoni);
+			GridBagLayout gbl_panelBottoni = new GridBagLayout();
+			gbl_panelBottoni.columnWidths = new int[]{247, 271, 0};
+			gbl_panelBottoni.rowHeights = new int[]{30, 0};
+			gbl_panelBottoni.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelBottoni.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+			panelBottoni.setLayout(gbl_panelBottoni);
+			
+			RoundedButton btnInserisci = new RoundedButton("Registrati", 30, 30);
+			btnInserisci.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(controllaCampi()) {
+						CustomDialog loadingDialog = new CustomDialog("Inserimento in corso","");
+						loadingDialog.setLocationRelativeTo(panePrincipale);
+						
+							SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					            @Override
+					            protected Void doInBackground() throws Exception {
+					                inserisciInserzione(selectedFile);
+					                return null;
+					            }
 
-		});
-		btnInserisci.setText("Inserisci");
-		btnInserisci.setPreferredSize(new Dimension(150, 30));
-		btnInserisci.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnInserisci.setBackground(new Color(255, 175, 68));
-		GridBagConstraints gbc_btnInserisci = new GridBagConstraints();
-		gbc_btnInserisci.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_btnInserisci.insets = new Insets(0, 0, 0, 5);
-		gbc_btnInserisci.gridx = 0;
-		gbc_btnInserisci.gridy = 0;
-		panelBottoni.add(btnInserisci, gbc_btnInserisci);
+					            @Override
+					            protected void done() {
+					            	try {
+					            		loadingDialog.dispose();
+					            		inserimentoInserzioneRiuscitoDialog();
+					            		
+					                }catch(Exception ex){
+					                	loadingDialog.dispose();
+					                	inserimentoInserzioneFallitoDialog();
+					                }
+					            }
+					        };
+					     worker.execute();
+					     loadingDialog.setVisible(true);
+						
+					}else {
+						compilaCampiDialog();
+					}
+				}
+
+				
+
+			});
+			btnInserisci.setText("Inserisci");
+			btnInserisci.setPreferredSize(new Dimension(150, 30));
+			btnInserisci.setFont(new Font("Arial", Font.PLAIN, 18));
+			btnInserisci.setBackground(new Color(255, 175, 68));
+			GridBagConstraints gbc_btnInserisci = new GridBagConstraints();
+			gbc_btnInserisci.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_btnInserisci.insets = new Insets(0, 0, 0, 5);
+			gbc_btnInserisci.gridx = 0;
+			gbc_btnInserisci.gridy = 0;
+			panelBottoni.add(btnInserisci, gbc_btnInserisci);
+			
+			RoundedButton btnAnnulla = new RoundedButton("Annulla", 30, 30);
+			btnAnnulla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					starter.switchInserisciInserzioneToHomePageAgente();
+				}
+			});
+			btnAnnulla.setPreferredSize(new Dimension(150, 30));
+			btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
+			btnAnnulla.setBackground(new Color(181, 180, 180));
+			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+			gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHWEST;
+			gbc_btnAnnulla.gridx = 1;
+			gbc_btnAnnulla.gridy = 0;
+			panelBottoni.add(btnAnnulla, gbc_btnAnnulla);
 		
-		RoundedButton btnAnnulla = new RoundedButton("Annulla", 30, 30);
-		btnAnnulla.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				starter.switchInserisciInserzioneToHomePageAgente();
-			}
-		});
-		btnAnnulla.setPreferredSize(new Dimension(150, 30));
-		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnAnnulla.setBackground(new Color(181, 180, 180));
-		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_btnAnnulla.gridx = 1;
-		gbc_btnAnnulla.gridy = 0;
-		panelBottoni.add(btnAnnulla, gbc_btnAnnulla);
+		try {
+			comuni=inserisciInserzioneController.getComuni();
+		} catch (IOException | InterruptedException e) {
+			comuni=new ArrayList<String>();
+		}
 		JPanel fooBar = new JPanel();
 		fooBar.setBackground(new Color(16, 49, 71));
 		GridBagConstraints gbc_fooBar = new GridBagConstraints();

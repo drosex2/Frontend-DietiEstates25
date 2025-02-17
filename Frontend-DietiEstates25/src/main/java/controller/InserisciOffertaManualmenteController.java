@@ -53,7 +53,7 @@ public class InserisciOffertaManualmenteController {
 		
 	}
 
-	private Utente getUtente(String email) throws IOException, InterruptedException {
+	private Utente getUtente(String email) throws IOException, InterruptedException, Exception {
 		
 		HttpClient client = HttpClient.newHttpClient();
 		
@@ -64,8 +64,13 @@ public class InserisciOffertaManualmenteController {
 				.GET()
 				.build();
 		HttpResponse<String> getUtenteResponse = client.send(getUtenteRequest, HttpResponse.BodyHandlers.ofString());
-		Utente utente=new Gson().fromJson(getUtenteResponse.body(),Utente.class);
-		return utente;
+		if(getUtenteResponse.statusCode()==200) {
+			Utente utente=new Gson().fromJson(getUtenteResponse.body(),Utente.class);
+			return utente;
+		}else {
+			throw new Exception("Non esiste nessun utente con l'email indicata");
+		}
+		
 	} 
 	
 	

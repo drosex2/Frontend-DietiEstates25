@@ -10,16 +10,25 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.VisualizzaControfferteUtenteController;
 import customElements.RoundedButton;
 import dto.Controfferta;
+import starter.Starter;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class ControffertaUtentePanel extends JPanel {
 	private Controfferta controfferta;
+	private VisualizzaControfferteUtenteController visualizzaControfferteUtenteController;
+	private Starter starter;
+	private String token;
 	
-	
-	public ControffertaUtentePanel(Controfferta controfferta) {
+	public ControffertaUtentePanel(Controfferta controfferta, VisualizzaControfferteUtenteController visualizzaControfferteUtenteController, String token, Starter starter) {
 		this.controfferta=controfferta;
+		this.visualizzaControfferteUtenteController=visualizzaControfferteUtenteController;
+		this.starter=starter;
+		this.token=token;
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(2000, 200));
@@ -49,6 +58,11 @@ public class ControffertaUtentePanel extends JPanel {
 		add(lblNewLabel, gbc_lblNewLabel);
 		
 		RoundedButton btnAccetta = new RoundedButton("Accetta", 30, 30);
+		btnAccetta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visualizzaControfferteUtenteController.aggiornaEsito(controfferta, "accettata");
+			}
+		});
 		btnAccetta.setText("    Accetta   ");
 		btnAccetta.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnAccetta.setBackground(new Color(255, 175, 68));
@@ -77,6 +91,11 @@ public class ControffertaUtentePanel extends JPanel {
 		add(lblValore, gbc_lblValore);
 		
 		RoundedButton rndbtnAccetta = new RoundedButton("Rifiuta", 30, 30);
+		rndbtnAccetta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visualizzaControfferteUtenteController.aggiornaEsito(controfferta, "rifiutata");
+			}
+		});
 		rndbtnAccetta.setText("     Rifiuta    ");
 		rndbtnAccetta.setMaximumSize(new Dimension(69, 22));
 		rndbtnAccetta.setBackground(new Color(181, 180, 180));

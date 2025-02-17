@@ -222,12 +222,14 @@ public class HomePageAgenteFrame extends JFrame {
 					@Override
 					protected Void doInBackground() throws Exception {
 						List<Offerta> offerte = homePageAgenteController.ottieniOfferteAgente(agenteConnesso.getEmail());
-						if (offerte.isEmpty()) {
-							throw new Exception("Nessuna inserzione disponibile");
+						if (!hasOfferteInAttesa(offerte)) {
+							throw new Exception("Nessuna offerta disponibile");
 						}
 						starter.switchHomePageAgenteToVisualizzaOfferteAgente(starter,token,offerte);
 						return null;
 					}
+
+					
 
 					@Override
 					protected void done() {
@@ -354,6 +356,14 @@ public class HomePageAgenteFrame extends JFrame {
 		gbc_fooBar.gridy = 2;
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}	
+	private boolean hasOfferteInAttesa(List<Offerta> offerte) {
+		for(Offerta offerta: offerte) {
+			if(offerta.getEsito().equals("in attesa")) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public Starter getStarter() {
 		return starter;
 	}
