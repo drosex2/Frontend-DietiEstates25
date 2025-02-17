@@ -8,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
@@ -20,35 +19,35 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 
-import controller.VisualizzaOfferteAgenteController;
+import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
-import dto.Offerta;
 import panel.InserzionePanel;
-import panel.OffertaAgentePanel;
+import panel.OffertaManualePanel;
 import starter.Starter;
 
-public class VisualizzaOfferteAgenteFrame extends JFrame {
+public class InserisciOffertaManualeScrollFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panePrincipale;
-	private JPanel panelOfferte;
-	private List<Offerta> offerte;
+	private JPanel panelInserzioni;
 	private Starter starter;
-	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
 	private String token;
-
-	public VisualizzaOfferteAgenteFrame(Starter starter,List<Offerta> offerte,String token) {
-		this.starter=starter;
-		this.offerte=offerte;
+	private List<Inserzione> inserzioni;
+	
+	public InserisciOffertaManualeScrollFrame(Starter starter,String token,List<Inserzione> inserzioni) {
+		this.setStarter(starter);
 		this.setToken(token);
-		this.visualizzaOfferteAgenteController=new VisualizzaOfferteAgenteController(this);
+		this.setInserzioni(inserzioni);
+		
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		panePrincipale = new JPanel();
-		setTitle("Offerte");
+		setTitle("Inserzioni");
 		try {
             UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
         } catch (Exception e) {
@@ -102,7 +101,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		
 		JFrame myFrame=this;
 		
-		JLabel lblNewLabel = new JLabel("Offerte ricevute");
+		JLabel lblNewLabel = new JLabel("Inserzioni");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
@@ -141,7 +140,7 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		JButton btnIndietro = new RoundedButton("Indietro",30,30);
 		btnIndietro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchVisualizzaOfferteAgenteToHomePageAgente();
+				starter.switchInserisciOffertaScrollFrameToHomePage();
 			}
 		});
 		btnIndietro.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -154,12 +153,12 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		panelSx.add(btnIndietro, gbc_btnIndietro);
 		
 		
-		panelOfferte = new JPanel();
-        panelOfferte.setLayout(new BoxLayout(panelOfferte, BoxLayout.Y_AXIS)); // Layout verticale
+		panelInserzioni = new JPanel();
+        panelInserzioni.setLayout(new BoxLayout(panelInserzioni, BoxLayout.Y_AXIS)); // Layout verticale
 
-        loadOfferteInAttesa();
+        loadInserzioni();
         
-        JScrollPane scrollPane = new JScrollPane(panelOfferte);
+        JScrollPane scrollPane = new JScrollPane(panelInserzioni);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(null);
 
@@ -191,18 +190,25 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
 
-	public void loadOfferteInAttesa() {
-		panelOfferte.removeAll();
-		for (Offerta offerta: offerte) {
-			if(offerta.getEsito().equals("in attesa")) {
-				panelOfferte.add(new OffertaAgentePanel(offerta,this.visualizzaOfferteAgenteController));
-				panelOfferte.add(Box.createVerticalStrut(10));
-			}  
+	public void loadInserzioni() {
+		panelInserzioni.removeAll();
+        for (Inserzione inserzione: inserzioni) {
+            panelInserzioni.add(new OffertaManualePanel(inserzione,token,starter));
+            panelInserzioni.add(Box.createVerticalStrut(10));
         }
-		panelOfferte.revalidate();
-		panelOfferte.repaint();
+        panelInserzioni.revalidate();
+        panelInserzioni.repaint();
 	}
-
+	public void showDeleteDialog() {
+		CustomDialog deleteDialog=new CustomDialog("Inserzione eliminata con successo","Ok");
+		deleteDialog.setLocationRelativeTo(panePrincipale);
+		deleteDialog.setVisible(true);
+	}
+	public void showErrorDeleteDialog() {
+		CustomDialog deleteDialog=new CustomDialog("Errore nell'eliminazione dell'inserzione","Ok");
+		deleteDialog.setLocationRelativeTo(panePrincipale);
+		deleteDialog.setVisible(true);
+	}
 	public String getToken() {
 		return token;
 	}
@@ -211,11 +217,19 @@ public class VisualizzaOfferteAgenteFrame extends JFrame {
 		this.token = token;
 	}
 
-	public void showUpdateDialog(String message) {
-		CustomDialog updateDialog=new CustomDialog(message,"Ok");
-		updateDialog.setLocationRelativeTo(panePrincipale);
-		updateDialog.setVisible(true);
-		
+	public Starter getStarter() {
+		return starter;
 	}
 
+	public void setStarter(Starter starter) {
+		this.starter = starter;
+	}
+
+	public List<Inserzione> getInserzioni() {
+		return inserzioni;
+	}
+
+	public void setInserzioni(List<Inserzione> inserzioni) {
+		this.inserzioni = inserzioni;
+	}
 }

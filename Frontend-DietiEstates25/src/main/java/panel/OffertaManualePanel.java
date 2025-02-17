@@ -9,6 +9,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import starter.Starter;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,11 +25,13 @@ public class OffertaManualePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Inserzione inserzione;
-	private VisualizzaInserzioniController visualizzaInserzioniController;
-	public OffertaManualePanel(Inserzione inserzione,VisualizzaInserzioniController visualizzaInserzioni) {
+	private String token;
+	public OffertaManualePanel(Inserzione inserzione,String token,Starter starter) {
+		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(800, 200));
 		this.inserzione=inserzione;
-		this.visualizzaInserzioniController=visualizzaInserzioni;
+		this.token=token;
+		
 		setBackground(new Color(217, 217, 217));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 131, 0, 97, 96, 0};
@@ -172,23 +176,25 @@ public class OffertaManualePanel extends JPanel {
 		gbc_panel_1.gridy = 0;
 		add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{185, 0};
-		gbl_panel_1.rowHeights = new int[]{39, 0, 86, 0, 39, 0};
-		gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWidths = new int[]{185, 5, 0};
+		gbl_panel_1.rowHeights = new int[]{39, 86, 39, 0};
+		gbl_panel_1.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
-		JFrame homePage=visualizzaInserzioniController.getVisualizzaInserzioni().getHomePage();
+	
 		JButton btnInserisciOfferta = new RoundedButton("Inserisci offerta",30,30);
 		btnInserisciOfferta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				starter.switchVisualizzaInserzioniToInserisciOffertaManualmente(token,inserzione);
 			}
 		});
 		btnInserisciOfferta.setBackground(new Color(255, 175, 68));
 		btnInserisciOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_btnInserisciOfferta = new GridBagConstraints();
-		gbc_btnInserisciOfferta.insets = new Insets(0, 0, 5, 0);
+		gbc_btnInserisciOfferta.anchor = GridBagConstraints.EAST;
+		gbc_btnInserisciOfferta.insets = new Insets(0, 0, 5, 5);
 		gbc_btnInserisciOfferta.gridx = 0;
-		gbc_btnInserisciOfferta.gridy = 2;
+		gbc_btnInserisciOfferta.gridy = 1;
 		panel_1.add(btnInserisciOfferta, gbc_btnInserisciOfferta);
 
 	}

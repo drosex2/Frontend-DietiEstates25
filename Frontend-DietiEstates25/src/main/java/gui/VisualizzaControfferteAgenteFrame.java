@@ -44,7 +44,7 @@ public class VisualizzaControfferteAgenteFrame extends JFrame {
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		panePrincipale = new JPanel();
-		setTitle("Inserzioni");
+		setTitle("Controfferte inviate");
 		try {
             UIManager.put("ScrollBarUI", "com.sun.java.swing.plaf.windows.WindowsScrollBarUI");
         } catch (Exception e) {
@@ -98,7 +98,7 @@ public class VisualizzaControfferteAgenteFrame extends JFrame {
 		
 		JFrame myFrame=this;
 		
-		JLabel lblNewLabel = new JLabel("Offerte");
+		JLabel lblNewLabel = new JLabel("Controfferte inviate");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);

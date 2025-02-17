@@ -29,6 +29,8 @@ public class Starter {
 	private InserisciInserzioneFrame inserisciInserzioneFrame;
 	private VisualizzaOfferteAgenteFrame visualizzaOfferteAgenteFrame;
 	private VisualizzaControfferteAgenteFrame visualizzaControfferteAgenteFrame;
+	private InserisciOffertaManualeScrollFrame inserisciOffertaManualeScrollFrame;
+	private InserisciOffertaManualmenteFrame inserisciOffertaManualmenteFrame;
 	
 	
 	public Starter() {
@@ -248,6 +250,38 @@ public class Starter {
 		visualizzaControfferteAgenteFrame.setVisible(false);
 		homePageAgente.setVisible(true);
 		
+	}
+
+
+
+	public void switchVisualizzaInserzioniToInserisciOffertaManualmente(String token, Inserzione inserzione) {
+		inserisciOffertaManualmenteFrame = new InserisciOffertaManualmenteFrame(this,inserzione,token);
+		inserisciOffertaManualeScrollFrame.setVisible(false);
+		inserisciOffertaManualmenteFrame.setVisible(true);
+		
+	}
+
+
+
+	public void switchInserisciOffertaManualmenteToInserisciOffertaManualeScrollFrame() {
+		inserisciOffertaManualmenteFrame.setVisible(false);
+		inserisciOffertaManualeScrollFrame.setVisible(true);
+		
+	}
+
+
+
+	public void switchHomePageAgenteToInserisciOffertaManuale(Starter starter, String token, List<Inserzione> inserzioni) {
+		inserisciOffertaManualeScrollFrame=new InserisciOffertaManualeScrollFrame(starter,token,inserzioni);
+		homePageAgente.setVisible(false);
+		inserisciOffertaManualeScrollFrame.setVisible(true);
+	}
+
+
+
+	public void switchInserisciOffertaScrollFrameToHomePage() {
+		this.inserisciOffertaManualeScrollFrame.setVisible(false);
+		this.homePageAgente.setVisible(true);
 	}
 
 
