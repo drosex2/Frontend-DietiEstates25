@@ -86,9 +86,9 @@ public class ModificaInserzioneFrame extends JFrame {
 		setContentPane(panePrincipale);
 		GridBagLayout gbl_panePrincipale = new GridBagLayout();
 		gbl_panePrincipale.columnWidths = new int[]{881, 0};
-		gbl_panePrincipale.rowHeights = new int[]{97, 871, 20, 0};
+		gbl_panePrincipale.rowHeights = new int[]{97, 695, 41, 0};
 		gbl_panePrincipale.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panePrincipale.rowWeights = new double[]{1.0, 10.0, 0.0, Double.MIN_VALUE};
+		gbl_panePrincipale.rowWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panePrincipale.setLayout(gbl_panePrincipale);
 		
 		JPanel navBar = new JPanel();
@@ -153,9 +153,9 @@ public class ModificaInserzioneFrame extends JFrame {
 		panel.add(formPanel, gbc_formPanel);
 		GridBagLayout gbl_formPanel = new GridBagLayout();
 		gbl_formPanel.columnWidths = new int[]{74, 779, 74, 0};
-		gbl_formPanel.rowHeights = new int[]{0, 0};
+		gbl_formPanel.rowHeights = new int[]{0, 0, 0};
 		gbl_formPanel.columnWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_formPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_formPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblWelcome = new JLabel("Modifica inserzione");
@@ -165,26 +165,22 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblWelcome.gridx = 1;
 		gbc_lblWelcome.gridy = 0;
 		formPanel.add(lblWelcome, gbc_lblWelcome);
-		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 1;
-		formPanel.add(scrollPane, gbc_scrollPane);
-		scrollPane.setBorder(null);
 		JPanel formPanelInterno = new JPanel();
-		scrollPane.setViewportView(formPanelInterno);
+		GridBagConstraints gbc_formPanelInterno = new GridBagConstraints();
+		gbc_formPanelInterno.insets = new Insets(0, 0, 5, 5);
+		gbc_formPanelInterno.gridx = 1;
+		gbc_formPanelInterno.gridy = 1;
+		formPanel.add(formPanelInterno, gbc_formPanelInterno);
 		
 		formPanelInterno.setBackground(new Color(217, 217, 217));
 		
 		
 		
 		GridBagLayout gbl_formPanelInterno = new GridBagLayout();
-		gbl_formPanelInterno.columnWidths = new int[]{275, 456, 321, 0};
-		gbl_formPanelInterno.rowHeights = new int[]{30, 40, 30, 63, 30, 40, 30, 0, 40, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_formPanelInterno.rowWeights = new double[]{2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_formPanelInterno.columnWidths = new int[]{275, 10, 321, 0};
+		gbl_formPanelInterno.rowHeights = new int[]{30, 40, 30, 63, 30, 40, 30, 0, 40, 0, 30, 0, 0, 0, 0, 0, 0};
+		gbl_formPanelInterno.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_formPanelInterno.rowWeights = new double[]{2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
 		
 		JLabel lblTitolo = new JLabel("Titolo");
@@ -192,9 +188,18 @@ public class ModificaInserzioneFrame extends JFrame {
 		GridBagConstraints gbc_lblTitolo = new GridBagConstraints();
 		gbc_lblTitolo.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblTitolo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTitolo.gridx = 1;
+		gbc_lblTitolo.gridx = 0;
 		gbc_lblTitolo.gridy = 0;
 		formPanelInterno.add(lblTitolo, gbc_lblTitolo);
+		
+		JLabel lblCitta = new JLabel("Comune/Città");
+		lblCitta.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
+		gbc_lblCitta.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblCitta.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCitta.gridx = 2;
+		gbc_lblCitta.gridy = 0;
+		formPanelInterno.add(lblCitta, gbc_lblCitta);
 		
 		titoloField = new RoundedTextField(15, 30, 30);
 		titoloField.setText(inserzione.getTitolo());
@@ -203,47 +208,93 @@ public class ModificaInserzioneFrame extends JFrame {
 		GridBagConstraints gbc_titoloField = new GridBagConstraints();
 		gbc_titoloField.insets = new Insets(0, 0, 5, 5);
 		gbc_titoloField.fill = GridBagConstraints.BOTH;
-		gbc_titoloField.gridx = 1;
+		gbc_titoloField.gridx = 0;
 		gbc_titoloField.gridy = 1;
 		formPanelInterno.add(titoloField, gbc_titoloField);
+		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
+        numberFormatter.setAllowsInvalid(false);
+        numberFormatter.setMinimum(1);
+		AtomicReference<File> selectedFile= new AtomicReference<>();
+		ArrayList<String> comuni;
+		try {
+			comuni=modificaInserzioneController.getComuni();
+		} catch (IOException | InterruptedException e) {
+			comuni=new ArrayList<String>();
+		}
+		comboBoxCitta = new JComboBox<String>(comuni.toArray(new String[0]));
+		comboBoxCitta.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBoxCitta.setBackground(new Color(192, 192, 192));
+		comboBoxCitta.setSelectedItem(inserzione.getImmobile().getCitta());
+		GridBagConstraints gbc_comboBoxCitta = new GridBagConstraints();
+		gbc_comboBoxCitta.insets = new Insets(0, 0, 5, 0);
+		gbc_comboBoxCitta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxCitta.gridx = 2;
+		gbc_comboBoxCitta.gridy = 1;
+		formPanelInterno.add(comboBoxCitta, gbc_comboBoxCitta);
 		
 		JLabel lblDescrizione = new JLabel("Descrizione");
 		lblDescrizione.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblDescrizione = new GridBagConstraints();
 		gbc_lblDescrizione.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblDescrizione.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDescrizione.gridx = 1;
+		gbc_lblDescrizione.gridx = 0;
 		gbc_lblDescrizione.gridy = 2;
 		formPanelInterno.add(lblDescrizione, gbc_lblDescrizione);
+		
+		JLabel lblCodicePostale = new JLabel("Codice Postale");
+		lblCodicePostale.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblCodicePostale = new GridBagConstraints();
+		gbc_lblCodicePostale.anchor = GridBagConstraints.WEST;
+		gbc_lblCodicePostale.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCodicePostale.gridx = 2;
+		gbc_lblCodicePostale.gridy = 2;
+		formPanelInterno.add(lblCodicePostale, gbc_lblCodicePostale);
 		
 		textArea = new RoundedTextArea(30,30);
 		textArea.setText(inserzione.getDescrizione());
 		textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true); 
-        textArea.setPreferredSize(new Dimension(21, 28)); 
-        textArea.setMaximumSize(new Dimension(21, 28)); 
+		textArea.setWrapStyleWord(true); 
+		textArea.setPreferredSize(new Dimension(21, 28)); 
+		textArea.setMaximumSize(new Dimension(21, 28)); 
 		textArea.setMaximumSize(new Dimension(21, 28));
 		textArea.setBackground(new Color(192, 192, 192));
 		textArea.setFont(new Font("Arial", Font.PLAIN, 14));
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
-		gbc_textArea.gridx = 1;
+		gbc_textArea.gridx = 0;
 		gbc_textArea.gridy = 3;
 		formPanelInterno.add(textArea, gbc_textArea);
+		
+		codicePostaleField = new RoundedTextField(15, 30, 30);
+		codicePostaleField.setText(inserzione.getImmobile().getCodicePostale());
+		codicePostaleField.setFont(new Font("Arial", Font.PLAIN, 14));
+		codicePostaleField.setBackground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_codicePostaleField = new GridBagConstraints();
+		gbc_codicePostaleField.insets = new Insets(0, 0, 5, 0);
+		gbc_codicePostaleField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_codicePostaleField.gridx = 2;
+		gbc_codicePostaleField.gridy = 3;
+		formPanelInterno.add(codicePostaleField, gbc_codicePostaleField);
 		
 		JLabel lblPrezzo = new JLabel("Prezzo");
 		lblPrezzo.setFont(new Font("Arial", Font.PLAIN, 18));
 		GridBagConstraints gbc_lblPrezzo = new GridBagConstraints();
 		gbc_lblPrezzo.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblPrezzo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPrezzo.gridx = 1;
+		gbc_lblPrezzo.gridx = 0;
 		gbc_lblPrezzo.gridy = 4;
 		formPanelInterno.add(lblPrezzo, gbc_lblPrezzo);
-		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
-        numberFormatter.setAllowsInvalid(false);
-        numberFormatter.setMinimum(1);
-        prezzoField = new RoundedFormattedTextField(numberFormatter);
+		
+		JLabel lblDimensione = new JLabel("Dimensione (mq)");
+		lblDimensione.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblDimensione = new GridBagConstraints();
+		gbc_lblDimensione.anchor = GridBagConstraints.WEST;
+		gbc_lblDimensione.insets = new Insets(0, 0, 5, 0);
+		gbc_lblDimensione.gridx = 2;
+		gbc_lblDimensione.gridy = 4;
+		formPanelInterno.add(lblDimensione, gbc_lblDimensione);
+		prezzoField = new RoundedFormattedTextField(numberFormatter);
 		
 		prezzoField.setValue(inserzione.getPrezzo());
 		prezzoField.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -251,17 +302,109 @@ public class ModificaInserzioneFrame extends JFrame {
 		GridBagConstraints gbc_prezzoField = new GridBagConstraints();
 		gbc_prezzoField.insets = new Insets(0, 0, 5, 5);
 		gbc_prezzoField.fill = GridBagConstraints.BOTH;
-		gbc_prezzoField.gridx = 1;
+		gbc_prezzoField.gridx = 0;
 		gbc_prezzoField.gridy = 5;
 		formPanelInterno.add(prezzoField, gbc_prezzoField);
+		
+		dimensioneField = new RoundedFormattedTextField(numberFormatter);
+		dimensioneField.setValue(inserzione.getImmobile().getDimensione());
+		dimensioneField.setFont(new Font("Arial", Font.PLAIN, 14));
+		dimensioneField.setBackground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_dimensioneField = new GridBagConstraints();
+		gbc_dimensioneField.insets = new Insets(0, 0, 5, 0);
+		gbc_dimensioneField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_dimensioneField.gridx = 2;
+		gbc_dimensioneField.gridy = 5;
+		formPanelInterno.add(dimensioneField, gbc_dimensioneField);
+		
+		JLabel lblTipologia = new JLabel("Tipologia");
+		lblTipologia.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblTipologia = new GridBagConstraints();
+		gbc_lblTipologia.anchor = GridBagConstraints.WEST;
+		gbc_lblTipologia.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTipologia.gridx = 0;
+		gbc_lblTipologia.gridy = 6;
+		formPanelInterno.add(lblTipologia, gbc_lblTipologia);
+		
+		JLabel lblPiano = new JLabel("Piano");
+		lblPiano.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblPiano = new GridBagConstraints();
+		gbc_lblPiano.anchor = GridBagConstraints.WEST;
+		gbc_lblPiano.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPiano.gridx = 2;
+		gbc_lblPiano.gridy = 6;
+		formPanelInterno.add(lblPiano, gbc_lblPiano);
+		
+		comboBoxTipologia = new JComboBox<String>();
+		comboBoxTipologia.setFont(new Font("Arial", Font.PLAIN, 16));
+		comboBoxTipologia.setModel(new DefaultComboBoxModel<String>(new String[] {"affitto", "vendita"}));
+		comboBoxTipologia.setBackground(new Color(192, 192, 192));
+		comboBoxTipologia.setSelectedItem(inserzione.getTipologia());
+		GridBagConstraints gbc_comboBoxTipologia = new GridBagConstraints();
+		gbc_comboBoxTipologia.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxTipologia.fill = GridBagConstraints.BOTH;
+		gbc_comboBoxTipologia.gridx = 0;
+		gbc_comboBoxTipologia.gridy = 7;
+		formPanelInterno.add(comboBoxTipologia, gbc_comboBoxTipologia);
+		
+		pianoField = new RoundedFormattedTextField(numberFormatter);
+		pianoField.setValue(inserzione.getImmobile().getPiano());
+		pianoField.setFont(new Font("Arial", Font.PLAIN, 14));
+		pianoField.setBackground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_pianoField = new GridBagConstraints();
+		gbc_pianoField.insets = new Insets(0, 0, 5, 0);
+		gbc_pianoField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_pianoField.gridx = 2;
+		gbc_pianoField.gridy = 7;
+		formPanelInterno.add(pianoField, gbc_pianoField);
+		
+		JLabel lblIndirizzo = new JLabel("Indirizzo");
+		lblIndirizzo.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblIndirizzo = new GridBagConstraints();
+		gbc_lblIndirizzo.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblIndirizzo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblIndirizzo.gridx = 0;
+		gbc_lblIndirizzo.gridy = 8;
+		formPanelInterno.add(lblIndirizzo, gbc_lblIndirizzo);
+		
+		JLabel lblNumeroStanze = new JLabel("Numero stanze");
+		lblNumeroStanze.setFont(new Font("Arial", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblNumeroStanze = new GridBagConstraints();
+		gbc_lblNumeroStanze.anchor = GridBagConstraints.WEST;
+		gbc_lblNumeroStanze.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNumeroStanze.gridx = 2;
+		gbc_lblNumeroStanze.gridy = 8;
+		formPanelInterno.add(lblNumeroStanze, gbc_lblNumeroStanze);
+		
+		indirizzoField = new RoundedTextField(15, 30, 30);
+		indirizzoField.setText(inserzione.getImmobile().getIndirizzo());
+		indirizzoField.setFont(new Font("Arial", Font.PLAIN, 14));
+		indirizzoField.setBackground(new Color(192, 192, 192));
+		GridBagConstraints gbc_indirizzoField = new GridBagConstraints();
+		gbc_indirizzoField.insets = new Insets(0, 0, 5, 5);
+		gbc_indirizzoField.fill = GridBagConstraints.BOTH;
+		gbc_indirizzoField.gridx = 0;
+		gbc_indirizzoField.gridy = 9;
+		formPanelInterno.add(indirizzoField, gbc_indirizzoField);
+		
+		numeroStanzeField = new RoundedFormattedTextField(numberFormatter);
+		numeroStanzeField.setFont(new Font("Arial", Font.PLAIN, 14));
+		numeroStanzeField.setBackground(Color.LIGHT_GRAY);
+		numeroStanzeField.setValue(inserzione.getImmobile().getNumeroStanze());
+		GridBagConstraints gbc_numeroStanzeField = new GridBagConstraints();
+		gbc_numeroStanzeField.insets = new Insets(0, 0, 5, 0);
+		gbc_numeroStanzeField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_numeroStanzeField.gridx = 2;
+		gbc_numeroStanzeField.gridy = 9;
+		formPanelInterno.add(numeroStanzeField, gbc_numeroStanzeField);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(217, 217, 217));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 1;
-		gbc_panel_1.gridy = 6;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 10;
 		formPanelInterno.add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 210, 0};
@@ -269,7 +412,6 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
-		AtomicReference<File> selectedFile= new AtomicReference<>();
 		RoundedButton btnFoto = new RoundedButton("Modifica Foto", 30, 30);
 		lblFoto = new JLabel(inserzione.getFoto());
 		btnFoto.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -277,10 +419,10 @@ public class ModificaInserzioneFrame extends JFrame {
 		btnFoto.addActionListener(e -> {
             selectedFile.set(selectFile(this));
             if (selectedFile.get() != null) {
-                lblFoto.setText(selectedFile.get().getName());
-                
+            	lblFoto.setText(selectedFile.get().getName());
             }
         });
+
 		GridBagConstraints gbc_btnFoto = new GridBagConstraints();
 		gbc_btnFoto.insets = new Insets(0, 0, 0, 5);
 		gbc_btnFoto.gridx = 0;
@@ -295,267 +437,107 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_lblFoto.gridy = 0;
 		panel_1.add(lblFoto, gbc_lblFoto);
 		
-		JLabel lblTipologia = new JLabel("Tipologia");
-		lblTipologia.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblTipologia = new GridBagConstraints();
-		gbc_lblTipologia.anchor = GridBagConstraints.WEST;
-		gbc_lblTipologia.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTipologia.gridx = 1;
-		gbc_lblTipologia.gridy = 7;
-		formPanelInterno.add(lblTipologia, gbc_lblTipologia);
-		
-		comboBoxTipologia = new JComboBox<String>();
-		comboBoxTipologia.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBoxTipologia.setModel(new DefaultComboBoxModel<String>(new String[] {"affitto", "vendita"}));
-		comboBoxTipologia.setBackground(new Color(192, 192, 192));
-		comboBoxTipologia.setSelectedItem(inserzione.getTipologia());
-		GridBagConstraints gbc_comboBoxTipologia = new GridBagConstraints();
-		gbc_comboBoxTipologia.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxTipologia.fill = GridBagConstraints.BOTH;
-		gbc_comboBoxTipologia.gridx = 1;
-		gbc_comboBoxTipologia.gridy = 8;
-		formPanelInterno.add(comboBoxTipologia, gbc_comboBoxTipologia);
-		
-		JLabel lblIndirizzo = new JLabel("Indirizzo");
-		lblIndirizzo.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblIndirizzo = new GridBagConstraints();
-		gbc_lblIndirizzo.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_lblIndirizzo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblIndirizzo.gridx = 1;
-		gbc_lblIndirizzo.gridy = 9;
-		formPanelInterno.add(lblIndirizzo, gbc_lblIndirizzo);
-		
-		indirizzoField = new RoundedTextField(15, 30, 30);
-		indirizzoField.setText(inserzione.getImmobile().getIndirizzo());
-		indirizzoField.setFont(new Font("Arial", Font.PLAIN, 14));
-		indirizzoField.setBackground(new Color(192, 192, 192));
-		GridBagConstraints gbc_indirizzoField = new GridBagConstraints();
-		gbc_indirizzoField.insets = new Insets(0, 0, 5, 5);
-		gbc_indirizzoField.fill = GridBagConstraints.BOTH;
-		gbc_indirizzoField.gridx = 1;
-		gbc_indirizzoField.gridy = 10;
-		formPanelInterno.add(indirizzoField, gbc_indirizzoField);
-		
-		JLabel lblCitta = new JLabel("Comune/Città");
-		lblCitta.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblCitta = new GridBagConstraints();
-		gbc_lblCitta.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_lblCitta.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCitta.gridx = 1;
-		gbc_lblCitta.gridy = 11;
-		formPanelInterno.add(lblCitta, gbc_lblCitta);
-		ArrayList<String> comuni;
-		try {
-			comuni=modificaInserzioneController.getComuni();
-		} catch (IOException | InterruptedException e) {
-			comuni=new ArrayList<String>();
-		}
-		
-		comboBoxCitta = new JComboBox<String>(comuni.toArray(new String[0]));
-		comboBoxCitta.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBoxCitta.setBackground(new Color(192, 192, 192));
-		comboBoxCitta.setSelectedItem(inserzione.getImmobile().getCitta());
-		GridBagConstraints gbc_comboBoxCitta = new GridBagConstraints();
-		gbc_comboBoxCitta.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxCitta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxCitta.gridx = 1;
-		gbc_comboBoxCitta.gridy = 12;
-		formPanelInterno.add(comboBoxCitta, gbc_comboBoxCitta);
-		
-		JLabel lblCodicePostale = new JLabel("Codice Postale");
-		lblCodicePostale.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblCodicePostale = new GridBagConstraints();
-		gbc_lblCodicePostale.anchor = GridBagConstraints.WEST;
-		gbc_lblCodicePostale.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCodicePostale.gridx = 1;
-		gbc_lblCodicePostale.gridy = 13;
-		formPanelInterno.add(lblCodicePostale, gbc_lblCodicePostale);
-		
-		codicePostaleField = new RoundedTextField(15, 30, 30);
-		codicePostaleField.setText(inserzione.getImmobile().getCodicePostale());
-		codicePostaleField.setFont(new Font("Arial", Font.PLAIN, 14));
-		codicePostaleField.setBackground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_codicePostaleField = new GridBagConstraints();
-		gbc_codicePostaleField.insets = new Insets(0, 0, 5, 5);
-		gbc_codicePostaleField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_codicePostaleField.gridx = 1;
-		gbc_codicePostaleField.gridy = 14;
-		formPanelInterno.add(codicePostaleField, gbc_codicePostaleField);
-		
-		JLabel lblDimensione = new JLabel("Dimensione (mq)");
-		lblDimensione.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblDimensione = new GridBagConstraints();
-		gbc_lblDimensione.anchor = GridBagConstraints.WEST;
-		gbc_lblDimensione.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDimensione.gridx = 1;
-		gbc_lblDimensione.gridy = 15;
-		formPanelInterno.add(lblDimensione, gbc_lblDimensione);
-		
-		dimensioneField = new RoundedFormattedTextField(numberFormatter);
-		dimensioneField.setValue(inserzione.getImmobile().getDimensione());
-		dimensioneField.setFont(new Font("Arial", Font.PLAIN, 14));
-		dimensioneField.setBackground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_dimensioneField = new GridBagConstraints();
-		gbc_dimensioneField.insets = new Insets(0, 0, 5, 5);
-		gbc_dimensioneField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_dimensioneField.gridx = 1;
-		gbc_dimensioneField.gridy = 16;
-		formPanelInterno.add(dimensioneField, gbc_dimensioneField);
-		
-		JLabel lblPiano = new JLabel("Piano");
-		lblPiano.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblPiano = new GridBagConstraints();
-		gbc_lblPiano.anchor = GridBagConstraints.WEST;
-		gbc_lblPiano.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPiano.gridx = 1;
-		gbc_lblPiano.gridy = 17;
-		formPanelInterno.add(lblPiano, gbc_lblPiano);
-		
-		pianoField = new RoundedFormattedTextField(numberFormatter);
-		pianoField.setValue(inserzione.getImmobile().getPiano());
-		pianoField.setFont(new Font("Arial", Font.PLAIN, 14));
-		pianoField.setBackground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_pianoField = new GridBagConstraints();
-		gbc_pianoField.insets = new Insets(0, 0, 5, 5);
-		gbc_pianoField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pianoField.gridx = 1;
-		gbc_pianoField.gridy = 18;
-		formPanelInterno.add(pianoField, gbc_pianoField);
+		JLabel lblClasseEnergetica = new JLabel("Classe Energetica");
+		lblClasseEnergetica.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_lblClasseEnergetica = new GridBagConstraints();
+		gbc_lblClasseEnergetica.anchor = GridBagConstraints.WEST;
+		gbc_lblClasseEnergetica.insets = new Insets(0, 0, 5, 0);
+		gbc_lblClasseEnergetica.gridx = 2;
+		gbc_lblClasseEnergetica.gridy = 10;
+		formPanelInterno.add(lblClasseEnergetica, gbc_lblClasseEnergetica);
 		
 		checkboxAscensore = new ModernCheckBox((String) null);
 		checkboxAscensore.setForeground(new Color(0, 0, 0));
 		checkboxAscensore.setFont(new Font("Arial", Font.PLAIN, 18));
 		checkboxAscensore.setText("Ascensore");
-		if(inserzione.getImmobile().isAscensore()) {
-			checkboxAscensore.setSelected(true);
-		}
 		
 		GridBagConstraints gbc_mdrnchckbxAscensore = new GridBagConstraints();
 		gbc_mdrnchckbxAscensore.anchor = GridBagConstraints.WEST;
 		gbc_mdrnchckbxAscensore.insets = new Insets(0, 0, 5, 5);
-		gbc_mdrnchckbxAscensore.gridx = 1;
-		gbc_mdrnchckbxAscensore.gridy = 19;
+		gbc_mdrnchckbxAscensore.gridx = 0;
+		gbc_mdrnchckbxAscensore.gridy = 11;
 		formPanelInterno.add(checkboxAscensore, gbc_mdrnchckbxAscensore);
-		
-		JLabel lblNumeroStanze = new JLabel("Numero stanze");
-		lblNumeroStanze.setFont(new Font("Arial", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblNumeroStanze = new GridBagConstraints();
-		gbc_lblNumeroStanze.anchor = GridBagConstraints.WEST;
-		gbc_lblNumeroStanze.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNumeroStanze.gridx = 1;
-		gbc_lblNumeroStanze.gridy = 20;
-		formPanelInterno.add(lblNumeroStanze, gbc_lblNumeroStanze);
-		
-		numeroStanzeField = new RoundedFormattedTextField(numberFormatter);
-		numeroStanzeField.setFont(new Font("Arial", Font.PLAIN, 14));
-		numeroStanzeField.setBackground(Color.LIGHT_GRAY);
-		numeroStanzeField.setValue(inserzione.getImmobile().getNumeroStanze());
-		GridBagConstraints gbc_numeroStanzeField = new GridBagConstraints();
-		gbc_numeroStanzeField.insets = new Insets(0, 0, 5, 5);
-		gbc_numeroStanzeField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_numeroStanzeField.gridx = 1;
-		gbc_numeroStanzeField.gridy = 21;
-		formPanelInterno.add(numeroStanzeField, gbc_numeroStanzeField);
-		
-		JLabel lblClasseEnergetica = new JLabel("Classe Energetica");
-		lblClasseEnergetica.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		GridBagConstraints gbc_lblClasseEnergetica = new GridBagConstraints();
-		gbc_lblClasseEnergetica.anchor = GridBagConstraints.WEST;
-		gbc_lblClasseEnergetica.insets = new Insets(0, 0, 5, 5);
-		gbc_lblClasseEnergetica.gridx = 1;
-		gbc_lblClasseEnergetica.gridy = 22;
-		formPanelInterno.add(lblClasseEnergetica, gbc_lblClasseEnergetica);
-	
-		comboBoxClasseEnergetica = new JComboBox<String>();
-		comboBoxClasseEnergetica.setModel(new DefaultComboBoxModel<String>(new String[] {"A4", "A3", "A2", "A1", "B", "C", "D", "E", "F", "G"}));
-		comboBoxClasseEnergetica.setBackground(new Color(192, 192, 192));
-		comboBoxClasseEnergetica.setFont(new Font("Arial", Font.PLAIN, 16));
-		comboBoxClasseEnergetica.setSelectedItem(inserzione.getImmobile().getClasseEnergetica());
-		GridBagConstraints gbc_comboBoxClasseEnergetica = new GridBagConstraints();
-		gbc_comboBoxClasseEnergetica.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxClasseEnergetica.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxClasseEnergetica.gridx = 1;
-		gbc_comboBoxClasseEnergetica.gridy = 23;
-		formPanelInterno.add(comboBoxClasseEnergetica, gbc_comboBoxClasseEnergetica);
-		
-		JPanel panelBottoni = new JPanel();
-		panelBottoni.setBackground(new Color(217, 217, 217));
-		GridBagConstraints gbc_panelBottoni = new GridBagConstraints();
-		gbc_panelBottoni.insets = new Insets(0, 0, 0, 5);
-		gbc_panelBottoni.fill = GridBagConstraints.BOTH;
-		gbc_panelBottoni.gridx = 1;
-		gbc_panelBottoni.gridy = 24;
-		formPanelInterno.add(panelBottoni, gbc_panelBottoni);
-		GridBagLayout gbl_panelBottoni = new GridBagLayout();
-		gbl_panelBottoni.columnWidths = new int[]{247, 271, 0};
-		gbl_panelBottoni.rowHeights = new int[]{30, 0};
-		gbl_panelBottoni.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelBottoni.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panelBottoni.setLayout(gbl_panelBottoni);
-		
-		RoundedButton btnModifica = new RoundedButton("Registrati", 30, 30);
-		btnModifica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(controllaCampi()) {
-					CustomDialog loadingDialog = new CustomDialog("Aggiornamento in corso","");
-					loadingDialog.setLocationRelativeTo(panePrincipale);
-					
-						SwingWorker<Void, Void> worker = new SwingWorker<>() {
-				            @Override
-				            protected Void doInBackground() throws Exception {
-				                aggiornaInserzione(inserzione, selectedFile);
-				                return null;
-				            }
-
-				            @Override
-				            protected void done() {
-				            	try {
-				            		get();
-				            		loadingDialog.dispose();
-				            		aggiornamentoInserzioneRiuscitoDialog();
-				            		starter.switchModificaInserzioneToHomePage(homePage);
-				                }catch(Exception ex){
-				                	loadingDialog.dispose();
-				                	aggiornamentoInserzioneFallitoDialog();
-				                }
-				            }
-				        };
-				     worker.execute();
-				     loadingDialog.setVisible(true);
-					
-				}else {
-					compilaCampiDialog();
-				}
-			}
-
 			
+				comboBoxClasseEnergetica = new JComboBox<String>();
+				comboBoxClasseEnergetica.setModel(new DefaultComboBoxModel<String>(new String[] {"A4", "A3", "A2", "A1", "B", "C", "D", "E", "F", "G"}));
+				comboBoxClasseEnergetica.setBackground(new Color(192, 192, 192));
+				comboBoxClasseEnergetica.setFont(new Font("Arial", Font.PLAIN, 16));
+				comboBoxClasseEnergetica.setSelectedItem(inserzione.getImmobile().getClasseEnergetica());
+				GridBagConstraints gbc_comboBoxClasseEnergetica = new GridBagConstraints();
+				gbc_comboBoxClasseEnergetica.insets = new Insets(0, 0, 5, 0);
+				gbc_comboBoxClasseEnergetica.fill = GridBagConstraints.HORIZONTAL;
+				gbc_comboBoxClasseEnergetica.gridx = 2;
+				gbc_comboBoxClasseEnergetica.gridy = 11;
+				formPanelInterno.add(comboBoxClasseEnergetica, gbc_comboBoxClasseEnergetica);
+			
+			RoundedButton btnModifica = new RoundedButton("Registrati", 30, 30);
+			GridBagConstraints gbc_btnModifica = new GridBagConstraints();
+			gbc_btnModifica.anchor = GridBagConstraints.EAST;
+			gbc_btnModifica.insets = new Insets(0, 0, 5, 5);
+			gbc_btnModifica.gridx = 0;
+			gbc_btnModifica.gridy = 12;
+			formPanelInterno.add(btnModifica, gbc_btnModifica);
+			btnModifica.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(controllaCampi()) {
+						CustomDialog loadingDialog = new CustomDialog("Aggiornamento in corso","");
+						loadingDialog.setLocationRelativeTo(panePrincipale);
+						
+							SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					            @Override
+					            protected Void doInBackground() throws Exception {
+					                aggiornaInserzione(inserzione, selectedFile);
+					                return null;
+					            }
 
-		});
-		btnModifica.setText("Modifica");
-		btnModifica.setPreferredSize(new Dimension(150, 30));
-		btnModifica.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnModifica.setBackground(new Color(255, 175, 68));
-		GridBagConstraints gbc_btnModifica = new GridBagConstraints();
-		gbc_btnModifica.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_btnModifica.insets = new Insets(0, 0, 0, 5);
-		gbc_btnModifica.gridx = 0;
-		gbc_btnModifica.gridy = 0;
-		panelBottoni.add(btnModifica, gbc_btnModifica);
+					            @Override
+					            protected void done() {
+					            	try {
+					            		get();
+					            		loadingDialog.dispose();
+					            		aggiornamentoInserzioneRiuscitoDialog();
+					            		starter.switchModificaInserzioneToHomePage(homePage);
+					                }catch(Exception ex){
+					                	loadingDialog.dispose();
+					                	aggiornamentoInserzioneFallitoDialog();
+					                }
+					            }
+					        };
+					     worker.execute();
+					     loadingDialog.setVisible(true);
+						
+					}else {
+						compilaCampiDialog();
+					}
+				}
+
+				
+
+			});
+			btnModifica.setText("Modifica");
+			btnModifica.setPreferredSize(new Dimension(150, 30));
+			btnModifica.setFont(new Font("Arial", Font.PLAIN, 18));
+			btnModifica.setBackground(new Color(255, 175, 68));
+			
+			RoundedButton btnAnnulla = new RoundedButton("Annulla", 30, 30);
+			GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
+			gbc_btnAnnulla.anchor = GridBagConstraints.WEST;
+			gbc_btnAnnulla.insets = new Insets(0, 0, 5, 0);
+			gbc_btnAnnulla.gridx = 2;
+			gbc_btnAnnulla.gridy = 12;
+			formPanelInterno.add(btnAnnulla, gbc_btnAnnulla);
+			btnAnnulla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					starter.switchModificaInserzioneToVisualizzaInserzioni();
+				}
+			});
+			btnAnnulla.setPreferredSize(new Dimension(150, 30));
+			btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
+			btnAnnulla.setBackground(new Color(181, 180, 180));
 		
-		RoundedButton btnAnnulla = new RoundedButton("Annulla", 30, 30);
-		btnAnnulla.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				starter.switchModificaInserzioneToVisualizzaInserzioni();
-			}
-		});
-		btnAnnulla.setPreferredSize(new Dimension(150, 30));
-		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnAnnulla.setBackground(new Color(181, 180, 180));
-		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_btnAnnulla.gridx = 1;
-		gbc_btnAnnulla.gridy = 0;
-		panelBottoni.add(btnAnnulla, gbc_btnAnnulla);
+		if(inserzione.getImmobile().isAscensore()) {
+			checkboxAscensore.setSelected(true);
+		}
 		JPanel fooBar = new JPanel();
 		fooBar.setBackground(new Color(16, 49, 71));
 		GridBagConstraints gbc_fooBar = new GridBagConstraints();
