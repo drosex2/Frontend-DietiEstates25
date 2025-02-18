@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 import controller.HomePageUtenteController;
 import customElements.RoundedButton;
 import dto.Controfferta;
+import dto.Notifica;
 import dto.Offerta;
 import dto.Utente;
 import starter.Starter;
@@ -188,7 +189,35 @@ public class HomePageUtenteFrame extends JFrame {
 		btnNotifiche.setText("Visualizza notifiche");
 		btnNotifiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Notifica> notifiche = homePageUtenteController.ottieniNotificheUtente(utenteConnesso.getEmail());
+						if (notifiche.isEmpty()) {
+							throw new Exception("Non ci sono notifiche in arrivo");
+						}
+						starter.switchHomePageUtenteToVisualizzaNotifiche(notifiche);
+						return null;
+					}
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna notifica in arrivo", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
+			
 			}
 		});
 		btnNotifiche.setFont(new Font("Arial", Font.PLAIN, 18));

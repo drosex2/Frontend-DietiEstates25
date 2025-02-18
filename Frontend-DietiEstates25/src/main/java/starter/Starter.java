@@ -9,6 +9,7 @@ import dto.Agente;
 import dto.Amministratore;
 import dto.Controfferta;
 import dto.Inserzione;
+import dto.Notifica;
 import dto.Offerta;
 import dto.Utente;
 import gui.*;
@@ -34,6 +35,7 @@ public class Starter {
 	private InserisciControffertaFrame inserisciControffertaFrame;
 	private VisualizzaOfferteUtenteFrame visualizzaOfferteUtenteFrame;
 	private VisualizzaControfferteUtenteFrame visualizzaControfferteUtenteFrame;
+	private VisualizzaNotificheUtente visualizzaNotificheUtente;
 	
 	public Starter() {
 		loginFrame=new LoginFrame(this);
@@ -327,6 +329,18 @@ public class Starter {
 		visualizzaControfferteUtenteFrame=new VisualizzaControfferteUtenteFrame(this,controfferte,token);
 		homePageUtente.setVisible(false);
 		visualizzaControfferteUtenteFrame.setVisible(true);
+	}
+
+	public void switchHomePageUtenteToVisualizzaNotifiche(List<Notifica> notifiche) {
+		visualizzaNotificheUtente=new VisualizzaNotificheUtente(this,notifiche);
+		homePageUtente.setVisible(false);
+		visualizzaNotificheUtente.setVisible(true);
+	}
+
+	public void switchVisualizzaNotificheToHomePageUtente() {
+		visualizzaNotificheUtente.setVisible(false);
+		homePageUtente.setVisible(true);
+		
 	}
 
 
