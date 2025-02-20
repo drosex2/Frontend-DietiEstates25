@@ -212,8 +212,10 @@ public class ModificaInserzioneFrame extends JFrame {
 		gbc_titoloField.gridy = 1;
 		formPanelInterno.add(titoloField, gbc_titoloField);
 		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
-        numberFormatter.setAllowsInvalid(false);
-        numberFormatter.setMinimum(1);
+		numberFormatter.setAllowsInvalid(true);
+        numberFormatter.setCommitsOnValidEdit(true);
+        numberFormatter.setValueClass(Integer.class);
+        numberFormatter.setMinimum(0);
 		AtomicReference<File> selectedFile= new AtomicReference<>();
 		ArrayList<String> comuni;
 		try {
@@ -509,10 +511,7 @@ public class ModificaInserzioneFrame extends JFrame {
 					}else {
 						compilaCampiDialog();
 					}
-				}
-
-				
-
+				}				
 			});
 			btnModifica.setText("Modifica");
 			btnModifica.setPreferredSize(new Dimension(150, 30));

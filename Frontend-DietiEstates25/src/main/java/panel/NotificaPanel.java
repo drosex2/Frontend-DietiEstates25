@@ -47,8 +47,6 @@ public class NotificaPanel extends JPanel {
 			lblTipologia.setText("Promozionale");
 		}else if(notifica instanceof NotificaCorrelazione) {
 			lblTipologia.setText("Correlazione");
-		}else {
-			System.out.println(notifica);
 		}
 		lblTipologia.setFont(new Font("Arial", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblTipologia = new GridBagConstraints();

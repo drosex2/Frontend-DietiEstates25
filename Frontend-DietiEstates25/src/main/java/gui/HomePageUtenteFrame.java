@@ -26,6 +26,7 @@ import customElements.RoundedButton;
 import dto.Controfferta;
 import dto.Notifica;
 import dto.Offerta;
+import dto.Ricerca;
 import dto.Utente;
 import starter.Starter;
 
@@ -153,7 +154,7 @@ public class HomePageUtenteFrame extends JFrame {
 		btnRicerca.setText("Effettua ricerca");
 		btnRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				starter.switchHomePageUtenteToEffettuaRicerca(token,utenteConnesso);
 			}
 		});
 		btnRicerca.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -171,6 +172,34 @@ public class HomePageUtenteFrame extends JFrame {
 		btnCronologiaRicerca.setText("Visualizza cronologia ricerche");
 		btnCronologiaRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						List<Ricerca> ricerche = homePageUtenteController.ottieniRicercheUtente(utenteConnesso.getEmail());
+						if (ricerche.isEmpty()) {
+							throw new Exception("Non ci sono ricerche in arrivo");
+						}
+						starter.switchHomePageUtenteToVisualizzaRicerche(ricerche,token);
+						return null;
+					}
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							
+							loadingDialog.dispose();
+							CustomDialog dialog = new CustomDialog("Nessuna ricerca eseguita in precedenza", "Ok");
+							dialog.setLocationRelativeTo(panePrincipale);
+							dialog.setVisible(true);
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 				
 			}
 		});

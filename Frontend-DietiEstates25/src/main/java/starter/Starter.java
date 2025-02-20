@@ -11,6 +11,7 @@ import dto.Controfferta;
 import dto.Inserzione;
 import dto.Notifica;
 import dto.Offerta;
+import dto.Ricerca;
 import dto.Utente;
 import gui.*;
 
@@ -36,6 +37,9 @@ public class Starter {
 	private VisualizzaOfferteUtenteFrame visualizzaOfferteUtenteFrame;
 	private VisualizzaControfferteUtenteFrame visualizzaControfferteUtenteFrame;
 	private VisualizzaNotificheUtente visualizzaNotificheUtente;
+	private VisualizzaRicercheFrame visualizzaRicercheFrame;
+	private RisultatiRicercaFrame risultatiRicercaFrame;
+	private EffettuaRicercaFrame effettuaRicercaFrame;
 	
 	public Starter() {
 		loginFrame=new LoginFrame(this);
@@ -341,6 +345,55 @@ public class Starter {
 		visualizzaNotificheUtente.setVisible(false);
 		homePageUtente.setVisible(true);
 		
+	}
+
+
+
+	public void switchHomePageUtenteToVisualizzaRicerche(List<Ricerca> ricerche,String token) {
+		visualizzaRicercheFrame=new VisualizzaRicercheFrame(this,ricerche,token);
+		homePageUtente.setVisible(false);
+		visualizzaRicercheFrame.setVisible(true);
+		
+	}
+
+
+
+	public void switchVisualizzaRicercheToHomePageUtente() {
+		visualizzaRicercheFrame.setVisible(false);
+		homePageUtente.setVisible(true);
+		
+	}
+
+
+
+	public void switchVisualizzaRicercheToRisultatiRicerca(Utente utente, String token, List<Inserzione> inserzioni,JFrame frame) {
+		risultatiRicercaFrame=new RisultatiRicercaFrame(this,utente,token,inserzioni,frame);
+		visualizzaRicercheFrame.setVisible(false);
+		risultatiRicercaFrame.setVisible(true);
+		
+	}
+	public void switchEffettuaRicercaToRisultatiRicerca(Utente utente, String token, List<Inserzione> inserzioni,JFrame frame) {
+		risultatiRicercaFrame=new RisultatiRicercaFrame(this,utente,token,inserzioni,frame);
+		effettuaRicercaFrame.setVisible(false);
+		risultatiRicercaFrame.setVisible(true);
+		
+	}
+
+
+	public void switchRisultatiRicercaToFramePrecedente(JFrame frame) {
+		risultatiRicercaFrame.setVisible(false);
+		frame.setVisible(true);
+		
+	}
+	public void switchHomePageUtenteToEffettuaRicerca(String token,Utente utenteConnesso) {
+		effettuaRicercaFrame=new EffettuaRicercaFrame(this,token,utenteConnesso);
+		homePageUtente.setVisible(false);
+		effettuaRicercaFrame.setVisible(true);
+		
+	}
+	public void switchEffettuaRicercaToHomePageUtente() {
+		effettuaRicercaFrame.setVisible(false);
+		homePageUtente.setVisible(true);
 	}
 
 

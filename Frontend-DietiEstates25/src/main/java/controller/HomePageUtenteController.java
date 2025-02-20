@@ -24,6 +24,7 @@ import dto.NotificaCorrelazione;
 import dto.NotificaPromozionale;
 import dto.NotificaVisita;
 import dto.Offerta;
+import dto.Ricerca;
 import gui.HomePageUtenteFrame;
 import starter.Starter;
 
@@ -33,6 +34,24 @@ public class HomePageUtenteController {
 	public HomePageUtenteController(HomePageUtenteFrame homePageFrame) {
 		this.homePageFrame=homePageFrame;
 	}
+	public List<Ricerca> ottieniRicercheUtente(String email) throws IOException, InterruptedException {
+		HttpClient client = HttpClient.newHttpClient();
+		String url=String.format("ricerca/utente/%s",email);
+		String urlFormatted=url.replace(" ", "%20");
+		HttpRequest ottieniRicercheRequest = HttpRequest.newBuilder()
+				.uri(URI.create(Starter.getBASE_URI()+urlFormatted))
+				.header("Content-type", "application/json")
+				.header("Authorization","Bearer "+homePageFrame.getToken())
+				.GET()
+				.build();
+		
+			HttpResponse<String> ottieniRicercheResponse = client.send(ottieniRicercheRequest, HttpResponse.BodyHandlers.ofString());
+			ArrayList<Ricerca> ricerche;
+			Type listType = new TypeToken<ArrayList<Ricerca>>(){}.getType();
+			ricerche=new Gson().fromJson(ottieniRicercheResponse.body(),listType);
+			return ricerche;		
+	}
+	
 	public List<Notifica> ottieniNotificheUtente(String email) throws IOException, InterruptedException {
 		HttpClient client = HttpClient.newHttpClient();
 		String url=String.format("notifica/emailUtente/%s",email);

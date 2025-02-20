@@ -259,8 +259,10 @@ public class InserisciInserzioneFrame extends JFrame {
 		gbc_textArea.gridy = 3;
 		formPanelInterno.add(textArea, gbc_textArea);
 		NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
-		numberFormatter.setAllowsInvalid(false);
-		numberFormatter.setMinimum(1);
+		numberFormatter.setAllowsInvalid(true);
+        numberFormatter.setCommitsOnValidEdit(true);
+        numberFormatter.setValueClass(Integer.class);
+        numberFormatter.setMinimum(0);
 
 		codicePostaleField = new RoundedTextField(15, 30, 30);
 
@@ -481,7 +483,7 @@ public class InserisciInserzioneFrame extends JFrame {
 					SwingWorker<Void, Void> worker = new SwingWorker<>() {
 						@Override
 						protected Void doInBackground() throws Exception {
-							inserisciInserzione(selectedFile);
+							inserisciInserzione(selectedFile);							
 							return null;
 						}
 
@@ -490,6 +492,7 @@ public class InserisciInserzioneFrame extends JFrame {
 							try {
 								loadingDialog.dispose();
 								inserimentoInserzioneRiuscitoDialog();
+								starter.switchInserisciInserzioneToHomePageAgente();
 
 							} catch (Exception ex) {
 								loadingDialog.dispose();

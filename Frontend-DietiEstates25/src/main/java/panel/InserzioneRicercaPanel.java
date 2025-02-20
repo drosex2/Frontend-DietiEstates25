@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
+import dto.Utente;
+import starter.Starter;
 import utils.S3Utils;
 
 import java.awt.GridBagLayout;
@@ -26,8 +28,15 @@ public class InserzioneRicercaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Inserzione inserzione;
-	public InserzioneRicercaPanel(Inserzione inserzione) {
+	private Starter starter;
+	private Utente utenteConnesso;
+	private String token;
+	
+	public InserzioneRicercaPanel(Starter starter,Utente utenteConnesso,String token,Inserzione inserzione) {
 		setMaximumSize(new Dimension(800, 200));
+		this.starter=starter;
+		this.utenteConnesso=utenteConnesso;
+		this.token=token;
 		this.inserzione=inserzione;
 		
 		setBackground(new Color(217, 217, 217));
