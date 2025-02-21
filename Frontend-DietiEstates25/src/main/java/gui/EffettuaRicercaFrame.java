@@ -60,6 +60,8 @@ import dto.Ricerca;
 import dto.Utente;
 import starter.Starter;
 import utils.S3Utils;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class EffettuaRicercaFrame extends JFrame {
 
@@ -455,6 +457,15 @@ public class EffettuaRicercaFrame extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		
 		checkboxRicercaConMappa = new ModernCheckBox("Effettua ricerca con mappa");
+		checkboxRicercaConMappa.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(checkboxRicercaConMappa.isSelected()) {
+					raggioField.setEditable(true);
+				}else {
+					raggioField.setEditable(false);
+				}
+			}
+		});
 		checkboxRicercaConMappa.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		checkboxRicercaConMappa.setForeground(new Color(0, 0, 0));
 		checkboxRicercaConMappa.setFont(new Font("Arial", Font.PLAIN, 22));
@@ -475,6 +486,8 @@ public class EffettuaRicercaFrame extends JFrame {
 		panel_1.add(lblRaggio, gbc_lblRaggio);
 
 		raggioField = new RoundedFormattedTextField(numberFormatter);
+		raggioField.setEditable(false);
+		
 		raggioField.setFont(new Font("Arial", Font.PLAIN, 18));
 		raggioField.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_raggioField = new GridBagConstraints();
@@ -570,6 +583,7 @@ public class EffettuaRicercaFrame extends JFrame {
         mapViewer.addMouseMotionListener(new PanMouseInputListener(mapViewer));
         return mapViewer;
     }
+	
 	public List<Inserzione> effettuaRicerca()throws Exception,IOException,InterruptedException{
 		if(checkboxRicercaConMappa.isSelected()){
 			return effettuaRicercaConMappa();
@@ -581,7 +595,7 @@ public class EffettuaRicercaFrame extends JFrame {
 	private List<Inserzione> effettuaRicercaConMappa()throws Exception,IOException,InterruptedException{
 		int raggio=((Number)raggioField.getValue()).intValue();
 		
-		if(raggio!=0 && coordinate[0]!=0.0 && coordinate[1]!=0) {
+		if(raggio!=0 && coordinate[0]!=0.0 && coordinate[1]!=0.0) {
 			return ricercaController.getByRaggio(coordinate[0], coordinate[1], raggio);
 		}else {
 			throw new Exception("Indica il raggio e seleziona un punto sulla mappa");

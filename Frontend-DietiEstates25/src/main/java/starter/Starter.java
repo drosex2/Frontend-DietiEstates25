@@ -40,6 +40,7 @@ public class Starter {
 	private VisualizzaRicercheFrame visualizzaRicercheFrame;
 	private RisultatiRicercaFrame risultatiRicercaFrame;
 	private EffettuaRicercaFrame effettuaRicercaFrame;
+	private DettagliInserzioneFrame dettagliInserzioneFrame;
 	
 	public Starter() {
 		loginFrame=new LoginFrame(this);
@@ -396,5 +397,17 @@ public class Starter {
 		homePageUtente.setVisible(true);
 	}
 
+
+
+	public void switchRisultatiRicercaToDettagliInserzione(Inserzione inserzione, Utente utenteConnesso, String token) {
+		dettagliInserzioneFrame=new DettagliInserzioneFrame(this,inserzione,utenteConnesso,token);
+		risultatiRicercaFrame.setVisible(false);
+		dettagliInserzioneFrame.setVisible(true);
+		
+	}
+	public void switchDettagliInserzioneToRisultatiRicercaFrame() {		
+		this.dettagliInserzioneFrame.setVisible(false);
+		this.risultatiRicercaFrame.setVisible(true);
+	}
 
 }

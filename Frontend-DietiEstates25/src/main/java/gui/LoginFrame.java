@@ -25,6 +25,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -36,6 +38,7 @@ import customElements.*;
 import dto.Agente;
 import dto.Agenzia;
 import dto.Amministratore;
+import dto.Notifica;
 import dto.Utente;
 import starter.Starter;
 
@@ -44,6 +47,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.SwingWorker;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
@@ -205,41 +209,28 @@ public class LoginFrame extends JFrame {
 		RoundedButton btnAccedi = new RoundedButton("Accedi",30,30);
 		btnAccedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(checkAgente.isSelected()) {
-					String email=emailField.getText();
-					String password=new String(passwordField.getPassword());
-					try {
-						String response = loginController.loginAgente(email,password);
-			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
-			            String token = jsonResponse.get("token").getAsString();
-			            Agente agenteConnesso = getAgenteFromJsonResponse(email,password,jsonResponse);
-			            emailField.setText("");
-			            passwordField.setText("");
-			            starter.switchLoginToHomePageAgente(agenteConnesso, token);
-					}catch(Exception ex) {
-						CustomDialog dialog=new CustomDialog(ex.getMessage(),"ok");
-						dialog.setLocationRelativeTo(panePrincipale);
-						dialog.setVisible(true);
+				CustomDialog loadingDialog = new CustomDialog("Accesso in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						effettuaLogin(starter,emailField,checkAgente);	
+						return null;
+					}
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							loadingDialog.dispose();
+							showCustomDialog(ex.getMessage(),"Ok");
 						}
-				}else {
-					String email=emailField.getText();
-					String password=new String(passwordField.getPassword());
-					try {
-						String response = loginController.loginUtente(email,password);
-			            JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
-			            String token = jsonResponse.get("token").getAsString();
-			            Utente utenteConnesso = getUtenteFromJsonResponse(email,password,jsonResponse);
-			            emailField.setText("");
-			            passwordField.setText("");
-			            starter.switchLoginToHomePageUtente(utenteConnesso, token);
-					}catch(Exception ex) {
-						CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
-						dialog.setLocationRelativeTo(panePrincipale);
-						dialog.setVisible(true);
-						}
-				}
-				
-			}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
+			}			
 		});
 		
 		
@@ -346,5 +337,45 @@ public class LoginFrame extends JFrame {
 		String cognome = jsonResponse.get("cognome").getAsString();
 		Utente utenteConnesso= new Utente(nome,cognome,email,password);
 		return utenteConnesso;
+	}
+	public void loginAgente(Starter starter, RoundedTextField emailField) throws Exception {
+		String email=emailField.getText();
+		String password=new String(passwordField.getPassword());
+		
+			String response = loginController.loginAgente(email,password);
+		    JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
+		    String token = jsonResponse.get("token").getAsString();
+		    Agente agenteConnesso = getAgenteFromJsonResponse(email,password,jsonResponse);
+		    emailField.setText("");
+		    passwordField.setText("");
+		    starter.switchLoginToHomePageAgente(agenteConnesso, token);
+		
+	}
+
+	public void loginUtente(Starter starter, RoundedTextField emailField) throws Exception {
+		String email=emailField.getText();
+		String password=new String(passwordField.getPassword());
+		
+			String response = loginController.loginUtente(email,password);
+		    JsonObject jsonResponse = new Gson().fromJson(response, JsonObject.class);
+		    String token = jsonResponse.get("token").getAsString();
+		    Utente utenteConnesso = getUtenteFromJsonResponse(email,password,jsonResponse);
+		    emailField.setText("");
+		    passwordField.setText("");
+		    starter.switchLoginToHomePageUtente(utenteConnesso, token);
+		
+	}
+	public void effettuaLogin(Starter starter, RoundedTextField emailField, JCheckBox checkAgente) throws Exception {
+		if(checkAgente.isSelected()) {
+			loginAgente(starter, emailField);
+		}else {
+			loginUtente(starter, emailField);
+		}
+	}
+	public void showCustomDialog(String message,String testoButton) {
+		message=message.replace("java.lang.Exception: ", "");
+		CustomDialog dialog = new CustomDialog(message,testoButton);
+		dialog.setLocationRelativeTo(panePrincipale);
+		dialog.setVisible(true);
 	}
 }

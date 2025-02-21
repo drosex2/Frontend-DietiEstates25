@@ -155,7 +155,23 @@ public class HomePageAgenteFrame extends JFrame {
 		RoundedButton btnInserisciInserzione = new RoundedButton("Inserisci inserzione",30,30);
 		btnInserisciInserzione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchHomePageAgenteToInserisciInserzione(agenteConnesso,token);
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						
+						starter.switchHomePageAgenteToInserisciInserzione(agenteConnesso,token);
+						return null;
+					}
+
+					@Override
+					protected void done() {
+							loadingDialog.dispose();
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 			}
 		});
 		btnInserisciInserzione.setFont(new Font("Arial", Font.PLAIN, 18));

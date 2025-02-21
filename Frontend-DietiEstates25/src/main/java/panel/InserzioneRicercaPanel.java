@@ -43,7 +43,7 @@ public class InserzioneRicercaPanel extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 131, 0, 393, 127, 0};
 		gridBagLayout.rowHeights = new int[]{120, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 2.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 2.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -210,7 +210,7 @@ public class InserzioneRicercaPanel extends JPanel {
 		btnDettagli.setText("Dettagli");
 		btnDettagli.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				starter.switchRisultatiRicercaToDettagliInserzione(inserzione,utenteConnesso,token);
 			}
 		});
 		btnDettagli.setBackground(new Color(255, 175, 68));

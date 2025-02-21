@@ -44,6 +44,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.SwingWorker;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
@@ -192,28 +193,32 @@ public class LoginAdminFrame extends JFrame {
 		gbc_passwordField.gridy = 5;
 		passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		loginFormPanel.add(passwordField, gbc_passwordField);
-		JFrame myFrame=this;
+		
 		RoundedButton btnAccedi = new RoundedButton("Accedi",30,30);
 		btnAccedi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nomeAdmin=nomeAdminField.getText();
-				String password=new String(passwordField.getPassword());
-				try {
-					String response=loginAdminController.login(nomeAdmin,password);
-					JsonObject jsonResponse= new Gson().fromJson(response, JsonObject.class);
-					Amministratore adminConnesso = getAdminFromJsonResponse(nomeAdmin, password, jsonResponse);
-					String token=jsonResponse.get("token").getAsString();
-					starter.switchLoginAdminToHomePageAdmin(adminConnesso,token);
-					
-				}catch(Exception ex) {
-					CustomDialog dialog=new CustomDialog(ex.getMessage(),"Ok");
-					dialog.setLocationRelativeTo(myFrame);
-					dialog.setVisible(true);
-				}
-					
-				
+				CustomDialog loadingDialog = new CustomDialog("Accesso in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						effettuaLogin(starter,nomeAdminField);	
+						return null;
+					}
+					@Override
+					protected void done() {
+						try {
+							get();
+							loadingDialog.dispose();
+						} catch (Exception ex) {
+							loadingDialog.dispose();
+							showCustomDialog(ex.getMessage(),"Ok");
+						}
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 			}
-
 			
 		});
 		btnAccedi.setBackground(new Color(255, 175, 68));
@@ -255,6 +260,18 @@ public class LoginAdminFrame extends JFrame {
 		gbc_fooBar.gridy = 2;
 		panePrincipale.add(fooBar, gbc_fooBar);
 	}
+	public void effettuaLogin(Starter starter, RoundedTextField nomeAdminField) throws Exception {
+		String nomeAdmin=nomeAdminField.getText();
+		String password=new String(passwordField.getPassword());
+		
+		String response=loginAdminController.login(nomeAdmin,password);
+		JsonObject jsonResponse= new Gson().fromJson(response, JsonObject.class);
+		Amministratore adminConnesso = getAdminFromJsonResponse(nomeAdmin, password, jsonResponse);
+		String token=jsonResponse.get("token").getAsString();
+		starter.switchLoginAdminToHomePageAdmin(adminConnesso,token);
+			
+		
+	}
 	private Amministratore getAdminFromJsonResponse(String nomeAdmin, String password,JsonObject jsonResponse) {
 				JsonObject agenziaJson=jsonResponse.getAsJsonObject("agenzia");
 				Agenzia agency= new Gson().fromJson(agenziaJson, Agenzia.class);
@@ -266,5 +283,11 @@ public class LoginAdminFrame extends JFrame {
 	}
 	public void setStarter(Starter starter) {
 		this.starter = starter;
+	}
+	public void showCustomDialog(String message,String testoButton) {
+		message=message.replace("java.lang.Exception: ", "");
+		CustomDialog dialog = new CustomDialog(message,testoButton);
+		dialog.setLocationRelativeTo(panePrincipale);
+		dialog.setVisible(true);
 	}
 }

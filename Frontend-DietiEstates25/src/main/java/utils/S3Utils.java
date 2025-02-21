@@ -66,7 +66,7 @@ public class S3Utils {
             return null;
         }
     }
-	private ImageIcon resizeImageIcon(ImageIcon imageIcon, int larghezza, int altezza) {
+	public ImageIcon resizeImageIcon(ImageIcon imageIcon, int larghezza, int altezza) {
 		Image image = imageIcon.getImage();
         Image newImage = image.getScaledInstance(larghezza, altezza, Image.SCALE_SMOOTH);
         return new ImageIcon(newImage);

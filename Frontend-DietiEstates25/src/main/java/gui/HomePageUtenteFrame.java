@@ -154,7 +154,23 @@ public class HomePageUtenteFrame extends JFrame {
 		btnRicerca.setText("Effettua ricerca");
 		btnRicerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				starter.switchHomePageUtenteToEffettuaRicerca(token,utenteConnesso);
+				CustomDialog loadingDialog = new CustomDialog("Caricamento in corso", "");
+				loadingDialog.setLocationRelativeTo(panePrincipale);
+				SwingWorker<Void, Void> worker = new SwingWorker<>() {
+					@Override
+					protected Void doInBackground() throws Exception {
+						
+						starter.switchHomePageUtenteToEffettuaRicerca(token,utenteConnesso);
+						return null;
+					}
+
+					@Override
+					protected void done() {
+							loadingDialog.dispose();
+					}
+				};
+				worker.execute();
+				loadingDialog.setVisible(true);
 			}
 		});
 		btnRicerca.setFont(new Font("Arial", Font.PLAIN, 18));
