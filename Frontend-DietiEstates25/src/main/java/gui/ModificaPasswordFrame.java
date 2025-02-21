@@ -24,6 +24,7 @@ import controller.CreaAmministratoreController;
 import controller.LoginController;
 import customElements.*;
 import dto.Amministratore;
+import exceptions.PasswordNonValidaException;
 import starter.Starter;
 import utils.CredentialCheckerUtils;
 
@@ -45,8 +46,8 @@ public class ModificaPasswordFrame extends JFrame {
 	private ModificaPasswordController modificaPasswordController;
 	private String token;
 	private JPasswordField vecchiaPasswordField;
-
-	
+	private RoundedButton btnModifica;
+	private JLabel lblErrorePassword;
 	public ModificaPasswordFrame(Starter starter,Amministratore admin,String token) {
 		
 		this.starter=starter;
@@ -137,7 +138,7 @@ public class ModificaPasswordFrame extends JFrame {
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblWelcome = new JLabel("Modifica password");
-		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 28));
+		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 32));
 		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
 		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWelcome.gridx = 1;
@@ -158,10 +159,10 @@ public class ModificaPasswordFrame extends JFrame {
 		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_formPanelInterno.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
-		RoundedButton btnModifica = new RoundedButton("Modifica",30,30);
+		btnModifica = new RoundedButton("Modifica",30,30);
 		
 		JLabel lblVecchiaPassword = new JLabel("Vecchia password");
-		lblVecchiaPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblVecchiaPassword.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblVecchiaPassword = new GridBagConstraints();
 		gbc_lblVecchiaPassword.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblVecchiaPassword.insets = new Insets(0, 0, 5, 5);
@@ -170,7 +171,7 @@ public class ModificaPasswordFrame extends JFrame {
 		formPanelInterno.add(lblVecchiaPassword, gbc_lblVecchiaPassword);
 		
 		vecchiaPasswordField = new RoundedPasswordField(15,30,30);
-		vecchiaPasswordField.setFont(new Font("Arial", Font.PLAIN, 18));
+		vecchiaPasswordField.setFont(new Font("Arial", Font.PLAIN, 24));
 		vecchiaPasswordField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		vecchiaPasswordField.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_vecchiaPasswordField = new GridBagConstraints();
@@ -209,7 +210,7 @@ public class ModificaPasswordFrame extends JFrame {
 		formPanelInterno.add(lblErroreVecchiaPassword, gbc_lblErroreVecchiaPassword);
 		
 		JLabel lblPassword = new JLabel("Nuova password");
-		lblPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblPassword.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
@@ -218,7 +219,7 @@ public class ModificaPasswordFrame extends JFrame {
 		formPanelInterno.add(lblPassword, gbc_lblPassword);
 		
 		passwordField = new RoundedPasswordField(15,30,30);
-		passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
+		passwordField.setFont(new Font("Arial", Font.PLAIN, 24));
 		passwordField.setBackground(new Color(192, 192, 192));
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
@@ -228,7 +229,7 @@ public class ModificaPasswordFrame extends JFrame {
 		passwordField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		formPanelInterno.add(passwordField, gbc_passwordField);
 		
-		JLabel lblErrorePassword = new JLabel("<html> Inserire una password di almeno 8 caratteri,<br> un numero e un carattere speciale</html>");
+		lblErrorePassword = new JLabel("<html> Inserire una nuova password di almeno 8 caratteri,<br> un numero e un carattere speciale</html>");
 		lblErrorePassword.setVisible(false);
 		lblErrorePassword.setForeground(new Color(255, 0, 0));
 		lblErrorePassword.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -241,19 +242,23 @@ public class ModificaPasswordFrame extends JFrame {
 		passwordField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				String password=new String(passwordField.getPassword());
-				if(!CredentialCheckerUtils.checkPassword(password)){
-					lblErrorePassword.setVisible(true);
-				}
+				String nuovaPassword=new String(passwordField.getPassword());
 				String vecchiaPassword=new String(vecchiaPasswordField.getPassword());
-				if(CredentialCheckerUtils.checkPassword(password) && vecchiaPassword.equals(adminConnesso.getPassword())) {
-					btnModifica.setEnabled(true);
-				}else {
+				try {
+					if(checkModifyPassword(nuovaPassword, vecchiaPassword)) {
+						btnModifica.setEnabled(true);
+					}else {
+						btnModifica.setEnabled(false);
+						lblErrorePassword.setVisible(true);
+					}
+				} catch (Exception ex) {
 					btnModifica.setEnabled(false);
+					lblErrorePassword.setVisible(true);
 				}
 				
 				
 			}
+			
 			@Override
 			public void focusGained(FocusEvent e) {
 				lblErrorePassword.setVisible(false);
@@ -276,7 +281,7 @@ public class ModificaPasswordFrame extends JFrame {
 		
 		
 		btnModifica.setEnabled(false);
-		btnModifica.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnModifica.setFont(new Font("Arial", Font.PLAIN, 24));
 		JFrame myFrame=this;
 		btnModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -307,7 +312,7 @@ public class ModificaPasswordFrame extends JFrame {
 		panel_1.add(btnModifica, gbc_btnModifica);
 		
 		RoundedButton btnAnnulla = new RoundedButton("Annulla",30,30);
-		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				starter.switchModificaPasswordFrameToHomePageAdmin();
@@ -348,6 +353,20 @@ public class ModificaPasswordFrame extends JFrame {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public boolean checkModifyPassword(String nuovaPassword,String vecchiaPassword) throws PasswordNonValidaException {
+		String passwordAdmin=adminConnesso.getPassword();	
+		if(nuovaPassword.isBlank() || vecchiaPassword.isBlank()) {
+			throw new IllegalArgumentException();
+		}
+		if(!CredentialCheckerUtils.checkPassword(nuovaPassword)){
+			throw new PasswordNonValidaException("Password non valida");
+		}
+		if(vecchiaPassword.equals(passwordAdmin) && !vecchiaPassword.equals(nuovaPassword)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }
