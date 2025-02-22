@@ -1,12 +1,9 @@
 package panel;
-
 import javax.swing.JPanel;
-
 import dto.Notifica;
 import dto.NotificaCorrelazione;
 import dto.NotificaPromozionale;
 import dto.NotificaVisita;
-
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

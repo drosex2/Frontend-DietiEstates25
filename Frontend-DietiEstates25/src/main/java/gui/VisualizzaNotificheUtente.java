@@ -1,5 +1,4 @@
 package gui;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -8,7 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -18,15 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
-
-import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
-import dto.Inserzione;
 import dto.Notifica;
 import dto.NotificaCorrelazione;
 import dto.NotificaPromozionale;
 import dto.NotificaVisita;
-import panel.InserzionePanel;
 import panel.NotificaPanel;
 import starter.Starter;
 import customElements.ModernCheckBox;

@@ -1,34 +1,16 @@
 package panel;
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
-import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import utils.S3Utils;
-
 import javax.swing.JPanel;
-
 import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
-
 import java.awt.GridBagLayout;
-import java.awt.Image;
-
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.RenderingHints;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;

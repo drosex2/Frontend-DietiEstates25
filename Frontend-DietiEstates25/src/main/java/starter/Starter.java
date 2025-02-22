@@ -1,9 +1,6 @@
 package starter;
-
 import java.util.List;
-
 import javax.swing.JFrame;
-
 import controller.VisualizzaOfferteAgenteController;
 import dto.Agente;
 import dto.Amministratore;

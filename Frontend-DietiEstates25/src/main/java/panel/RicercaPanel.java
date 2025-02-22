@@ -1,19 +1,15 @@
 package panel;
-
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
-
 import controller.RicercaController;
 import dto.Inserzione;
 import dto.Ricerca;
 import gui.CustomDialog;
 import starter.Starter;
-
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;

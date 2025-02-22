@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FileDialog;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -25,11 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
-
 import controller.InserisciInserzioneController;
-
 import customElements.ModernCheckBox;
 import customElements.RoundedButton;
 import customElements.RoundedFormattedTextField;
@@ -40,8 +35,6 @@ import dto.Immobile;
 import dto.Inserzione;
 import starter.Starter;
 import utils.S3Utils;
-import javax.swing.JScrollPane;
-import java.awt.BorderLayout;
 
 public class InserisciInserzioneFrame extends JFrame {
 

@@ -1,9 +1,6 @@
 package panel;
-
 import javax.swing.JPanel;
-
 import controller.VisualizzaOfferteAgenteController;
-
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -14,7 +11,6 @@ import customElements.RoundedButton;
 import dto.Offerta;
 import starter.Starter;
 import utils.S3Utils;
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

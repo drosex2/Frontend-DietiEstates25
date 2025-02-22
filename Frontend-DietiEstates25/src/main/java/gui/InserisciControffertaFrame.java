@@ -2,28 +2,18 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-
-
 import controller.VisualizzaOfferteAgenteController;
 import customElements.RoundedButton;
 import dto.Offerta;
 import starter.Starter;
-
-
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-
 import javax.swing.ImageIcon;
-
 import java.awt.event.ActionListener;
-
 import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Font;

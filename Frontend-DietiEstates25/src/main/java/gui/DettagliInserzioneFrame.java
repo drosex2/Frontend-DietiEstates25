@@ -1,61 +1,36 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.ComponentOrientation;
-import java.awt.Cursor;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.NumberFormatter;
-
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
 import org.jxmapviewer.input.PanMouseInputListener;
 import org.jxmapviewer.input.ZoomMouseWheelListenerCursor;
 import org.jxmapviewer.viewer.DefaultTileFactory;
-import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import controller.DettagliInserzioneController;
-import controller.LoginController;
-import customElements.ModernCheckBox;
 import customElements.RoundedButton;
-import customElements.RoundedPasswordField;
-import customElements.RoundedTextField;
-import dto.Agente;
-import dto.Agenzia;
 import dto.Inserzione;
 import dto.Utente;
 import starter.Starter;
 import utils.S3Utils;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
 import customElements.RoundedFormattedTextField;
 
 public class DettagliInserzioneFrame extends JFrame {

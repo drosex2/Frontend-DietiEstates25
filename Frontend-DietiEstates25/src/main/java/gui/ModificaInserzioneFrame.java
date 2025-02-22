@@ -1,5 +1,4 @@
 package gui;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -7,9 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,25 +15,17 @@ import controller.ModificaInserzioneController;
 import dto.Inserzione;
 import starter.Starter;
 import utils.S3Utils;
-
-import javax.swing.JList;
-
 import customElements.RoundedTextArea;
 import customElements.RoundedTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 import javax.swing.text.NumberFormatter;
-
-
 import customElements.RoundedFormattedTextField;
-import javax.swing.JScrollPane;
 import customElements.RoundedButton;
-import customElements.RoundedComboBox;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Dimension;
 import java.awt.FileDialog;
-
 import customElements.ModernCheckBox;
 import java.awt.event.ActionListener;
 import java.io.File;

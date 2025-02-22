@@ -1,25 +1,17 @@
 package panel;
-
 import javax.swing.JPanel;
-
-import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
 import dto.Utente;
 import starter.Starter;
 import utils.S3Utils;
-
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;

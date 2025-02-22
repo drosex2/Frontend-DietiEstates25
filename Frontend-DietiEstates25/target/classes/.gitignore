@@ -1,7 +1,4 @@
-/META-INF/
 /gui/
 /panel/
+/controller/
 /starter/
-/typeAdapter/
-/utils/
-/dto/

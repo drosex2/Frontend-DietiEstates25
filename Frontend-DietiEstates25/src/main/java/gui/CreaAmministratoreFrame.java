@@ -1,35 +1,20 @@
 package gui;
-
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JToggleButton;
-import javax.swing.border.EmptyBorder;
-
-import controller.CreaAgenteController;
 import customElements.*;
 import controller.CreaAmministratoreController;
-import controller.LoginController;
 import dto.Amministratore;
 import starter.Starter;
 import utils.CredentialCheckerUtils;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;

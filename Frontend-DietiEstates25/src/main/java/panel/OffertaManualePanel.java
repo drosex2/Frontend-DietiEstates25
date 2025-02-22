@@ -1,5 +1,4 @@
 package panel;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -8,15 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import starter.Starter;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import controller.VisualizzaInserzioniController;
 import customElements.RoundedButton;
 import dto.Inserzione;
 import utils.S3Utils;
