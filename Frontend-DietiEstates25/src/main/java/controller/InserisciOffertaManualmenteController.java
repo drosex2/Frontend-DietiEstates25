@@ -42,7 +42,7 @@ public class InserisciOffertaManualmenteController {
 				.POST(HttpRequest.BodyPublishers.ofString(json))
 				.build();
 		try {
-			HttpResponse<String> saveOffertaResponse = client.send(saveOffertaRequest, HttpResponse.BodyHandlers.ofString());
+			client.send(saveOffertaRequest, HttpResponse.BodyHandlers.ofString());
 		} catch (IOException | InterruptedException e) {
 			
 			throw new Exception("Errore nel salvataggio dell'offerta");

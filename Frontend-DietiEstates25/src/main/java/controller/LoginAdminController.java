@@ -11,7 +11,7 @@ public class LoginAdminController {
 	private LoginAdminFrame loginAdminFrame;
 	
 	public LoginAdminController(LoginAdminFrame loginAdminFrame) {
-		this.loginAdminFrame=loginAdminFrame;
+		this.setLoginAdminFrame(loginAdminFrame);
 	}
 	
 	public String login(String nomeAdmin, String password) throws Exception{
@@ -46,6 +46,14 @@ public class LoginAdminController {
 				.build();
 		HttpResponse<String> loginResponse = client.send(loginRequest, HttpResponse.BodyHandlers.ofString());
 		return loginResponse;
+	}
+
+	public LoginAdminFrame getLoginAdminFrame() {
+		return loginAdminFrame;
+	}
+
+	public void setLoginAdminFrame(LoginAdminFrame loginAdminFrame) {
+		this.loginAdminFrame = loginAdminFrame;
 	}
 	
 }

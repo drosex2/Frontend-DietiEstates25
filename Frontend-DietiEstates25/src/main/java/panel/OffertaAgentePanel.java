@@ -21,10 +21,10 @@ public class OffertaAgentePanel extends JPanel {
 	private Offerta offerta;
 	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
 	private String token;
-	public OffertaAgentePanel(Offerta offerta,VisualizzaOfferteAgenteController controller,String token,Starter starter) {
+	public OffertaAgentePanel(Offerta offerta,VisualizzaOfferteAgenteController controller,String pToken,Starter starter) {
 		this.offerta=offerta;
 		this.visualizzaOfferteAgenteController=controller;
-		this.token=token;
+		this.token=pToken;
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(2000, 200));

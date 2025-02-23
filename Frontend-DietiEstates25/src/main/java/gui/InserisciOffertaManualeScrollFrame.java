@@ -92,7 +92,7 @@ public class InserisciOffertaManualeScrollFrame extends JFrame {
 		navBar.add(lblTitle, gbc_lblTitle);
 		
 		
-		JFrame myFrame=this;
+		
 		
 		JLabel lblNewLabel = new JLabel("Inserzioni");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));

@@ -58,8 +58,8 @@ public class InserisciInserzioneFrame extends JFrame {
 	private JComboBox<String> comboBoxClasseEnergetica;
 	private RoundedFormattedTextField numeroStanzeField;
 
-	public InserisciInserzioneFrame(Starter starter, String token, Agente agente) {
-		this.starter = starter;
+	public InserisciInserzioneFrame(Starter pStarter, String token, Agente agente) {
+		this.starter = pStarter;
 		this.setToken(token);
 		this.agenteConnesso = agente;
 		this.inserisciInserzioneController = new InserisciInserzioneController(this);

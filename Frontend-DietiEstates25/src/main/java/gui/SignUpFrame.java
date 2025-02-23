@@ -26,6 +26,7 @@ import java.awt.event.FocusEvent;
 public class SignUpFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Starter starter;
 	private JPanel panePrincipale;

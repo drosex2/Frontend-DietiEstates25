@@ -2,6 +2,8 @@ package customElements;
 import javax.swing.*;
 import java.awt.*;
 public class RoundedPasswordField extends JPasswordField {
+	
+	private static final long serialVersionUID = 1L;
 	private int arcWidth;
     private int arcHeight;
 

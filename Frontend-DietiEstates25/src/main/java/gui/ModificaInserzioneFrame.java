@@ -58,10 +58,10 @@ public class ModificaInserzioneFrame extends JFrame {
 	
 	
 	
-	public ModificaInserzioneFrame(Starter starter, String token, Inserzione inserzione,JFrame homePage) {
-		this.starter=starter;
+	public ModificaInserzioneFrame(Starter pStarter, String token, Inserzione pInserzione,JFrame homePage) {
+		this.starter=pStarter;
 		this.setToken(token);
-		this.inserzione=inserzione;
+		this.inserzione=pInserzione;
 		this.homePage=homePage;
 		this.modificaInserzioneController=new ModificaInserzioneController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);

@@ -93,8 +93,6 @@ public class VisualizzaControfferteUtenteFrame extends JFrame {
 		navBar.add(lblTitle, gbc_lblTitle);
 		
 		
-		JFrame myFrame=this;
-		
 		JLabel lblNewLabel = new JLabel("Controfferte ricevute");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();

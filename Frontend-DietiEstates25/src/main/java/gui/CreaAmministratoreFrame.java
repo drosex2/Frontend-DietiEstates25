@@ -25,6 +25,7 @@ import java.awt.event.FocusEvent;
 public class CreaAmministratoreFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Starter starter;
 	private JPanel panePrincipale;
@@ -37,7 +38,7 @@ public class CreaAmministratoreFrame extends JFrame {
 	
 	public CreaAmministratoreFrame(Starter starter,Amministratore admin,String token) {
 		
-		this.starter=starter;
+		this.setStarter(starter);
 		this.adminConnesso=admin;
 		this.token=token;
 		this.creaAmministratoreController=new CreaAmministratoreController(this);
@@ -308,6 +309,16 @@ public class CreaAmministratoreFrame extends JFrame {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+
+	public Starter getStarter() {
+		return starter;
+	}
+
+
+	public void setStarter(Starter starter) {
+		this.starter = starter;
 	}
 
 }

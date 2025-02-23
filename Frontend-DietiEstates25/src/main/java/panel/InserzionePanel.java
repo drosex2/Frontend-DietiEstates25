@@ -21,9 +21,9 @@ public class InserzionePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Inserzione inserzione;
 	private VisualizzaInserzioniController visualizzaInserzioniController;
-	public InserzionePanel(Inserzione inserzione,VisualizzaInserzioniController visualizzaInserzioni) {
+	public InserzionePanel(Inserzione pInserzione,VisualizzaInserzioniController visualizzaInserzioni) {
 		setMaximumSize(new Dimension(800, 200));
-		this.inserzione=inserzione;
+		this.inserzione=pInserzione;
 		this.visualizzaInserzioniController=visualizzaInserzioni;
 		setBackground(new Color(217, 217, 217));
 		GridBagLayout gridBagLayout = new GridBagLayout();

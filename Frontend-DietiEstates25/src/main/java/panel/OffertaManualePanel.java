@@ -20,11 +20,11 @@ public class OffertaManualePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Inserzione inserzione;
 	private String token;
-	public OffertaManualePanel(Inserzione inserzione,String token,Starter starter) {
+	public OffertaManualePanel(Inserzione pInserzione,String pToken,Starter starter) {
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(800, 200));
-		this.inserzione=inserzione;
-		this.token=token;
+		this.inserzione=pInserzione;
+		this.token=pToken;
 		
 		setBackground(new Color(217, 217, 217));
 		GridBagLayout gridBagLayout = new GridBagLayout();

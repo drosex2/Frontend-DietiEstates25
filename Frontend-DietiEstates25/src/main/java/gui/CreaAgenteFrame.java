@@ -25,6 +25,7 @@ import java.awt.event.FocusEvent;
 public class CreaAgenteFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Starter starter;
 	private JPanel panePrincipale;
@@ -39,7 +40,7 @@ public class CreaAgenteFrame extends JFrame {
 	
 	public CreaAgenteFrame(Starter starter,Amministratore admin,String token) {
 		
-		this.starter=starter;
+		this.setStarter(starter);
 		this.adminConnesso=admin;
 		this.token=token;
 		this.creaAgenteController=new CreaAgenteController(this);
@@ -390,6 +391,16 @@ public class CreaAgenteFrame extends JFrame {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+
+	public Starter getStarter() {
+		return starter;
+	}
+
+
+	public void setStarter(Starter starter) {
+		this.starter = starter;
 	}
 
 }

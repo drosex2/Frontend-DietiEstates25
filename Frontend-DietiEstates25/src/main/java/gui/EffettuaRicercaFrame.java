@@ -67,8 +67,8 @@ public class EffettuaRicercaFrame extends JFrame {
 	private ModernCheckBox checkboxRicercaConMappa;
 	private RoundedFormattedTextField raggioField; 
 
-	public EffettuaRicercaFrame(Starter starter, String token, Utente utente) {
-		this.starter = starter;
+	public EffettuaRicercaFrame(Starter pStarter, String token, Utente utente) {
+		this.starter = pStarter;
 		this.setToken(token);
 		this.utenteConnesso = utente;
 		this.ricercaController=new RicercaController(token);
@@ -481,6 +481,15 @@ public class EffettuaRicercaFrame extends JFrame {
 		gbc_raggioField.gridx = 0;
 		gbc_raggioField.gridy = 2;
 		panel_1.add(raggioField, gbc_raggioField);
+		
+		JLabel lblDoppioClick = new JLabel("Doppio click per selezionare un punto sulla mappa:");
+		lblDoppioClick.setFont(new Font("Arial", Font.PLAIN, 22));
+		GridBagConstraints gbc_lblDoppioClick = new GridBagConstraints();
+		gbc_lblDoppioClick.anchor = GridBagConstraints.WEST;
+		gbc_lblDoppioClick.insets = new Insets(0, 0, 5, 0);
+		gbc_lblDoppioClick.gridx = 0;
+		gbc_lblDoppioClick.gridy = 3;
+		panel_1.add(lblDoppioClick, gbc_lblDoppioClick);
 
 		
 		GridBagConstraints gbc_panelMappa = new GridBagConstraints();

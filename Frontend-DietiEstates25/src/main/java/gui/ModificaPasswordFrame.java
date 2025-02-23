@@ -25,6 +25,7 @@ import java.awt.event.FocusEvent;
 public class ModificaPasswordFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Starter starter;
 	private JPanel panePrincipale;
@@ -35,9 +36,9 @@ public class ModificaPasswordFrame extends JFrame {
 	private JPasswordField vecchiaPasswordField;
 	private RoundedButton btnModifica;
 	private JLabel lblErrorePassword;
-	public ModificaPasswordFrame(Starter starter,Amministratore admin,String token) {
+	public ModificaPasswordFrame(Starter pStarter,Amministratore admin,String token) {
 		
-		this.starter=starter;
+		this.starter=pStarter;
 		this.adminConnesso=admin;
 		this.token=token;
 		this.modificaPasswordController=new ModificaPasswordController(this);

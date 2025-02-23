@@ -25,6 +25,7 @@ import javax.swing.text.NumberFormatter;
 public class InserisciOffertaManualmenteFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Starter starter;
 	private JPanel panePrincipale;
@@ -35,10 +36,10 @@ public class InserisciOffertaManualmenteFrame extends JFrame {
 	private InserisciOffertaManualmenteController inserisciOffertaManualmenteController;
 	
 	
-	public InserisciOffertaManualmenteFrame(Starter starter,Inserzione inserzione, String token) {
+	public InserisciOffertaManualmenteFrame(Starter starter,Inserzione pInserzione, String token) {
 		
 		this.starter=starter;
-		this.inserzione=inserzione;
+		this.inserzione=pInserzione;
 		this.setToken(token);
 		this.inserisciOffertaManualmenteController=new InserisciOffertaManualmenteController(this);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);

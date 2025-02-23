@@ -11,7 +11,7 @@ public class LoginController {
     private LoginFrame loginFrame;
 
     public LoginController(LoginFrame loginFrame) {
-        this.loginFrame = loginFrame;
+        this.setLoginFrame(loginFrame);
     }
 
     public String loginAgente(String email, String password) throws Exception {
@@ -80,4 +80,12 @@ public class LoginController {
         HttpResponse<String> loginResponse = client.send(loginRequest, HttpResponse.BodyHandlers.ofString());
         return loginResponse;
     }
+
+	public LoginFrame getLoginFrame() {
+		return loginFrame;
+	}
+
+	public void setLoginFrame(LoginFrame loginFrame) {
+		this.loginFrame = loginFrame;
+	}
 }

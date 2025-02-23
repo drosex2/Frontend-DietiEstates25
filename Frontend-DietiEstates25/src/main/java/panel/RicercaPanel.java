@@ -27,11 +27,11 @@ public class RicercaPanel extends JPanel {
 	private RicercaController ricercaController;
 	private String token;
 	
-	public RicercaPanel(Starter starter,Ricerca ricerca,String token,JFrame frame) {
+	public RicercaPanel(Starter pStarter,Ricerca pRicerca,String pToken,JFrame frame) {
 		setMaximumSize(new Dimension(900, 200));
-		this.starter=starter;
-		this.ricerca=ricerca;
-		this.token=token;
+		this.starter=pStarter;
+		this.ricerca=pRicerca;
+		this.token=pToken;
 		this.ricercaController=new RicercaController(token);
 		
 		setBackground(new Color(220, 220, 220));

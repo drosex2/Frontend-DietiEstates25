@@ -22,17 +22,18 @@ import javax.swing.text.NumberFormatter;
 
 public class InserisciControffertaFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private JPanel contentPane;
 	private Starter starter;
 	private JPanel panePrincipale;
 	private String token;
 	private Offerta offerta;
 	private VisualizzaOfferteAgenteController visualizzaOfferteAgenteController;
-	public InserisciControffertaFrame(Starter starter,Offerta offerta,String token,VisualizzaOfferteAgenteController visualizzaOfferteAgenteController) {
-		this.starter=starter;
+	public InserisciControffertaFrame(Starter pStarter,Offerta pOfferta,String token,VisualizzaOfferteAgenteController pVisualizzaOfferteAgenteController) {
+		this.starter=pStarter;
 		this.token=token;
-		this.offerta=offerta;
-		this.visualizzaOfferteAgenteController=visualizzaOfferteAgenteController;
+		this.offerta=pOfferta;
+		this.visualizzaOfferteAgenteController=pVisualizzaOfferteAgenteController;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 770, 512);

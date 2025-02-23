@@ -29,9 +29,9 @@ public class VisualizzaOfferteUtenteFrame extends JFrame {
 	private Starter starter;
 
 	
-	public VisualizzaOfferteUtenteFrame(Starter starter,List<Offerta> offerte) {
-		this.starter=starter;
-		this.offerte=offerte;
+	public VisualizzaOfferteUtenteFrame(Starter pStarter,List<Offerta> pOfferte) {
+		this.starter=pStarter;
+		this.offerte=pOfferte;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);

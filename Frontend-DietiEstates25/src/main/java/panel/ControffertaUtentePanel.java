@@ -22,11 +22,11 @@ public class ControffertaUtentePanel extends JPanel {
 	private Starter starter;
 	private String token;
 	
-	public ControffertaUtentePanel(Controfferta controfferta, VisualizzaControfferteUtenteController visualizzaControfferteUtenteController, String token, Starter starter) {
-		this.controfferta=controfferta;
-		this.visualizzaControfferteUtenteController=visualizzaControfferteUtenteController;
-		this.starter=starter;
-		this.token=token;
+	public ControffertaUtentePanel(Controfferta pControfferta, VisualizzaControfferteUtenteController pVisualizzaControfferteUtenteController, String pToken, Starter pStarter) {
+		this.controfferta=pControfferta;
+		this.visualizzaControfferteUtenteController=pVisualizzaControfferteUtenteController;
+		this.setStarter(pStarter);
+		this.setToken(pToken);
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(2000, 200));
@@ -141,6 +141,22 @@ public class ControffertaUtentePanel extends JPanel {
 		rndbtnAccetta.setBackground(new Color(181, 180, 180));
 		rndbtnAccetta.setFont(new Font("Arial", Font.PLAIN, 18));
 
+	}
+
+	public Starter getStarter() {
+		return starter;
+	}
+
+	public void setStarter(Starter starter) {
+		this.starter = starter;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

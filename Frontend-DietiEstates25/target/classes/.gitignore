@@ -1,4 +1,8 @@
 /gui/
 /panel/
-/controller/
 /starter/
+/typeAdapter/
+/utils/
+/META-INF/
+/controller/
+/customElements/

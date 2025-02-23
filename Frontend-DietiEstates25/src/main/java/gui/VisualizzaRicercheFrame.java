@@ -31,10 +31,10 @@ public class VisualizzaRicercheFrame extends JFrame {
 	private Starter starter;
 
 	
-	public VisualizzaRicercheFrame(Starter starter,List<Ricerca> ricerche,String token) {
-		this.starter=starter;
-		this.ricerche=ricerche;
-		this.token=token;
+	public VisualizzaRicercheFrame(Starter pStarter,List<Ricerca> pRicerche,String pToken) {
+		this.starter=pStarter;
+		this.ricerche=pRicerche;
+		this.token=pToken;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);

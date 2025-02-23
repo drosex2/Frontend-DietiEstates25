@@ -1,15 +1,13 @@
 package customElements;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.RoundRectangle2D;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RoundedComboBox<E> extends JComboBox<E> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int arcWidth;
     private int arcHeight;
 

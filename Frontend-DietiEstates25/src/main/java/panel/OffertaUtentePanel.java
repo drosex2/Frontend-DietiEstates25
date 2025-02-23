@@ -14,8 +14,8 @@ public class OffertaUtentePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Offerta offerta;
-	public OffertaUtentePanel(Offerta offerta) {
-		this.offerta=offerta;
+	public OffertaUtentePanel(Offerta pOfferta) {
+		this.offerta=pOfferta;
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(900, 200));

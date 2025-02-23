@@ -24,12 +24,12 @@ public class InserzioneRicercaPanel extends JPanel {
 	private Utente utenteConnesso;
 	private String token;
 	
-	public InserzioneRicercaPanel(Starter starter,Utente utenteConnesso,String token,Inserzione inserzione) {
+	public InserzioneRicercaPanel(Starter pStarter,Utente pUtenteConnesso,String pToken,Inserzione pInserzione) {
 		setMaximumSize(new Dimension(800, 200));
-		this.starter=starter;
-		this.utenteConnesso=utenteConnesso;
-		this.token=token;
-		this.inserzione=inserzione;
+		this.starter=pStarter;
+		this.utenteConnesso=pUtenteConnesso;
+		this.token=pToken;
+		this.inserzione=pInserzione;
 		
 		setBackground(new Color(217, 217, 217));
 		GridBagLayout gridBagLayout = new GridBagLayout();

@@ -30,9 +30,9 @@ public class VisualizzaControfferteAgenteFrame extends JFrame {
 	private Starter starter;
 
 	
-	public VisualizzaControfferteAgenteFrame(Starter starter,List<Controfferta> controfferte) {
-		this.starter=starter;
-		this.controfferte=controfferte;
+	public VisualizzaControfferteAgenteFrame(Starter pStarter,List<Controfferta> pControfferte) {
+		this.starter=pStarter;
+		this.controfferte=pControfferte;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 512);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -89,7 +89,6 @@ public class VisualizzaControfferteAgenteFrame extends JFrame {
 		navBar.add(lblTitle, gbc_lblTitle);
 		
 		
-		JFrame myFrame=this;
 		
 		JLabel lblNewLabel = new JLabel("Controfferte inviate");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));

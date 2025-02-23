@@ -47,7 +47,7 @@ public class Starter {
 	
 	
     public static void main(String[] args) {
-        Starter starter= new Starter();
+        new Starter();
     }
     
     public void switchLoginToLoginAdmin() {

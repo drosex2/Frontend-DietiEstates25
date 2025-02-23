@@ -48,4 +48,12 @@ public class SignUpController {
 		return !email.isBlank()&&!nome.isBlank()&&!cognome.isBlank()&&!password.isBlank();
 	}
 
+	public SignUpFrame getSignUpFrame() {
+		return signUpFrame;
+	}
+
+	public void setSignUpFrame(SignUpFrame signUpFrame) {
+		this.signUpFrame = signUpFrame;
+	}
+
 }

@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.BorderFactory;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
+
 import dto.Controfferta;
 import utils.S3Utils;
 
@@ -17,8 +17,8 @@ public class ControffertaAgentePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Controfferta controfferta;
 	
-	public ControffertaAgentePanel(Controfferta controfferta) {
-		this.controfferta=controfferta;
+	public ControffertaAgentePanel(Controfferta pControfferta) {
+		this.controfferta=pControfferta;
 		setBackground(new Color(220, 220, 220));
 		setPreferredSize(new Dimension(700, 200));
 		setMaximumSize(new Dimension(800, 200));
@@ -28,8 +28,6 @@ public class ControffertaAgentePanel extends JPanel {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		Border bordo = BorderFactory.createLineBorder(Color.BLACK, 1);
-		
 		JLabel lblIconFoto = new JLabel("");
 		S3Utils s3Utils=new S3Utils();
 		lblIconFoto.setIcon(s3Utils.getIconFromS3(controfferta.getInserzione().getFoto()));

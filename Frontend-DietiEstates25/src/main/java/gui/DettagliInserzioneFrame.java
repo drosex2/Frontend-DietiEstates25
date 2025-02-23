@@ -363,12 +363,7 @@ public class DettagliInserzioneFrame extends JFrame {
         numberFormatter.setCommitsOnValidEdit(true);
         numberFormatter.setValueClass(Integer.class);
         numberFormatter.setMinimum(0);
-        int offertaBase;
-        if(inserzione.getTipologia().equals("affitto")) {
-        	offertaBase=inserzione.getPrezzo()-((inserzione.getPrezzo()/100)*20);
-        }else {
-        	offertaBase=inserzione.getPrezzo()-((inserzione.getPrezzo()/100)*15);
-        }
+        int offertaBase = calcolaOffertaBase(inserzione);
         UIManager.put("ToolTip.font", new Font("Arial", Font.PLAIN, 22));
 		offertaField = new RoundedFormattedTextField(numberFormatter);
 		offertaField.setToolTipText("Inserire un offerta di almeno: €"+offertaBase);
@@ -457,6 +452,15 @@ public class DettagliInserzioneFrame extends JFrame {
 		gbc_fooBar.gridx = 0;
 		gbc_fooBar.gridy = 4;
 		panePrincipale.add(fooBar, gbc_fooBar);
+	}
+	public int calcolaOffertaBase(Inserzione inserzione) {
+		int offertaBase;
+        if(inserzione.getTipologia().equals("affitto")) {
+        	offertaBase=inserzione.getPrezzo()-((inserzione.getPrezzo()/100)*20);
+        }else {
+        	offertaBase=inserzione.getPrezzo()-((inserzione.getPrezzo()/100)*15);
+        }
+		return offertaBase;
 	}	
 	public Starter getStarter() {
 		return starter;
