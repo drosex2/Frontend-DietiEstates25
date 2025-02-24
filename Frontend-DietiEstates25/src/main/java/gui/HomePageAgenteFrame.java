@@ -169,7 +169,7 @@ public class HomePageAgenteFrame extends JFrame {
 				loadingDialog.setVisible(true);
 			}
 		});
-		btnInserisciInserzione.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnInserisciInserzione.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnInserisciInserzione.setForeground(new Color(255, 255, 255));
 		btnInserisciInserzione.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnInserisciInserzione = new GridBagConstraints();
@@ -214,7 +214,7 @@ public class HomePageAgenteFrame extends JFrame {
 			
 			}
 		});
-		btnInserisciOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnInserisciOfferta.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnInserisciOfferta.setForeground(new Color(255, 255, 255));
 		btnInserisciOfferta.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnInserisciOfferta = new GridBagConstraints();
@@ -260,7 +260,7 @@ public class HomePageAgenteFrame extends JFrame {
 				loadingDialog.setVisible(true);
 			}
 		});
-		btnVisualizzaOfferte.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnVisualizzaOfferte.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnVisualizzaOfferte.setForeground(new Color(255, 255, 255));
 		btnVisualizzaOfferte.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnVisualizzaOfferte = new GridBagConstraints();
@@ -307,7 +307,7 @@ public class HomePageAgenteFrame extends JFrame {
 			
 		});
 		btnVisualizzaControfferte.setBackground(new Color(13, 49, 71));
-		btnVisualizzaControfferte.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnVisualizzaControfferte.setFont(new Font("Arial", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnVisualizzaControfferte = new GridBagConstraints();
 		gbc_btnVisualizzaControfferte.fill = GridBagConstraints.BOTH;
 		gbc_btnVisualizzaControfferte.insets = new Insets(0, 0, 5, 5);
@@ -351,7 +351,7 @@ public class HomePageAgenteFrame extends JFrame {
 			}
 		});
 		btnModificaInserzioni.setBackground(new Color(13, 49, 71));
-		btnModificaInserzioni.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnModificaInserzioni.setFont(new Font("Arial", Font.PLAIN, 22));
 		GridBagConstraints gbc_btnModificaInserzioni = new GridBagConstraints();
 		gbc_btnModificaInserzioni.fill = GridBagConstraints.BOTH;
 		gbc_btnModificaInserzioni.insets = new Insets(0, 0, 5, 5);

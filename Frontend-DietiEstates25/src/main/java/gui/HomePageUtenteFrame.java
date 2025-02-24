@@ -167,7 +167,7 @@ public class HomePageUtenteFrame extends JFrame {
 				loadingDialog.setVisible(true);
 			}
 		});
-		btnRicerca.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnRicerca.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnRicerca.setForeground(new Color(255, 255, 255));
 		btnRicerca.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnRicerca = new GridBagConstraints();
@@ -213,7 +213,7 @@ public class HomePageUtenteFrame extends JFrame {
 				
 			}
 		});
-		btnCronologiaRicerca.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnCronologiaRicerca.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnCronologiaRicerca.setForeground(new Color(255, 255, 255));
 		btnCronologiaRicerca.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnCronologiaRicerca = new GridBagConstraints();
@@ -259,7 +259,7 @@ public class HomePageUtenteFrame extends JFrame {
 			
 			}
 		});
-		btnNotifiche.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnNotifiche.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnNotifiche.setForeground(new Color(255, 255, 255));
 		btnNotifiche.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnNotifiche = new GridBagConstraints();
@@ -306,7 +306,7 @@ public class HomePageUtenteFrame extends JFrame {
 				
 			}
 		});
-		btnOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnOfferta.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnOfferta.setForeground(new Color(255, 255, 255));
 		btnOfferta.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnOfferta = new GridBagConstraints();
@@ -355,7 +355,7 @@ public class HomePageUtenteFrame extends JFrame {
 				
 			}
 		});
-		btnContrOfferta.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnContrOfferta.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnContrOfferta.setForeground(new Color(255, 255, 255));
 		btnContrOfferta.setBackground(new Color(13, 49, 71));
 		GridBagConstraints gbc_btnControOfferta = new GridBagConstraints();

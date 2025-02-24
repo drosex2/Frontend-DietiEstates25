@@ -293,7 +293,7 @@ public class ModificaPasswordFrame extends JFrame {
 		btnModifica.setPreferredSize(new Dimension(150, 30));
 		btnModifica.setBackground(new Color(255, 175, 68));
 		GridBagConstraints gbc_btnModifica = new GridBagConstraints();
-		gbc_btnModifica.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_btnModifica.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_btnModifica.insets = new Insets(0, 0, 0, 5);
 		gbc_btnModifica.gridx = 0;
 		gbc_btnModifica.gridy = 0;
@@ -309,7 +309,7 @@ public class ModificaPasswordFrame extends JFrame {
 		btnAnnulla.setPreferredSize(new Dimension(150, 30));
 		btnAnnulla.setBackground(new Color(181, 180, 180));
 		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnAnnulla.gridx = 1;
 		gbc_btnAnnulla.gridy = 0;
 		panel_1.add(btnAnnulla, gbc_btnAnnulla);

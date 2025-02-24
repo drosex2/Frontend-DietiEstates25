@@ -151,7 +151,7 @@ public class CreaAgenteFrame extends JFrame {
 		formPanelInterno.setLayout(gbl_formPanelInterno);
 		RoundedButton btnCrea = new RoundedButton("Crea",30,30);
 		JLabel lblEmail = new JLabel("E-Mail");
-		lblEmail.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblEmail.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
 		gbc_lblEmail.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblEmail.insets = new Insets(0, 0, 5, 5);
@@ -207,7 +207,7 @@ public class CreaAgenteFrame extends JFrame {
 		formPanelInterno.add(lblErroreMail, gbc_lblErroreMail);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNome.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblNome = new GridBagConstraints();
 		gbc_lblNome.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblNome.insets = new Insets(0, 0, 5, 5);
@@ -228,7 +228,7 @@ public class CreaAgenteFrame extends JFrame {
 		formPanelInterno.add(nomeField, gbc_textField_1);
 		
 		JLabel lblCognome = new JLabel("Cognome");
-		lblCognome.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblCognome.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblCognome = new GridBagConstraints();
 		gbc_lblCognome.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblCognome.insets = new Insets(0, 0, 5, 5);
@@ -249,7 +249,7 @@ public class CreaAgenteFrame extends JFrame {
 		formPanelInterno.add(cognomeField, gbc_textField_2);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblPassword.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
@@ -315,7 +315,7 @@ public class CreaAgenteFrame extends JFrame {
 		
 		
 		btnCrea.setEnabled(false);
-		btnCrea.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnCrea.setFont(new Font("Arial", Font.PLAIN, 24));
 		JFrame myFrame=this;
 		btnCrea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -343,14 +343,14 @@ public class CreaAgenteFrame extends JFrame {
 		btnCrea.setPreferredSize(new Dimension(150, 30));
 		btnCrea.setBackground(new Color(255, 175, 68));
 		GridBagConstraints gbc_btnCrea = new GridBagConstraints();
-		gbc_btnCrea.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_btnCrea.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_btnCrea.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCrea.gridx = 0;
 		gbc_btnCrea.gridy = 0;
 		panel_1.add(btnCrea, gbc_btnCrea);
 		
 		RoundedButton btnAnnulla = new RoundedButton("Annulla",30,30);
-		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				starter.switchCreaAgenteFrameToHomePageAdmin();
@@ -359,7 +359,7 @@ public class CreaAgenteFrame extends JFrame {
 		btnAnnulla.setPreferredSize(new Dimension(150, 30));
 		btnAnnulla.setBackground(new Color(181, 180, 180));
 		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnAnnulla.gridx = 1;
 		gbc_btnAnnulla.gridy = 0;
 		panel_1.add(btnAnnulla, gbc_btnAnnulla);

@@ -179,7 +179,7 @@ public class HomePageAdminFrame extends JFrame {
 				loadingDialog.setVisible(true);
 			}
 		});
-		btnVisualizzaInserzioni.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnVisualizzaInserzioni.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnVisualizzaInserzioni.setForeground(new Color(255, 255, 255));
 		btnVisualizzaInserzioni.setBackground(new Color(16, 49, 71));
 		GridBagConstraints gbc_btnVisualizzaInserzioni = new GridBagConstraints();
@@ -195,7 +195,7 @@ public class HomePageAdminFrame extends JFrame {
 				starter.switchHomePageAdminToCreaAmministratoreFrame(adminConnesso, token);
 			}
 		});
-		btnNuovoAdmin.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnNuovoAdmin.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnNuovoAdmin.setBackground(new Color(16, 49, 71));
 		btnNuovoAdmin.setForeground(new Color(255, 255, 255));
 		GridBagConstraints gbc_btnNuovoAdmin = new GridBagConstraints();
@@ -211,7 +211,7 @@ public class HomePageAdminFrame extends JFrame {
 				starter.switchHomePageAdminToCreaAgenteFrame(adminConnesso, token);
 			}
 		});
-		btnNuovoAgente.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnNuovoAgente.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnNuovoAgente.setForeground(new Color(255, 255, 255));
 		btnNuovoAgente.setBackground(new Color(16, 49, 71));
 		GridBagConstraints gbc_btnNuovoAgente = new GridBagConstraints();
@@ -227,7 +227,7 @@ public class HomePageAdminFrame extends JFrame {
 				starter.switchHomePageAdminToModificaPasswordFrame(adminConnesso, token);
 			}
 		});
-		btnModificaPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnModificaPassword.setFont(new Font("Arial", Font.PLAIN, 22));
 		btnModificaPassword.setForeground(new Color(255, 255, 255));
 		btnModificaPassword.setBackground(new Color(16, 49, 71));
 		GridBagConstraints gbc_btnModificaPassword = new GridBagConstraints();

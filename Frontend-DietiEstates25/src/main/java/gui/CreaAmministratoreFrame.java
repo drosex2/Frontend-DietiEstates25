@@ -143,14 +143,14 @@ public class CreaAmministratoreFrame extends JFrame {
 		formPanel.add(formPanelInterno, gbc_formPanelInterno);
 		GridBagLayout gbl_formPanelInterno = new GridBagLayout();
 		gbl_formPanelInterno.columnWidths = new int[]{306, 354, 321, 0};
-		gbl_formPanelInterno.rowHeights = new int[]{89, 40, 59, 40, 88, 0};
+		gbl_formPanelInterno.rowHeights = new int[]{89, 40, 42, 40, 88, 0};
 		gbl_formPanelInterno.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_formPanelInterno.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		formPanelInterno.setLayout(gbl_formPanelInterno);
 		RoundedButton btnCrea = new RoundedButton("Crea",30,30);
 		
 		JLabel lblNomeAdmin = new JLabel("NomeAdmin");
-		lblNomeAdmin.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNomeAdmin.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblNomeAdmin = new GridBagConstraints();
 		gbc_lblNomeAdmin.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblNomeAdmin.insets = new Insets(0, 0, 5, 5);
@@ -171,7 +171,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		formPanelInterno.add(nomeAdminField, gbc_nomeAdminField);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblPassword.setFont(new Font("Arial", Font.PLAIN, 24));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblPassword.insets = new Insets(0, 0, 5, 5);
@@ -235,7 +235,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		
 		
 		btnCrea.setEnabled(false);
-		btnCrea.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnCrea.setFont(new Font("Arial", Font.PLAIN, 24));
 		JFrame myFrame=this;
 		btnCrea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -261,14 +261,14 @@ public class CreaAmministratoreFrame extends JFrame {
 		btnCrea.setPreferredSize(new Dimension(150, 30));
 		btnCrea.setBackground(new Color(255, 175, 68));
 		GridBagConstraints gbc_btnCrea = new GridBagConstraints();
-		gbc_btnCrea.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_btnCrea.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_btnCrea.insets = new Insets(0, 0, 0, 5);
 		gbc_btnCrea.gridx = 0;
 		gbc_btnCrea.gridy = 0;
 		panel_1.add(btnCrea, gbc_btnCrea);
 		
 		RoundedButton btnAnnulla = new RoundedButton("Annulla",30,30);
-		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 18));
+		btnAnnulla.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnAnnulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				starter.switchCreaAmministratoreFrameToHomePageAdmin();
@@ -277,7 +277,7 @@ public class CreaAmministratoreFrame extends JFrame {
 		btnAnnulla.setPreferredSize(new Dimension(150, 30));
 		btnAnnulla.setBackground(new Color(181, 180, 180));
 		GridBagConstraints gbc_btnAnnulla = new GridBagConstraints();
-		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_btnAnnulla.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_btnAnnulla.gridx = 1;
 		gbc_btnAnnulla.gridy = 0;
 		panel_1.add(btnAnnulla, gbc_btnAnnulla);
