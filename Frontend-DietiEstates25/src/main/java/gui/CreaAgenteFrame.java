@@ -128,7 +128,7 @@ public class CreaAgenteFrame extends JFrame {
 		formPanel.setLayout(gbl_formPanel);
 		
 		JLabel lblWelcome = new JLabel("Crea un nuovo agente immobiliare");
-		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 32));
+		lblWelcome.setFont(new Font("Arial", Font.PLAIN, 33));
 		GridBagConstraints gbc_lblWelcome = new GridBagConstraints();
 		gbc_lblWelcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWelcome.gridx = 1;
