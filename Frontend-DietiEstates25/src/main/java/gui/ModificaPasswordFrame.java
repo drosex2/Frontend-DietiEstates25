@@ -342,6 +342,8 @@ public class ModificaPasswordFrame extends JFrame {
 	public void setToken(String token) {
 		this.token = token;
 	}
+	
+	
 	public boolean checkModifyPassword(String nuovaPassword,String vecchiaPassword) throws PasswordNonValidaException {
 		String passwordAdmin=adminConnesso.getPassword();	
 		if(nuovaPassword.isBlank() || vecchiaPassword.isBlank()) {
