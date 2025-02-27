@@ -171,12 +171,15 @@ public class DettagliInserzioneFrame extends JFrame {
 		panelMappaPOI.add(mapViewer, gbc_panelMappa);
 		
 		
-		
+		JLabel lblPuntiDiInteresse=new JLabel("");
 		String puntiDiInteresse=inserzione.getImmobile().getPuntiDiInteresse();
-		puntiDiInteresse=puntiDiInteresse.replace(";", "<br> •");
-		puntiDiInteresse=puntiDiInteresse.replace("_", " ");
-		puntiDiInteresse=puntiDiInteresse.substring(0,puntiDiInteresse.length()-1);
-		JLabel lblPuntiDiInteresse = new JLabel("<html> Vicino a: <br> •"+puntiDiInteresse+"</html>");
+		if(!puntiDiInteresse.isBlank()) {
+			puntiDiInteresse=puntiDiInteresse.replace(";", "<br> •");
+			puntiDiInteresse=puntiDiInteresse.replace("_", " ");
+			puntiDiInteresse=puntiDiInteresse.substring(0,puntiDiInteresse.length()-1);
+			lblPuntiDiInteresse.setText("<html> Vicino a: <br> •"+puntiDiInteresse+"</html>");
+		}
+		
 		lblPuntiDiInteresse.setFont(new Font("Arial", Font.PLAIN, 22));
 		GridBagConstraints gbc_lblPuntiDiInteresse = new GridBagConstraints();
 		gbc_lblPuntiDiInteresse.anchor = GridBagConstraints.NORTHWEST;
