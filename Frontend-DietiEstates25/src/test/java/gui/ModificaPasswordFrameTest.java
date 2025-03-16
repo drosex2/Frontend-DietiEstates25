@@ -12,7 +12,7 @@ import starter.Starter;
 class ModificaPasswordFrameTest {
 		Agenzia agenzia=new Agenzia("Agency SRL","Roma","Via Napoli");
 		Amministratore amministratore=new Amministratore("amministratoreCapo","NuovaPassword2@",agenzia);
-		ModificaPasswordFrame frame=new ModificaPasswordFrame(new Starter(),amministratore,"token");
+		ModificaPasswordFrame frame=new ModificaPasswordFrame(new Starter(true),amministratore,"token");
 	
 		
 	

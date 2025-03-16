@@ -174,6 +174,7 @@ public class DettagliInserzioneFrame extends JFrame {
 		JLabel lblPuntiDiInteresse=new JLabel("");
 		String puntiDiInteresse=inserzione.getImmobile().getPuntiDiInteresse();
 		if(!puntiDiInteresse.isBlank()) {
+			if(!(puntiDiInteresse.charAt(0)==(' '))) puntiDiInteresse=" "+puntiDiInteresse;
 			puntiDiInteresse=puntiDiInteresse.replace(";", "<br> •");
 			puntiDiInteresse=puntiDiInteresse.replace("_", " ");
 			puntiDiInteresse=puntiDiInteresse.substring(0,puntiDiInteresse.length()-1);
@@ -369,6 +370,7 @@ public class DettagliInserzioneFrame extends JFrame {
         int offertaBase = calcolaOffertaBase(inserzione);
         UIManager.put("ToolTip.font", new Font("Arial", Font.PLAIN, 22));
 		offertaField = new RoundedFormattedTextField(numberFormatter);
+		offertaField.setColumns(10);
 		offertaField.setToolTipText("Inserire un offerta di almeno: €"+offertaBase);
 		offertaField.setFont(new Font("Arial", Font.PLAIN, 22));
 		offertaField.setValue(offertaBase);

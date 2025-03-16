@@ -43,7 +43,9 @@ public class Starter {
 		loginFrame=new LoginFrame(this);
 		loginFrame.setVisible(true);
 	}
-	
+	public Starter(boolean test) {
+		
+	}
 	
 	
     public static void main(String[] args) {
